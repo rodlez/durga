@@ -6,8 +6,7 @@ namespace App\Controllers;
 
 use Framework\TemplateEngine;
 
-// to use the paths in the templates
-use App\Config\Paths;
+use App\Services\{ValidatorService};
 
 // Controllers are classes responsible to render a page content,
 // by convention PagenameController for the class and the filename.
@@ -18,8 +17,10 @@ class HomeController
     // to create an instance of the TemplateEngine to render the content
     // moving the property TemplateEngine as a parameter of the construct method to look for dependencies    
 
-    public function __construct(private TemplateEngine $view)
-    {
+    public function __construct(
+        private TemplateEngine $view,
+        private ValidatorService $validatorService
+    ) {
         // To check that HomeController and TemplateDataMiddleware have 2 different instances of the object(Framework\TemplateEngine)#11
         // After apply Singleton Pattern they both have the same instance
         // var_dump($this->view);
@@ -32,5 +33,27 @@ class HomeController
         // Because of the Singleton Pattern, Now if we do not specify a title, the App will take the title define
         // on the TemplateDataMiddleware
         echo $this->view->render("index.php");
+    }
+
+    /**
+     * Receives the register form data using the HTTPD POST method 
+     * 
+     * * 1 - Validate the form. 
+     * * 2 - Check if the Email already exists.
+     * * 3 - Create New user in the DB and generate a $_SESSION with the user values.
+     * * 4 - Redirect to the main page.
+     */
+
+    public function newsletter()
+    {
+
+        $this->validatorService->validateNewsletter($_POST);
+        debugator();
+
+        $this->userService->isEmailTaken($_POST['email']);
+
+        $this->userService->createNewUser($_POST);
+
+        redirectTo('/');
     }
 }

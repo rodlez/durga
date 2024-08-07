@@ -496,15 +496,22 @@
         </div>
 
         <div class="row">
-            <form action="#">
+            <form method="POST">
+                <!-- CSRF TOKEN  -->
+                <?php include $this->resolve('partials/_csrf.php'); ?>
                 <div class="col-md-8 offset-md-2 d-flex flex-column align-items-center text-center">
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Introduce tu Email" id="email" name="email" value="" required />
+                    <div class="input-group mb-3  bg-ligth">
+                        <input type="email" class="form-control" placeholder="Introduce tu Email" id="email" name="email" value="<?php echo ($oldFormData['email'] ?? ''); ?>" placeholder="" />
                         <button class="btn btn-primary text-white btn-newsletter" type="submit">
                             Suscribirse
                         </button>
                     </div>
                 </div>
+                <!-- Error Message -->
+                <?php if (array_key_exists('email', $errors)) : ?>
+                    <div class="col-md-8 offset-md-2 text-light mb-4"><?php echo ($errors['email'][0]); ?></div>
+                <?php endif; ?>
+
             </form>
         </div>
 

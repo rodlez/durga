@@ -59,12 +59,27 @@ class ValidatorService
 
     public function validateLogin(array $formData)
     {
-        showNice($formData);
 
         // we pass an associative array with the field as key and the rule as value(if we have different rules for the same filed we add it to the array)
         $this->validator->validate($formData, [
             'email' => ['required', 'email'],
             'password' => ['required', 'password']
+        ]);
+    }
+
+    /**
+     * Method to Validate the Newsletter Form
+     * * Use validate method in the Validator class to Apply validation
+     * @param array $formData
+     */
+
+    public function validateNewsletter(array $formData)
+    {
+        showNice($formData);
+
+        // we pass an associative array with the field as key and the rule as value(if we have different rules for the same filed we add it to the array)
+        $this->validator->validate($formData, [
+            'email' => ['required', 'email']
         ]);
     }
 }

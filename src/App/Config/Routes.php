@@ -22,6 +22,9 @@ function registerRoutes(App $app)
 
     // Home Page
     $app->get('/', [HomeController::class, 'home']);
+    $app->post('/', [HomeController::class, 'newsletter']);
+    // Newsletter Page
+    $app->get('/', [NewsletterController::class, 'newsletterOk']);
 
     // About Page
     $app->get('/about', [AboutController::class, 'about'])->add(GuestOnlyMiddleware::class);
