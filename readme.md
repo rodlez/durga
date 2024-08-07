@@ -1,6 +1,6 @@
 # Framework PHP Template
 
-Basic PHP Framework
+Durgga Website
 
 ## Features
 
