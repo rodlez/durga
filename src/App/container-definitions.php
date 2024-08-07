@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Framework\{TemplateEngine, Database, Container};
 use App\Config\Paths;
 
-use App\Services\{ValidatorService, UserService};
+use App\Services\{NewsletterService, ValidatorService, UserService, PaginationService};
 
 // adding TemplateEngine class to the definitions
 
@@ -34,5 +34,15 @@ return [
         $db = $container->get(Database::class);
 
         return new UserService($db);
+    },
+    NewsletterService::class => function (Container $container) {
+        $db = $container->get(Database::class);
+
+        return new NewsletterService($db);
+    },
+    PaginationService::class => function (Container $container) {
+        $db = $container->get(Database::class);
+
+        return new PaginationService($db);
     }
 ];

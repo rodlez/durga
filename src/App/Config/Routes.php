@@ -42,4 +42,6 @@ function registerRoutes(App $app)
     // ****************************************** Admin ********************************************************
 
     $app->get('/admin', [AdminController::class, 'adminView'])->add(AdminRequiredMiddleware::class);
+    // Newsletter
+    $app->get('/admin/newsletter', [NewsletterController::class, 'newsletterView'])->add(AdminRequiredMiddleware::class);
 }

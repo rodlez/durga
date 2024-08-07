@@ -91,4 +91,12 @@ class Database
     {
         return $this->connection->lastInsertId();
     }
+
+    /**
+     * Method from the Database class that find All the results for the query in an array
+     */
+    public function findAll()
+    {
+        return $this->stmt->fetchAll();
+    }
 }

@@ -9,17 +9,11 @@
         <hr class="hr-heading-page">
         <p><?php echo $sitemap; ?></p>
         <div class="row">
-            <!-- Escaping data -->
-            <p>Escaping data: <?php echo escapeChar($dangerousData); ?></p>
 
             <div class="col-10 offset-1 bg-light">
-
-                <h1><?php echo $title; ?></h1>
+                <a href="/admin/newsletter" class="btn btn-primary">Newsletter</a>
             </div>
 
-            <div class="col-10 offset-1">
-
-            </div>
         </div>
 
     </div>
