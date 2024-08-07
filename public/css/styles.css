@@ -8,7 +8,7 @@
   height: 0.4rem;
   margin-top: 0rem;
   border: none;
-  background-color: var(--bs-warning);
+  background-color: var(--bs-primary);
   opacity: 1;
 }
 
@@ -65,6 +65,33 @@
 
 .navbar .navbar-toggler {
   border: 0px solid #FFF;
+}
+
+.header {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/web/header-background.jpg") left center no-repeat;
+  background-size: cover;
+  height: 600px;
+}
+
+.vertical-decoration {
+  top: 10%;
+  width: 20px;
+}
+
+.sesion-bg {
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2)), url("../images/web/contacto-background.jpg") center center no-repeat;
+  background-size: cover;
+}
+
+.sesion-card {
+  background-color: var(--bs-secondary);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.save {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--bs-light);
 }
 
 .to-top-btn {

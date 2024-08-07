@@ -39,7 +39,7 @@ class AuthController
         echo $this->view->render("register.php", [
             'title' => 'Register',
             'sitemap' => '<a href="/">Home</a> / <b>Register</b>',
-            'subtitle' => "Fill the form to register",
+            'subtitle' => "Registrate en la Web",
         ]);
     }
 
@@ -54,7 +54,6 @@ class AuthController
 
     public function register()
     {
-        //showNice($_POST);
 
         $this->validatorService->validateRegister($_POST);
 
@@ -105,6 +104,6 @@ class AuthController
     {
         $this->userService->logout();
 
-        redirectTo('/login');
+        redirectTo('/');
     }
 }

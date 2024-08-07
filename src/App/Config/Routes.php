@@ -6,9 +6,9 @@ namespace App\Config;
 
 use Framework\App;
 
-use App\Controllers\{HomeController, AboutController, AuthController};
+use App\Controllers\{HomeController, AboutController, AuthController, AdminController};
 
-use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware};
+use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware, AdminRequiredMiddleware};
 
 /**
  * Function to register routes and quit complexity from the bootstrap file, now, we can call it in bootstrap.php 
@@ -21,7 +21,7 @@ function registerRoutes(App $app)
     // ***************************************** Public *******************************************************
 
     // Home Page
-    $app->get('/', [HomeController::class, 'home'])->add(AuthRequiredMiddleware::class);
+    $app->get('/', [HomeController::class, 'home']);
 
     // About Page
     $app->get('/about', [AboutController::class, 'about'])->add(GuestOnlyMiddleware::class);
@@ -35,4 +35,8 @@ function registerRoutes(App $app)
     $app->post('/login', [AuthController::class, 'login'])->add(GuestOnlyMiddleware::class);
     // Logout
     $app->get('/logout', [AuthController::class, 'logout'])->add(AuthRequiredMiddleware::class);
+
+    // ****************************************** Admin ********************************************************
+
+    $app->get('/admin', [AdminController::class, 'adminView'])->add(AdminRequiredMiddleware::class);
 }

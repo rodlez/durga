@@ -22,6 +22,6 @@
         ]
     },
     "scripts": {
-        "frameworkphp": "php cli.php"
+        "durgini": "php cli.php"
     }
 }

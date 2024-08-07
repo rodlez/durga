@@ -18,7 +18,7 @@ showNice($_SESSION);
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/fontawesome.css">
     <!-- Favicon -->
-    <link rel="icon" href="/images/favicon.png" />
+    <link rel="icon" href="/images/web/favicon.png" />
     <title><?php echo escapeChar($title); ?></title>
 </head>
 
@@ -28,7 +28,7 @@ showNice($_SESSION);
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand" href="/">
-                <img src="/images/web/logo.svg" alt="" width="200" />
+                <img src="/images/web/logo_test.svg" alt="" width="200" />
             </a>
             <!-- Hamburger Menu -->
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,13 +50,16 @@ showNice($_SESSION);
                     <li class="nav-item px-2">
                         <a class="nav-link" href="#">Link 1</a>
                     </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link" href="#">Link 2</a>
-                    </li>
                     <!-- Conditional Rendering if the user is login -->
                     <?php if (isset($_SESSION['user'])) : ?>
                         <li class="nav-item px-2">
                             <a class="nav-link" href="/logout" onclick="return confirm('Are you sure you want to logout?');">Logout</a>
+                        </li>
+                    <?php endif; ?>
+                    <!-- Conditional Rendering if the user is an admin -->
+                    <?php if ((isset($_SESSION['role']) && ($_SESSION['role']) === 1)) : ?>
+                        <li class="nav-item px-2">
+                            <a class="nav-link" href="/admin">Admin</a>
                         </li>
                     <?php endif; ?>
 

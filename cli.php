@@ -27,15 +27,12 @@ $db = new Database(
     $_ENV['DB_PASS']
 );
 
-echo "<br />Connected to the Database. <br />";
+echo "Connected to the Database --> " .  $_ENV['DB_NAME'];
 
 // create table, convert in string the SQL file
 $sqlFile = file_get_contents("./database.sql");
 
-echo "<br />SQL File as string to make the query. <br />";
-var_dump($sqlFile);
-
 $result = $db->query($sqlFile);
 
-echo "<br />Result of the query. <br />";
+echo "Result of the query --> ";
 var_dump($result);

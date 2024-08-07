@@ -12,7 +12,7 @@
     height: 0.4rem;
     margin-top: 0rem;
     border: none;
-    background-color: var(--bs-warning);
+    background-color: var(--bs-primary);
     opacity: 1;
 }
 
@@ -84,32 +84,79 @@ $lila: #964d97;
 }
 // ***************************************************
 
-// To the Top Button
-.to-top-btn {
-    position: fixed;
-    z-index: 20;
-    bottom: 20px;
-    right: 20px;
-    opacity: 0;
-    width: 52px;
-    height: 52px;
-    border: none;
-    border-radius: 50%;
-    outline: none;
-    background-color: var(--bs-secondary);
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
-    &:hover {
-        background-color: var(--bs-warning);
-    }
-    img {
-        margin-bottom: 0.25rem;
-        width: 18px;
-    }
+
+// Header
+.header {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      url('../images/web/header-background.jpg') left center no-repeat;
+    background-size: cover;
+    height: 600px;
 }
-// use by JS to show hidden the top button
-.show {
-    opacity: 1;
+// Show the background image orange as a decoration
+.vertical-decoration {
+    top: 10%;
+    width: 20px;
+}
+
+// Sesion Exploracion
+.sesion-bg {
+    // use a gradient with opacity 80% in front of the image background 
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.2)
+        ),
+        url('../images/web/contacto-background.jpg') center center no-repeat;
+    background-size: cover;
+}
+.sesion-card {
+    background-color: var(--bs-secondary);
+    background: rgba(0, 0, 0, 0.8);        
+}
+
+// Precios
+.save {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--bs-light);
+}
+
+// Blog
+.blog {
+    .card {
+        border: 1px solid var(--bs-warning);
+        border-radius: 0;
+        .card-img {
+            border-radius: 0;
+            max-height: 350px;
+            align-self: center;
+        }    
+        .card-body {
+            background-color: var(--bs-info);           
+        }
+        .card-title {
+            color: $lila;
+            font-weight: 600;
+        }
+        .card-text {
+            color: var(--bs-secondary);
+            line-height: 1.6;
+            border-top: 2px solid var(--bs-warning);
+            padding-top: 10px;
+        }
+    }
+    .blog-link {
+        text-decoration: none;    
+        color: var(--bs-primary);
+        font-weight: 500;
+        font-size: 18px;
+        &:hover{
+            color: var(--bs-warning);
+            text-decoration: underline;    
+            text-decoration-color: var(--bs-warning);
+            text-decoration-thickness: 2px;  
+        }
+    } 
 }
 
 // Footer
@@ -146,6 +193,34 @@ $lila: #964d97;
     }
 }
 
+
+// To the Top Button
+.to-top-btn {
+    position: fixed;
+    z-index: 20;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0;
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+    background-color: var(--bs-secondary);
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    &:hover {
+        background-color: var(--bs-warning);
+    }
+    img {
+        margin-bottom: 0.25rem;
+        width: 18px;
+    }
+}
+// use by JS to show hidden the top button
+.show {
+    opacity: 1;
+}
 
 // Small Screens
 @media (max-width: 992px) {

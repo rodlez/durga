@@ -17,6 +17,8 @@
                 ?>
                 <!-- Form -->
                 <form method="POST" class="contacto-form p-4">
+                    <!-- CSRF TOKEN  -->
+                    <?php include $this->resolve('partials/_csrf.php'); ?>
                     <!-- Username -->
                     <div class="mb-4">
                         <label for="userName" class="form-label">Username <span class="text-danger">*</span></label>

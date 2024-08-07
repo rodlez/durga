@@ -113,6 +113,7 @@ class UserService
 
         // Save user's info in a SESSION
         $_SESSION['user'] = $user->id;
+        $_SESSION['role'] = $user->role;
 
         /*
          // 3 - If the login is OK, we store the users id in a session, because id will never change for the user.
