@@ -1,0 +1,17 @@
+{
+  "name": "durgini",
+  "version": "1.0.0",
+  "description": "Durgga website Dev",
+  "main": "index.js",
+  "scripts": {
+    "sass:build": "sass --no-source-map public/scss:public/css",
+    "sass:watch": "sass --no-source-map --watch public/scss:public/css"
+  },
+  "author": "rodlez",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.6.0",
+    "bootstrap": "^5.3.3",
+    "sass": "^1.77.8"
+  }
+}

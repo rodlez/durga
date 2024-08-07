@@ -1,0 +1,64 @@
+// Bootstrap Edit
+
+// Font
+$font-family-sans-serif: 'Source Serif 4', sans-serif;
+
+// Colors
+$primary: #7c217d;
+$secondary: #2d2331;
+$info: #ededed;
+$warning: #964d97;
+
+$dark: #000;
+$body-bg: #f9fafe;
+$body-color: #000;
+
+// Navbar
+$navbar-padding-y: 1rem;    //  $navbar-padding-y: $spacer * .5 !default;   ORIGINAL in node_modules/bootstrap/scss/_variables.scss
+$navbar-dark-color:  #fff;
+$navbar-dark-hover-color: $secondary;
+
+// Buttons
+$button-radius: 10px;
+$button-padding-x: 30px;
+$button-padding-y: 10px;
+
+$btn-border-radius: $button-radius;
+$btn-border-radius-sm: $button-radius;
+$btn-border-radius-lg: $button-radius;
+
+$btn-padding-x: $button-padding-x;
+$btn-padding-x-sm: $button-padding-x;
+$btn-padding-x-lg: $button-padding-x;
+$btn-padding-y: $button-padding-y;
+$btn-padding-y-sm: $button-padding-y;
+$btn-padding-y-lg: $button-padding-y;
+
+// Hamburger Menu
+$navbar-toggler-border-radius: 5px;
+
+// Spacers, add some new (6-8) to the original (0-5), now we can use for example mt-7 or pt-7
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 6,
+  7: $spacer * 8,
+  8: $spacer * 12,
+) !default;
+
+// Line Height
+$line-height-base: 1.7;
+
+// Headings
+$headings-margin-bottom: $spacer * 1;
+
+// Margins. Enable negative margins
+$enable-negative-margins: true;
+
+
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';

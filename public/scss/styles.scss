@@ -1,0 +1,175 @@
+// Custom Styles
+
+// Fonts
+.title-page {
+    font-size: 50px;
+}
+
+// Separation line
+.hr-heading-page {
+    display: inline-block;
+    width: 50%;
+    height: 0.4rem;
+    margin-top: 0rem;
+    border: none;
+    background-color: var(--bs-warning);
+    opacity: 1;
+}
+
+// Colors
+$gris: #b2b2bb;
+$teal: #d2b48c;
+$lila: #964d97;
+
+// Navigation
+.navbar {
+    background-color: var(--bs-primary);
+    .nav-link {
+        color: var(--bs-light);
+        &:hover {
+            color: $teal;
+        }       
+    }
+}
+
+// Format navbar when scroll
+.navbar-sticky {
+    opacity: 0.9;
+    border-bottom: 2px solid var(--bs-light);
+}
+
+// Social Icons 
+.social-icons {
+    margin-left: 50px;
+}
+
+
+.fa-stack {
+        .fa-circle {
+            color: var(--bs-light);
+            &:hover {
+                color: var(--bs-dark);
+            }
+        }
+        .fa-instagram {
+            color: var(--bs-primary);
+            &:hover {
+                color: #fd1d1d;
+            }
+        }
+        .fa-linkedin {
+            color: var(--bs-primary);
+            &:hover {
+                color: #0A66C2;
+            }
+        }
+}
+
+// ************** Toggler Menu ***********************
+/* hide close when burger shown */
+.navbar-toggler.collapsed .close-icon {
+    display: none;
+ }
+
+ .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    display: inline;
+ }
+
+.navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar .navbar-toggler {
+    border: 0px solid #FFF;
+}
+// ***************************************************
+
+// To the Top Button
+.to-top-btn {
+    position: fixed;
+    z-index: 20;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0;
+    width: 52px;
+    height: 52px;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+    background-color: var(--bs-secondary);
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    &:hover {
+        background-color: var(--bs-warning);
+    }
+    img {
+        margin-bottom: 0.25rem;
+        width: 18px;
+    }
+}
+// use by JS to show hidden the top button
+.show {
+    opacity: 1;
+}
+
+// Footer
+.footer-link {
+    text-decoration: none;    
+    color: var(--bs-light);
+    font-weight: 500;
+    font-size: 14px;
+    &:hover{
+        color: var(--bs-info);
+        text-decoration: underline;    
+        text-decoration-color: var(--bs-info);
+        text-decoration-thickness: 1px;  
+    }
+}
+.footer-social {
+    text-align: end;
+}
+
+// copyright
+.copyright {
+    margin-top: 20px;
+    font-size: 14px;
+    color: $gris;
+    .copyright-link {
+        text-decoration: none;    
+        color: #FDDA0D;
+        font-weight: 500;
+        font-size: 14px;
+        &:hover{
+            text-decoration: underline;
+            text-decoration-thickness: 1px;  
+        }
+    }
+}
+
+
+// Small Screens
+@media (max-width: 992px) {
+    // Add margin in the Hamburguer Menu
+    .navbar {        
+        .nav-item {
+            margin-top: 20px;
+            .fa-stack{
+                margin-top: 20px;
+            }         
+        }       
+        .nav-social {            
+            margin: 0px !important;             
+        }
+        .social-icons {
+            margin-left: 0px;
+        }
+    }
+
+    // Footer
+    .footer {
+        text-align: center;
+        .footer-social {
+            text-align: center;
+        }
+    }
+}
