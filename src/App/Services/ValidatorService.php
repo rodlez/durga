@@ -75,8 +75,6 @@ class ValidatorService
 
     public function validateNewsletter(array $formData)
     {
-        showNice($formData);
-
         // we pass an associative array with the field as key and the rule as value(if we have different rules for the same filed we add it to the array)
         $this->validator->validate($formData, [
             'email' => ['required', 'email']

@@ -6,7 +6,7 @@ namespace App\Controllers;
 
 use Framework\TemplateEngine;
 
-use App\Services\{ValidatorService};
+use App\Services\{ValidatorService, UserService};
 
 // Controllers are classes responsible to render a page content,
 // by convention PagenameController for the class and the filename.
@@ -19,7 +19,8 @@ class HomeController
 
     public function __construct(
         private TemplateEngine $view,
-        private ValidatorService $validatorService
+        private ValidatorService $validatorService,
+        private UserService $userService
     ) {
         // To check that HomeController and TemplateDataMiddleware have 2 different instances of the object(Framework\TemplateEngine)#11
         // After apply Singleton Pattern they both have the same instance
@@ -48,12 +49,11 @@ class HomeController
     {
 
         $this->validatorService->validateNewsletter($_POST);
-        debugator();
 
-        $this->userService->isEmailTaken($_POST['email']);
+        $this->userService->isEmailTaken($_POST['email'], 'newsletter');
 
-        $this->userService->createNewUser($_POST);
+        $this->userService->addEmailNewsletterList($_POST);
 
-        redirectTo('/');
+        redirectTo('/newsletter');
     }
 }

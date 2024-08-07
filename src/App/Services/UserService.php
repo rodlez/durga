@@ -22,13 +22,16 @@ class UserService
 
     /** 
      * If the email already exists throw an exception and save the error in the log file
-     * @param string $email
+     * @param string $email Email to search
+     * @param string $DBTable Table in the DB to search (users, newsletter)
      */
 
-    public function isEmailTaken(string $email)
+    public function isEmailTaken(string $email, string $DBTable)
     {
-        $query = "SELECT COUNT(*) FROM users WHERE email = $email";
+        $query = "SELECT COUNT(*) FROM $DBTable WHERE email = '$email'";
         $emailCount = $this->db->query($query)->count();
+
+        showNice($query);
 
         if ($emailCount > 0) {
             // Log to save the error register attempt
@@ -177,5 +180,17 @@ class UserService
 
         // LOG - LOGOUT
         //$this->log->accessLog('logout');
+    }
+
+    /**
+     * Create a new entry in the DB Table newsletter
+     * @param array $userData form variables, category name
+     * @return 
+     */
+
+    public function addEmailNewsletterList(array $userData): Database
+    {
+        $query = "INSERT INTO newsletter(email) VALUES('{$userData['email']}')";
+        return $this->db->query($query);
     }
 }

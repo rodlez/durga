@@ -6,7 +6,7 @@ namespace App\Config;
 
 use Framework\App;
 
-use App\Controllers\{HomeController, AboutController, AuthController, AdminController};
+use App\Controllers\{HomeController, NewsletterController, AboutController, AuthController, AdminController};
 
 use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware, AdminRequiredMiddleware};
 
@@ -24,7 +24,7 @@ function registerRoutes(App $app)
     $app->get('/', [HomeController::class, 'home']);
     $app->post('/', [HomeController::class, 'newsletter']);
     // Newsletter Page
-    $app->get('/', [NewsletterController::class, 'newsletterOk']);
+    $app->get('/newsletter', [NewsletterController::class, 'newsletterOk']);
 
     // About Page
     $app->get('/about', [AboutController::class, 'about'])->add(GuestOnlyMiddleware::class);
