@@ -20,7 +20,7 @@ class MatchRule implements RuleInterface
         return $fieldOne === $fieldTwo;
     }
 
-    public function getMessage(array $data, string $field, array $params): string
+    public function getMessage(array $data, string $field, array $params, string $idioma): string
     {
         return "Does not match {$params[0]} field.";
     }

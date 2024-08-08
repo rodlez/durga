@@ -49,7 +49,7 @@ class ContactoController
     public function contacto()
     {
         showNice($_POST, 'POST FORM');
-        $this->validatorService->validateContact($_POST);
+        $this->validatorService->validateContact($_POST, 'en');
 
         //$this->userService->isEmailTaken($_POST['email'], 'users');
 

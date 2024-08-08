@@ -62,16 +62,16 @@
                     <?php include $this->resolve('partials/_csrf.php'); ?>
                     <!-- Nombre -->
                     <div class="mb-4">
-                        <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
+                        <label for="nombre" class="form-label">Nombre <span class="text-primary">*</span></label>
                         <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo ($oldFormData['nombre'] ?? ''); ?>" placeholder="">
                     </div>
                     <!-- Error Message -->
                     <?php if (array_key_exists('nombre', $errors)) : ?>
-                        <div class="bg-info text-danger mb-4"><?php echo ($errors['nombre'][0]); ?></div>
+                        <div class="bg-warning text-white fw-italics rounded mb-4 p-2"><?php echo ($errors['nombre'][0]); ?></div>
                     <?php endif; ?>
                     <!-- Email -->
                     <div class="mb-4">
-                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                        <label for="email" class="form-label">Email <span class="text-primary">*</span></label>
                         <div class="input-group">
                             <span class="input-group-text bg-primary">
                                 <i class="fa fa-envelope fa-1x text-light"></i>
@@ -81,11 +81,11 @@
                     </div>
                     <!-- Error Message -->
                     <?php if (array_key_exists('email', $errors)) : ?>
-                        <div class="bg-info text-danger mb-4"><?php echo ($errors['email'][0]); ?></div>
+                        <div class="bg-warning text-white fw-italics rounded mb-4 p-2"><?php echo ($errors['email'][0]); ?></div>
                     <?php endif; ?>
                     <!-- Phone -->
                     <div class="mb-4">
-                        <label for="phone" class="form-label">Teléfono <span class="text-danger">*</span></label>
+                        <label for="phone" class="form-label">Teléfono <span class="text-primary">*</span></label>
                         <div class="input-group">
                             <span class="input-group-text bg-primary">
                                 <i class="fa fa-phone fa-1x text-light"></i>
@@ -95,18 +95,8 @@
                     </div>
                     <!-- Error Message -->
                     <?php if (array_key_exists('phone', $errors)) : ?>
-                        <div class="bg-info text-danger mb-4"><?php echo ($errors['phone'][0]); ?></div>
+                        <div class="bg-warning text-white fw-italics rounded mb-4 p-2"><?php echo ($errors['phone'][0]); ?></div>
                     <?php endif; ?>
-                    <!-- Asunto 
-                    <div class="mb-4">
-                        <label for="subject" class="form-label">Asunto</label>
-                        <select name="subject" id="subject" class="form-control">
-                            <option value="cita">Pedir Cita</option>
-                            <option value="sesion" <?php echo (isset($oldFormData['subject']) && ($oldFormData['subject'] === 'Contratar Sesión')) ? 'selected' : ''; ?>>Contratar Sesión</option>
-                            <option value="exploracion" <?php echo (isset($oldFormData['subject']) && ($oldFormData['subject'] === 'Sesión de Exploración')) ? 'selected' : ''; ?>>Sesión de Exploración</option>
-                            <option value="otra" <?php echo (isset($oldFormData['subject']) && ($oldFormData['subject'] === 'Otra Consulta')) ? 'selected' : ''; ?>>Otra Consulta</option>
-                        </select>
-                    </div>-->
                     <!-- Asunto -->
                     <div class="mb-4">
                         <label for="subject" class="form-label">Asunto Test</label>
@@ -119,12 +109,12 @@
                     </div>
                     <!-- Error Message -->
                     <?php if (array_key_exists('subject', $errors)) : ?>
-                        <div class="bg-info text-danger mb-4"><?php echo ($errors['subject'][0]); ?></div>
+                        <div class="bg-warning text-white fw-italics rounded mb-4 p-2"><?php echo ($errors['subject'][0]); ?></div>
                     <?php endif; ?>
                     <!-- Mensaje -->
                     <div class="mb-4">
                         <div class="col">
-                            <label for="message" class="form-label">Mensaje <span class="text-danger">*</span></label>
+                            <label for="message" class="form-label">Mensaje <span class="text-primary">*</span></label>
                         </div>
                         <div class="col">
                             <textarea name="message" rows="4" cols="50" class="w-100 rounded"><?php echo ($oldFormData['message'] ?? ''); ?></textarea>
@@ -132,10 +122,8 @@
                     </div>
                     <!-- Error Message -->
                     <?php if (array_key_exists('message', $errors)) : ?>
-                        <div class="bg-info text-danger mb-4"><?php echo ($errors['message'][0]); ?></div>
+                        <div class="bg-warning text-white fw-italics rounded mb-4 p-2"><?php echo ($errors['message'][0]); ?></div>
                     <?php endif; ?>
-
-
                     <!-- Terms of service -->
                     <div class="mb-2">
                         <input <?php echo $oldFormData['tos'] ?? false ? 'checked' : ''; ?> type="checkbox" id="agree-check" name="tos" />
@@ -145,17 +133,17 @@
                     </div>
                     <!-- Error Message -->
                     <?php if (array_key_exists('tos', $errors)) : ?>
-                        <div class="text-danger fw-italics mb-4"><?php echo ($errors['tos'][0]); ?></div>
+                        <div class="bg-warning text-white fw-italics rounded mb-4 p-2"><?php echo ($errors['tos'][0]); ?></div>
                     <?php endif; ?>
                     <!-- Send -->
                     <div class="mb-4">
                         <div class="d-grid">
-                            <button class="btn btn-primary btn-lg" type="submit">Enviar</button>
+                            <button class="btn btn-secondary btn-lg" type="submit">Enviar</button>
                         </div>
                     </div>
 
                 </form>
-                <?php showNice($oldFormData); ?>
+
             </div>
 
         </div>

@@ -15,7 +15,7 @@ class EmailRule implements RuleInterface
         return (bool) filter_var($data[$field], FILTER_VALIDATE_EMAIL);
     }
 
-    public function getMessage(array $data, string $field, array $params): string
+    public function getMessage(array $data, string $field, array $params, string $idioma): string
     {
         return "Invalid email.";
     }

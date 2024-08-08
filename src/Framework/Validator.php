@@ -20,8 +20,12 @@ class Validator
     }
 
     // validation will perform a field at a time
-    public function validate(array $formData, array $fields)
+    public function validate(array $formData, array $fields, string $idioma)
     {
+        // TODO: TEST
+        //showNice($idioma, 'idioma VALIDATOR validate');
+        //debugator();
+
         // to store the errors of each field
         $errors = [];
 
@@ -48,7 +52,7 @@ class Validator
                     continue;
                 }
 
-                $errors[$fieldName][] = $ruleValidator->getMessage($formData, $fieldName, $ruleParams);
+                $errors[$fieldName][] = $ruleValidator->getMessage($formData, $fieldName, $ruleParams, $idioma);
             }
         }
 

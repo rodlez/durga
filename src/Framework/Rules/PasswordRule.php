@@ -22,7 +22,7 @@ class PasswordRule implements RuleInterface
         return $ok;
     }
 
-    public function getMessage(array $data, string $field, array $params): string
+    public function getMessage(array $data, string $field, array $params, string $idioma): string
     {
         return "Must have at least 6 characters.";
     }

@@ -16,7 +16,7 @@ class PhoneRule implements RuleInterface
         return (bool) preg_match($pattern, $data[$field]);
     }
 
-    public function getMessage(array $data, string $field, array $params): string
+    public function getMessage(array $data, string $field, array $params, string $idioma): string
     {
         return "Invalid phone (must have 9 digits).";
     }

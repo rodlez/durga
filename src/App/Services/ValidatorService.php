@@ -48,7 +48,7 @@ class ValidatorService
             'password' => ['required'],
             'confirmPassword' => ['required', 'match:password'],
             'tos' => ['required']
-        ]);
+        ], 'es');
     }
 
     /**
@@ -64,7 +64,7 @@ class ValidatorService
         $this->validator->validate($formData, [
             'email' => ['required', 'email'],
             'password' => ['required', 'password']
-        ]);
+        ], 'es');
     }
 
     /**
@@ -78,16 +78,17 @@ class ValidatorService
         // we pass an associative array with the field as key and the rule as value(if we have different rules for the same filed we add it to the array)
         $this->validator->validate($formData, [
             'email' => ['required', 'email']
-        ]);
+        ], 'es');
     }
 
     /**
      * Method to Validate the Contact Form
      * * Use validate method in the Validator class to Apply validation
      * @param array $formData
+     * @param string $idioma Select the language to show the error messages
      */
 
-    public function validateContact(array $formData)
+    public function validateContact(array $formData, string $idioma)
     {
         // we pass an associative array with the field as key and the rule as value(if we have different rules for the same filed we add it to the array)
         $this->validator->validate($formData, [
@@ -97,6 +98,6 @@ class ValidatorService
             'subject' => ['required', 'in:cita,sesion,exploracion,otra'],
             'message' => ['required'],
             'tos' => ['required']
-        ]);
+        ], $idioma);
     }
 }

@@ -16,8 +16,13 @@ class RequiredRule implements RuleInterface
         return !empty($data[$field]);
     }
 
-    public function getMessage(array $data, string $field, array $params): string
+    public function getMessage(array $data, string $field, array $params, string $idioma): string
     {
-        return "This field is required.";
+        //showNice($idioma, 'idioma getmessage');
+        //debugator();
+
+        $idioma === 'es' ? $message = "Campo obligatorio" : $message = "This field is required.";
+
+        return $message;
     }
 }

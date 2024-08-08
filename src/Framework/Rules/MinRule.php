@@ -24,7 +24,7 @@ class MinRule implements RuleInterface
         return $data[$field] >= $length;
     }
 
-    public function getMessage(array $data, string $field, array $params): string
+    public function getMessage(array $data, string $field, array $params, string $idioma): string
     {
         return "Must be at least {$params[0]}.";
     }
