@@ -10,7 +10,7 @@
                 <p class="lead text-white fw-semibold">
                     A menudo cuando viene la enfermedad es tu cuerpo que te está gritando para que pongas límites en tu vida y te pongas a salvo
                 </p>
-                <a href="./contacto.html" class="btn btn-primary text-white">Pide Cita</a>
+                <a href="/contacto" class="btn btn-primary text-white">Pide Cita</a>
             </div>
         </div>
     </div>
@@ -158,7 +158,7 @@
                         <p class="text-light mt-4">
                             Te propongo hacer una primera sesión a 15 euros donde poder conocernos, explorar tu caso y resolver cualquier duda que tengas en relación al proceso.
                         </p>
-                        <a href="./contacto.html" class="btn btn-primary mt-4">
+                        <a href="/contacto" class="btn btn-primary mt-4">
                             ¡Reserva tu sesión ya!
                         </a>
                     </div>
@@ -391,7 +391,7 @@
                             Sesión Individual
                         </h4>
                         <p class="text-white">1 hora de duración</p>
-                        <a href="./contacto.html" class="btn btn-secondary text-uppercase text-white mt-4 mb-4">Contratar</a>
+                        <a href="/contacto" class="btn btn-secondary text-uppercase text-white mt-4 mb-4">Contratar</a>
                     </div>
                 </div>
             </div>
@@ -406,7 +406,7 @@
                         </h4>
                         <p class="text-white">1 hora de duración por sesión</p>
                         <p class="save">56€ por sesión, ahorra 20€</p>
-                        <a href="./contacto.html" class="btn btn-secondary text-uppercase text-white mt-4 mb-4">Contratar</a>
+                        <a href="/contacto" class="btn btn-secondary text-uppercase text-white mt-4 mb-4">Contratar</a>
                     </div>
                 </div>
             </div>
@@ -421,7 +421,7 @@
                         </h4>
                         <p class="text-white">1 hora de duración por sesión</p>
                         <p class="save">52.50€ por sesión, ahorra 75€</p>
-                        <a href="./contacto.html" class="btn btn-secondary text-uppercase text-white mt-4 mb-4">Contratar</a>
+                        <a href="/contacto" class="btn btn-secondary text-uppercase text-white mt-4 mb-4">Contratar</a>
                     </div>
                 </div>
             </div>

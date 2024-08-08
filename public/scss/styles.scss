@@ -212,6 +212,33 @@ $lila: #964d97;
     }
 }
 
+// Contacto
+.form-check {
+    padding-left: 5px !important;
+    text-align: start;
+}
+.contacto-name {    
+    .info-title {   
+        color: var(--bs-primary);
+        font-weight: bold;     
+        margin: 0px;
+        padding: 0px;
+    }
+    .info-subtitle {
+        font-size: 14px;
+        color: var(--bs-warning);
+        margin: 0px;
+        padding: 0px;
+    }
+}
+
+.contacto {
+   
+    .contacto-form {
+        background-color: #c3c3c3;
+    }
+}
+
 
 // To the Top Button
 .to-top-btn {
@@ -268,6 +295,18 @@ $lila: #964d97;
         }
     }
 
+    // Contacto
+    .contacto {
+        padding: 0px 20px;
+    }
+    .contacto-foto {
+        display: none;
+    }
+    .contacto-info {
+        padding-top: 40px;
+        text-align: center;
+    }
+
     // About
     .about {
         .about-img {
@@ -275,8 +314,7 @@ $lila: #964d97;
             padding: 0px 0px;
         }
         .about-card {
-            margin-top: 20px !important;
-            background-color: #fd1d1d;
+            margin-top: 20px;
         }
     }
 }

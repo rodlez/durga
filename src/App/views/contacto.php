@@ -14,7 +14,7 @@
             <div class="col-md-4 order-2 order-md-1 contacto-info">
                 <div class="row d-flex flex-column">
                     <div class="col contacto-foto">
-                        <img src="images/mamen-contacto.jpg" class="img-fluid" alt="">
+                        <img src="images/web/mamen-contacto.jpg" class="img-fluid" alt="">
                     </div>
                     <div class="col contacto-name pt-2">
                         <h4 class="info-title">Mamen Carrasco</h4>
