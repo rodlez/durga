@@ -162,6 +162,22 @@
   text-decoration-thickness: 1px;
 }
 
+.about .about-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--bs-light);
+  margin-bottom: 0px;
+}
+.about .about-img {
+  text-align: start;
+}
+.about .about-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--bs-light);
+  margin-bottom: 0px;
+}
+
 .to-top-btn {
   position: fixed;
   z-index: 20;
@@ -207,5 +223,13 @@
   }
   .footer .footer-social {
     text-align: center;
+  }
+  .about .about-img {
+    text-align: center;
+    padding: 0px 0px;
+  }
+  .about .about-card {
+    margin-top: 20px !important;
+    background-color: #fd1d1d;
   }
 }

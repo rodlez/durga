@@ -13,19 +13,19 @@ use Framework\TemplateEngine;
 use App\Config\Paths;
 
 
-class AboutController
+class ContactoController
 {
     // We inject now the instance(private TemplateEngine $view) in the __construct method
     // instead of create using $this->view = new TemplateEngine(Paths::VIEW)
 
     public function __construct(private TemplateEngine $view) {}
 
-    public function about()
+    public function contactoView()
     {
-        echo $this->view->render("about.php", [
-            'title' => 'Sobre mí',
-            'sitemap' => '<a href="/">Home</a> / <b>About</b>',
-            'header' => "Sobre mi page",
+        echo $this->view->render("contacto.php", [
+            'title' => 'Contacto',
+            'sitemap' => '<a href="/">Home</a> / <b>Contacto</b>',
+            'header' => "Contacto page",
             'dangerousData' => '<script>alert(123)</script>'
         ]);
     }

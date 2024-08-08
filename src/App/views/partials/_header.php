@@ -45,10 +45,10 @@
                         <a class="nav-link" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/about">About</a>
+                        <a class="nav-link" href="/about">Sobre mí</a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="#">Link 1</a>
+                        <a class="nav-link" href="/contacto">Contacto</a>
                     </li>
                     <!-- Conditional Rendering if the user is login -->
                     <?php if (isset($_SESSION['user'])) : ?>
