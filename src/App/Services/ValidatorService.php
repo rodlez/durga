@@ -80,4 +80,23 @@ class ValidatorService
             'email' => ['required', 'email']
         ]);
     }
+
+    /**
+     * Method to Validate the Contact Form
+     * * Use validate method in the Validator class to Apply validation
+     * @param array $formData
+     */
+
+    public function validateContact(array $formData)
+    {
+        // we pass an associative array with the field as key and the rule as value(if we have different rules for the same filed we add it to the array)
+        $this->validator->validate($formData, [
+            'nombre' => ['required'],
+            'email' => ['required', 'email'],
+            'phone' => ['required', 'phone'],
+            'subject' => ['required', 'in:cita,sesion,exploracion,otra'],
+            'message' => ['required'],
+            'tos' => ['required']
+        ]);
+    }
 }

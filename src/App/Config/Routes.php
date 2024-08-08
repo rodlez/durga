@@ -31,6 +31,7 @@ function registerRoutes(App $app)
 
     // About Page
     $app->get('/contacto', [ContactoController::class, 'contactoView']);
+    $app->post('/contacto', [ContactoController::class, 'contacto']);
 
     // ******* AuthController ********
     // Register Page
