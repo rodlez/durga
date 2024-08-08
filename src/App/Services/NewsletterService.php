@@ -14,9 +14,7 @@ use Framework\Exceptions\ValidationException;
 // To inject instances in a Service, we need to resolve the dependency from the factory function in the Container class
 class NewsletterService
 {
-    public function __construct(private Database $db)
-    {
-    }
+    public function __construct(private Database $db) {}
 
     public function getNewsletter(array $pagination)
     {
@@ -36,5 +34,17 @@ class NewsletterService
         $totalResults = $this->db->query($queryTotalResults, $params)->count();
 
         return [$newsletterList, $totalResults];
+    }
+
+    /**
+     * Create a new entry in the DB Table newsletter
+     * @param array $userData form variables, email
+     * @return 
+     */
+
+    public function insertNewEmail(array $userData): Database
+    {
+        $query = "INSERT INTO newsletter(email) VALUES('{$userData['email']}')";
+        return $this->db->query($query);
     }
 }

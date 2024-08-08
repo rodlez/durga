@@ -6,7 +6,7 @@ namespace App\Controllers;
 
 use Framework\TemplateEngine;
 
-use App\Services\{NewsletterService, PaginationService};
+use App\Services\{NewsletterService, ValidatorService, PaginationService};
 
 // Controllers are classes responsible to render a page content,
 // by convention PagenameController for the class and the filename.
@@ -20,9 +20,9 @@ class NewsletterController
     public function __construct(
         private TemplateEngine $view,
         private NewsletterService $newsletterService,
+        private ValidatorService $validatorService,
         private PaginationService $paginationService
-    ) {
-    }
+    ) {}
 
     public function newsletterOk()
     {
@@ -69,5 +69,34 @@ class NewsletterController
             'sort' => $pagination['sort'],
             'direction' => $pagination['direction']
         ]);
+    }
+
+    /**
+     * Render the admin panel to create a new newsletter entry (/admin/newsletter/create.php) using the render method in the TemplateEngine class
+     */
+
+    public function createNewsletterView()
+    {
+        echo $this->view->render("admin/newsletter/create.php", [
+            // Template information
+            'title' => 'Admin Panel',
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/newsletter">Newsletter</a> / <b>New</b>',
+            'header' => 'New Email in Newsletter list'
+        ]);
+    }
+
+    /**
+     * Insert a new entry in the DB Table categories
+     */
+
+    public function createNewsletterEntry()
+    {
+        $this->validatorService->validateNewsletter($_POST);
+
+        $result = $this->newsletterService->insertNewEmail($_POST);
+
+        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error(" . $result->errors['SQLCode'] . ") - Email " . $_POST['email'] . " can not be inserted." : $_SESSION['CRUDMessage'] = "Email " . $_POST['email'] . " inserted.";
+
+        redirectTo('/admin/newsletter');
     }
 }

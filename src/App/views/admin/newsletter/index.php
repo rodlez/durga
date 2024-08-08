@@ -1,5 +1,17 @@
 <?php include $this->resolve("partials/_header.php"); ?>
 
+<!-- FLASH MESSAGE CRUD -->
+<?php if (!empty($_SESSION['CRUDMessage'])) : ?>
+    <div class="d-flex align-items-center text-white rounded p-1 my-2 <?php echo (substr($_SESSION['CRUDMessage'], 0, 5) === 'Error') ? "bg-danger" : "bg-success" ?>">
+        <div class="p-2 flex-grow-1">
+            <?php echo $_SESSION['CRUDMessage']; ?>
+        </div>
+        <div class="p-2">
+            <a class="link-light link-opacity-100 link-opacity-50-hover text-decoration-none" href="/admin/newsletter">X</a>
+        </div>
+    </div>
+    <?php unset($_SESSION['CRUDMessage']); ?>
+<?php endif; ?>
 
 <section id="newsletter-table" class="bg-info py-4">
     <div class="container bg-light">
@@ -183,14 +195,14 @@
                 </tbody>
             </table>
         </div>
-
+        <hr class="hr-heading-page w-100 my-2">
         <!-- Pagination -->
-        <nav aria-label="pagination mt-4">
+        <nav class="p-1 mt-1" aria-label="pagination mt-4">
             <ul class="pagination">
                 <!-- First -->
                 <?php if ($currentPage > 4) : ?>
                     <li class="page-item">
-                        <a href="/?<?php echo $pageLinks[0] ?>" class="page-link bg-dark text-light">
+                        <a href="/admin/newsletter?<?php echo $pageLinks[0] ?>" class="page-link bg-dark text-light">
                             1
                         </a>
                     </li>
@@ -198,7 +210,7 @@
                 <!-- Previous -->
                 <?php if ($currentPage > 1) : ?>
                     <li class="page-item">
-                        <a href="/?<?php echo $previousPageQuery ?>" class="page-link">
+                        <a href="/admin/newsletter?<?php echo $previousPageQuery ?>" class="page-link">
                             < </a>
                     </li>
                 <?php endif; ?>

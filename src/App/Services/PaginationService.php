@@ -19,8 +19,7 @@ class PaginationService
 {
     public function __construct(
         private Database $db
-    ) {
-    }
+    ) {}
 
     /**
      * Generate the necessary pagination values to use in the GET method for paginate, sorting or searching terms
@@ -82,7 +81,7 @@ class PaginationService
         if (!empty($search)) {
 
             $pageLinks = array_map(
-                fn ($pageNum) => http_build_query([
+                fn($pageNum) => http_build_query([
                     'p' => $pageNum,
                     's' => $pagination['searchTerm'],
                     'scol' => $pagination['searchCol'],
@@ -149,7 +148,7 @@ class PaginationService
             ];
         } else {
             $pageLinks = array_map(
-                fn ($pageNum) => http_build_query([
+                fn($pageNum) => http_build_query([
                     'p' => $pageNum,
                     's' => $pagination['searchTerm'],
                     'scol' => $pagination['searchCol'],
