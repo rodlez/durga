@@ -64,7 +64,8 @@ class Router
     public function dispatch(string $path, string $method, Container $container = null)
     {
         $path = $this->normalizePath($path);
-        $method = strtoupper($method);
+        // to check if exists the $_POST['_METHOD'], that means we need to override the original method with DELETE
+        $method = strtoupper($_POST['_METHOD'] ?? $method);
 
         // search for a valid route in the routes array, preg_match -> regex searching for matches
         // if there is not a match of path or method, we found a valid route and we can associate

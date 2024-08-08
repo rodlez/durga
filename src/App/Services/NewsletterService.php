@@ -62,24 +62,36 @@ class NewsletterService
     }
 
     /**
-     * Edit a transaction based on the transaction id and the user_id, get the data from the form(description, amount and date) user_id from the $_SESSION['user'] 
-     * @param array $formData - (description, amount and date) from the POST form in the edit.php file
-     * @param int $id - come from the getUserTransaction method in the transactionService
+     * Update an Email in the Newsletter Database Table based in the ID and the new Email entry in the edit form
+     * @param array $formData - (email) from the POST form in the edit.php file
+     * @param int $id - Route parameter
      */
 
-    public function updateEmail(array $formData, int $newsletterId): Database
+    public function updateEmail(array $formData, int $id): Database
     {
         $query = "UPDATE newsletter SET 
           email = :email, updated_at =:now
-          WHERE id = :newsletterId";
+          WHERE id = :id";
 
         $params =
             [
                 'email' => $formData['email'],
                 'now' => date('Y-m-d H:i:s'),
-                'newsletterId' => $newsletterId
+                'id' => $id
             ];
 
         return $this->db->query($query, $params);
+    }
+
+    /**
+     *  Delete an entry in the newsletter Database Table given an ID     
+     * @param int $id - Route parameter
+     * @return mixed - number of rows deleted
+     */
+
+    public function deleteEmail(int $id)
+    {
+        $query = "DELETE FROM newsletter WHERE id = $id";
+        return $this->db->query($query);
     }
 }

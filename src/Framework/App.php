@@ -75,6 +75,20 @@ class App
         return $this;
     }
 
+    /**
+     * Public Method to register a route using the add method in the Router class
+     * @param string $path route path
+     * @param array $controller array with the Controller class and the method
+     * @return App to chain a method to add Middleware
+     */
+
+    public function delete(string $path, array $controller): App
+    {
+        $this->router->add('DELETE', $path, $controller);
+
+        return $this;
+    }
+
     // Developers do NOT have access to the Router via the Application class, we create it here.
 
     /**

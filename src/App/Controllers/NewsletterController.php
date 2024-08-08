@@ -137,18 +137,21 @@ class NewsletterController
         ($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") " . $_POST['email'] . " can not be edited." : $_SESSION['CRUDMessage'] = "Email " . $_POST['email'] . " edited.";
 
         redirectTo("/admin/newsletter/{$params['newsletter']}");
+    }
 
-        /*
-        $category = $this->categoryService->getCategory($params['category']);
-         if (!$category) redirectTo('/admin/category');
- 
-         $this->validatorService->validateCategory($_POST);
- 
-         $result = $this->categoryService->updateCategory($_POST, (int) $params['category']);
- 
-         ($result->errors) ? $_SESSION['CRUDMessage'] = "Error(" . $result->errors['SQLCode'] . ") - Category " . $_POST['category'] . " can not be edited." : $_SESSION['CRUDMessage'] = "Category " . $_POST['category'] . " edited.";
- 
-         redirectTo("/admin/category/{$params['category']}");
-         */
+    /**
+     * Delete the entry with the given Id in the DB Table newsletter
+     * @param array $params Newsletter Id entry
+     */
+
+    public function deleteNewsletterEntry(array $params)
+    {
+        $email = $this->newsletterService->getEmail($params['newsletter']);
+        if (!$email) redirectTo('/admin/newsletter');
+
+        $result = $this->newsletterService->deleteEmail((int) $params['newsletter']);
+        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") " . $email->email . " can not be deleted." : $_SESSION['CRUDMessage'] = "Email " . $email->email . " deleted.";
+
+        redirectTo("/admin/newsletter");
     }
 }
