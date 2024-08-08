@@ -39,12 +39,47 @@ class NewsletterService
     /**
      * Create a new entry in the DB Table newsletter
      * @param array $userData form variables, email
-     * @return 
+     * @return Database
      */
 
     public function insertNewEmail(array $userData): Database
     {
         $query = "INSERT INTO newsletter(email) VALUES('{$userData['email']}')";
         return $this->db->query($query);
+    }
+
+    /**
+     * Given an id obtains all the info from the DB Table newsletter
+     * @param mixed $entryId
+     * @return mixed
+     */
+
+    public function getEmail(mixed $entryId)
+    {
+        $entryId = (int) $entryId;
+        $query = "SELECT * FROM newsletter WHERE id = $entryId";
+        return $this->db->query($query)->find();
+    }
+
+    /**
+     * Edit a transaction based on the transaction id and the user_id, get the data from the form(description, amount and date) user_id from the $_SESSION['user'] 
+     * @param array $formData - (description, amount and date) from the POST form in the edit.php file
+     * @param int $id - come from the getUserTransaction method in the transactionService
+     */
+
+    public function updateEmail(array $formData, int $newsletterId): Database
+    {
+        $query = "UPDATE newsletter SET 
+          email = :email, updated_at =:now
+          WHERE id = :newsletterId";
+
+        $params =
+            [
+                'email' => $formData['email'],
+                'now' => date('Y-m-d H:i:s'),
+                'newsletterId' => $newsletterId
+            ];
+
+        return $this->db->query($query, $params);
     }
 }
