@@ -2,7 +2,7 @@
 <html lang="en">
 <!-- DEVELOPMENT -->
 <?php
-showNice($_SESSION);
+showNice($_SESSION, 'DEV - $_SESSION');
 ?>
 <!-- ***********  -->
 

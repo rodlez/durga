@@ -496,7 +496,7 @@
         </div>
 
         <div class="row">
-            <form method="POST">
+            <form method="POST" action="/#newsletter">
                 <!-- CSRF TOKEN  -->
                 <?php include $this->resolve('partials/_csrf.php'); ?>
                 <div class="col-md-8 offset-md-2 d-flex flex-column align-items-center text-center">

@@ -58,7 +58,7 @@
                     </div>
 
                 </form>
-                <?php showNice($oldFormData); ?>
+
             </div>
 
         </div>
