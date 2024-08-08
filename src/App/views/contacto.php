@@ -97,7 +97,7 @@
                     <?php if (array_key_exists('phone', $errors)) : ?>
                         <div class="bg-info text-danger mb-4"><?php echo ($errors['phone'][0]); ?></div>
                     <?php endif; ?>
-                    <!-- Asunto -->
+                    <!-- Asunto 
                     <div class="mb-4">
                         <label for="subject" class="form-label">Asunto</label>
                         <select name="subject" id="subject" class="form-control">
@@ -105,6 +105,16 @@
                             <option value="sesion" <?php echo (isset($oldFormData['subject']) && ($oldFormData['subject'] === 'Contratar Sesión')) ? 'selected' : ''; ?>>Contratar Sesión</option>
                             <option value="exploracion" <?php echo (isset($oldFormData['subject']) && ($oldFormData['subject'] === 'Sesión de Exploración')) ? 'selected' : ''; ?>>Sesión de Exploración</option>
                             <option value="otra" <?php echo (isset($oldFormData['subject']) && ($oldFormData['subject'] === 'Otra Consulta')) ? 'selected' : ''; ?>>Otra Consulta</option>
+                        </select>
+                    </div>-->
+                    <!-- Asunto -->
+                    <div class="mb-4">
+                        <label for="subject" class="form-label">Asunto Test</label>
+                        <select name="subject" id="subject" class="form-control">
+                            <option value="cita" <?php echo (isset($asunto) && ($asunto === '1')) ? 'selected' : ''; ?>>Pedir Cita</option>
+                            <option value="sesion" <?php echo (isset($asunto) && ($asunto === '2')) ? 'selected' : ''; ?>>Contratar Sesión</option>
+                            <option value="exploracion" <?php echo (isset($asunto) && ($asunto === '3')) ? 'selected' : ''; ?>>Sesión de Exploración</option>
+                            <option value="otra" <?php echo (isset($asunto) && ($asunto === '4')) ? 'selected' : ''; ?>>Otra Consulta</option>
                         </select>
                     </div>
                     <!-- Error Message -->

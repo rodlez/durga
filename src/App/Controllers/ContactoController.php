@@ -25,11 +25,15 @@ class ContactoController
 
     public function contactoView()
     {
+
+        isset($_GET['asunto']) ? $param = $_GET['asunto'] : $param = null;
+
         echo $this->view->render("contacto.php", [
             'title' => 'Contacto',
             'sitemap' => '<a href="/">Home</a> / <b>Contacto</b>',
             'header' => "Contacto page",
-            'dangerousData' => '<script>alert(123)</script>'
+            'dangerousData' => '<script>alert(123)</script>',
+            'asunto' => $param
         ]);
     }
 
