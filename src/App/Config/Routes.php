@@ -46,4 +46,5 @@ function registerRoutes(App $app)
     $app->get('/admin/newsletter', [NewsletterController::class, 'newsletterView'])->add(AdminRequiredMiddleware::class);
     $app->get('/admin/newsletter/create', [NewsletterController::class, 'createNewsletterView'])->add(AdminRequiredMiddleware::class);
     $app->post('/admin/newsletter/create', [NewsletterController::class, 'createNewsletterEntry'])->add(AdminRequiredMiddleware::class);
+    $app->get('/admin/newsletter/{newsletter}', [NewsletterController::class, 'editNewsletterEntryView'])->add(AdminRequiredMiddleware::class);
 }

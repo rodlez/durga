@@ -25,11 +25,15 @@ class Router
     public function add(string $method, string $path, array $controller)
     {
         $path = $this->normalizePath($path);
+        // we will able to extract values from the Path using this regular expression, we can extract multiple parameters now.
+        $regexPath = preg_replace('#{[^/]+}#', '([^/]+)', $path);
+
         $this->routes[] = [
             'path' => $path,
             'method' => strtoupper($method),
             'controller' => $controller,
             'middlewares' => [],
+            'regexPath' => $regexPath
         ];
     }
 
@@ -67,11 +71,23 @@ class Router
         // the route with the controller
 
         foreach ($this->routes as $route) {
-            if (!preg_match("#^{$route['path']}$#", $path) || $route['method'] !== $method) {
+            if (!preg_match("#^{$route['regexPath']}$#", $path, $paramValues) || $route['method'] !== $method) {
                 // do not execute more code at this point
                 continue;
                 # code...
             }
+
+            array_shift($paramValues);
+            // returns all possible results in case we have multiple placeholders for the route parameters
+            preg_match_all('#{([^/]+)}#', $route['path'], $paramKeys);
+
+            $paramKeys = $paramKeys[1];
+
+            // combine the keys and the values of the Route Parameters
+            $params = array_combine($paramKeys, $paramValues);
+
+            //showNice($params);
+            // instantiating a Controller from the valid route
 
             // 1 - We are grabbing the class and method name from the route, class grab the first value
             // of the array, function grab the second value
@@ -82,7 +98,7 @@ class Router
             $controllerInstance = $container ? $container->resolve($class) : new $class;
 
             // 3 - Middleware run before the Controller render Content, action will be an arrow function with the invocations as the body
-            $action = fn () => $controllerInstance->{$function}();
+            $action = fn() => $controllerInstance->{$function}($params);
 
             $allMiddleware = [...$route['middlewares'], ...$this->middlewares];
 
@@ -92,7 +108,7 @@ class Router
                 // the container resolve method. if the Container is provided we can resolve the dependencies using Dependency Injection if not we create it
                 $middlewareInstance = $container ? $container->resolve($middleware) : new $middleware;
                 // chaining callback functions, action variable to an arrow function when we call the process method, and pass the next middleware ($action)
-                $action = fn () => $middlewareInstance->process($action);
+                $action = fn() => $middlewareInstance->process($action);
                 // the Controller will be the last class to execute his logic
             }
 

@@ -1,21 +1,22 @@
 <?php include $this->resolve("partials/_header.php"); ?>
 
-<!-- FLASH MESSAGE CRUD -->
-<?php if (!empty($_SESSION['CRUDMessage'])) : ?>
-    <div class="d-flex align-items-center text-white rounded p-1 my-2 <?php echo (substr($_SESSION['CRUDMessage'], 0, 5) === 'Error') ? "bg-danger" : "bg-success" ?>">
-        <div class="p-2 flex-grow-1">
-            <?php echo $_SESSION['CRUDMessage']; ?>
-        </div>
-        <div class="p-2">
-            <a class="link-light link-opacity-100 link-opacity-50-hover text-decoration-none" href="/admin/newsletter">X</a>
-        </div>
-    </div>
-    <?php unset($_SESSION['CRUDMessage']); ?>
-<?php endif; ?>
+
 
 <section id="newsletter-table" class="bg-info py-4">
     <div class="container bg-light">
         <div class="row">
+            <!-- FLASH MESSAGE CRUD -->
+            <?php if (!empty($_SESSION['CRUDMessage'])) : ?>
+                <div class="d-flex align-items-center text-white rounded px-2 <?php echo (substr($_SESSION['CRUDMessage'], 0, 5) === 'Error') ? "bg-danger" : "bg-success" ?>">
+                    <div class="p-2 flex-grow-1">
+                        <?php echo $_SESSION['CRUDMessage']; ?>
+                    </div>
+                    <div class="p-2">
+                        <a class="link-light text-decoration-none" href="/admin/newsletter">X</a>
+                    </div>
+                </div>
+                <?php unset($_SESSION['CRUDMessage']); ?>
+            <?php endif; ?>
             <!-- HEADER -->
             <div class="d-flex">
                 <div class="p-2 flex-grow-1"><?php echo $sitemap ?></div>
@@ -173,7 +174,7 @@
 
                             <td class="p-2"><?php echo date("d/m/Y", strtotime($newsletter->updated_at)); ?></td>
 
-                            <!-- Actions -->
+                            <!-- ACTIONS -->
                             <td class="d-flex flex-row align-items-center justify-content-center p-2 gap-3">
                                 <!-- Edit -->
                                 <a href="/admin/newsletter/<?php echo $newsletter->id ?>" class="text-primary">

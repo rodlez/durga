@@ -95,8 +95,29 @@ class NewsletterController
 
         $result = $this->newsletterService->insertNewEmail($_POST);
 
-        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error(" . $result->errors['SQLCode'] . ") - Email " . $_POST['email'] . " can not be inserted." : $_SESSION['CRUDMessage'] = "Email " . $_POST['email'] . " inserted.";
+        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") " . $_POST['email'] . " can not be inserted." : $_SESSION['CRUDMessage'] = "Email " . $_POST['email'] . " inserted.";
 
         redirectTo('/admin/newsletter');
+    }
+
+    /**
+     * Render the admin panel to edit a category (/admin/categories/edit.php) using the render method in the TemplateEngine class
+     */
+
+    public function editNewsletterEntryView(array $params)
+    {
+        showNice($params);
+        /*
+         $category = $this->categoryService->getCategory($params['category']);
+         if (!$category) redirectTo('/admin/category');
+ 
+         echo $this->view->render("admin/categories/edit.php", [
+             // Template information
+             'title' => 'Admin Panel',
+             'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/category">Categories</a> / <b>Edit Category</b>',
+             'header' => 'Category name',
+             'category' => $category
+         ]);
+         */
     }
 }
