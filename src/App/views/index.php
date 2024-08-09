@@ -441,7 +441,7 @@
             <!-- Blog entry 1 -->
             <div class="col-lg-4 col-md-4">
                 <div class="card">
-                    <img src="./images/web/blog/durga2.jpg" class="card-img" alt="" />
+                    <img src="./images/blog/durga2.jpg" class="card-img" alt="" />
                     <div class="card-body">
                         <h5 class="card-title">La diosa Durga</h5>
                         <p class="card-text">
@@ -454,7 +454,7 @@
             <!-- Blog entry 2 -->
             <div class="col-lg-4 col-md-4">
                 <div class="card">
-                    <img src="./images/web/blog/respiracion-ovarica.jpg" class="card-img" alt="" />
+                    <img src="./images/blog/respiracion-ovarica.jpg" class="card-img" alt="" />
                     <div class="card-body">
                         <h5 class="card-title">¿Qué es la respiración ovárica-alquimia femenina?</h5>
                         <p class="card-text">
