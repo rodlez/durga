@@ -44,7 +44,7 @@
                 Date
             </div>
             <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                <?php echo $contact->created_at; ?>
+                <?php echo date("d/m/Y", strtotime($contact->created_at)); ?>
             </div>
             <div class="col-lg-2 <?php echo ($contact->status === 0) ? 'bg-danger' : 'bg-success'; ?> text-light text-uppercase fw-400 my-2 p-2 rounded">
                 Answer
@@ -53,7 +53,7 @@
                 <?php echo ($contact->status === 0) ? 'No' : 'YES'; ?>
             </div>
             <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                Nombre
+                Name
             </div>
             <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
                 <?php echo $contact->name; ?>
@@ -96,7 +96,7 @@
         <div class="row bg-light justify-content-center align-items-center py-4">
             <!-- BUTTONS -->
             <div class="col-lg-4 my-2">
-                <a href="/admin/contact" class="btn btn-dark w-100" role="button">Edit</a>
+                <a href="/admin/contact/<?php echo $contact->id ?>/edit" class="btn btn-dark w-100" role="button">Edit</a>
             </div>
             <div class="col-lg-4 my-2">
                 <a href="/admin/contact" class="btn btn-success w-100" role="button">Answer</a>

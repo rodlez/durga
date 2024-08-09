@@ -121,4 +121,39 @@ class ContactController
             'contact' => $contact
         ]);
     }
+
+    public function adminContactEditView(array $params)
+    {
+        $contact = $this->contactService->getContactInfo($params['id']);
+        if (!$contact) redirectTo("/admin/contact/");
+
+        echo $this->view->render("/admin/contact/edit.php", [
+            // Template information
+            'title' => 'Admin Panel',
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/contact">Contact</a> / <b>Edit</b>',
+            'header' => 'Edit Contact Information',
+            // Contact Information from the DB
+            'contact' => $contact
+        ]);
+    }
+
+    /**
+     * Update the entry with the given Id in the DB Table newsletter
+     * @param array $params Newsletter Id entry
+     */
+
+    public function adminContactEdit(array $params)
+    {
+        showNice($_POST);
+        $contact = $this->contactService->getContactInfo($params['id']);
+        if (!$contact) redirectTo("/admin/contact/");
+
+        $this->validatorService->validateContactAdmin($_POST, 'es');
+
+        $result = $this->contactService->updateContact($_POST, (int) $params['id']);
+
+        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Contact with " . $_POST['email'] . " can not be edited." : $_SESSION['CRUDMessage'] = "Contact with Email " . $_POST['email'] . " edited.";
+
+        redirectTo("/admin/contact/{$params['id']}");
+    }
 }

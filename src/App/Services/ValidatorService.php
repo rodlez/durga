@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use Framework\Validator;
-use Framework\Rules\{RequiredRule, EmailRule, MinRule, InRule, UrlRule, MatchRule, PasswordRule, PhoneRule};
+use Framework\Rules\{RequiredRule, EmailRule, MinRule, InRule, UrlRule, MatchRule, PasswordRule, PhoneRule, DateFormatRule};
 
 // SERVICES are Not tied to an specific Controller, should be available to any Controller who needs them
 
@@ -27,6 +27,8 @@ class ValidatorService
         $this->validator->add("phone", new PhoneRule());
         // TODO: Real Password validation, use special characters etc..
         $this->validator->add("password", new PasswordRule());
+        // TODO: Date, check
+        $this->validator->add("dateFormat", new DateFormatRule());
     }
 
     /**
@@ -99,6 +101,26 @@ class ValidatorService
             'subject' => ['required', 'in:Pedir Cita,Contratar Sesión,Sesión de Exploración,Otra Consulta'],
             'message' => ['required'],
             'tos' => ['required']
+        ], $lang);
+    }
+
+    /**
+     * Method to Validate the Contact Form in the Admin Panel
+     * * Use validate method in the Validator class to Apply validation
+     * @param array $formData
+     * @param string $lang Select the language to show the error messages
+     */
+
+    public function validateContactAdmin(array $formData, string $lang)
+    {
+        // we pass an associative array with the field as key and the rule as value(if we have different rules for the same filed we add it to the array)
+        $this->validator->validate($formData, [
+            'name' => ['required'],
+            'email' => ['required', 'email'],
+            'phone' => ['required', 'phone'],
+            'subject' => ['required', 'in:Pedir Cita,Contratar Sesión,Sesión de Exploración,Otra Consulta'],
+            'message' => ['required'],
+            'date' => ['required', 'dateFormat:Y-m-d']
         ], $lang);
     }
 }

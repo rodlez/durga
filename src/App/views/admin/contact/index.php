@@ -245,7 +245,7 @@
                                     <i class="fa-regular fa-eye"></i>
                                 </a>
                                 <!-- Edit -->
-                                <a href="/admin/contact/<?php echo $contact->id ?>" class="text-primary">
+                                <a href="/admin/contact/<?php echo $contact->id ?>/edit" class="text-primary">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
                                 <!-- Delete -->

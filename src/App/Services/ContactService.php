@@ -46,7 +46,8 @@ class ContactService
 
     public function getContactInfo(mixed $id)
     {
-        $query = "SELECT * FROM contact where id = $id";
+        $query = "SELECT *, DATE_FORMAT(created_at, '%Y-%m-%d') as formatted_date
+        FROM contact where id = $id";
         return $this->db->query($query)->find();
     }
 
@@ -73,6 +74,56 @@ class ContactService
 
         return [$list, $totalResults];
     }
+
+
+    /**
+     * Update an Email in the Newsletter Database Table based in the ID and the new Email entry in the edit form
+     * @param array $formData - form in the contact Admin edit menu
+     * @param int $id - Route parameter
+     */
+
+    public function updateContact(array $formData, int $id): Database
+    {
+        // to avoid the time(HH:MM:SS) DATETIME type to be created by the DB, we stablish it to the midnight because in this case only care for the date(YYY-MM-DD)
+        $formattedDate = "{$formData['date']} 00:00:00";
+
+        $query = "UPDATE contact SET 
+           name = :name, email = :email, phone = :phone, subject = :subject, message = :message, status = :status, comments = :comments, created_at = :date, updated_at =:now
+           WHERE id = :id";
+
+        $params =
+            [
+                'name' => $formData['name'],
+                'email' => $formData['email'],
+                'phone' => $formData['phone'],
+                'subject' => $formData['subject'],
+                'message' => $formData['message'],
+                'status' => $formData['status'],
+                'comments' => $formData['comments'],
+                'date' => $formattedDate,
+                'now' => date('Y-m-d H:i:s'),
+                'id' => $id
+            ];
+
+        //showNice($params);
+        //debugator($query);
+
+        return $this->db->query($query, $params);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Create a new entry in the DB Table newsletter
