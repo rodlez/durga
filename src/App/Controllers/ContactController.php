@@ -144,7 +144,6 @@ class ContactController
 
     public function adminContactEdit(array $params)
     {
-        showNice($_POST);
         $contact = $this->contactService->getContactInfo($params['id']);
         if (!$contact) redirectTo("/admin/contact/");
 
@@ -155,5 +154,21 @@ class ContactController
         ($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Contact with " . $_POST['email'] . " can not be edited." : $_SESSION['CRUDMessage'] = "Contact with Email " . $_POST['email'] . " edited.";
 
         redirectTo("/admin/contact/{$params['id']}");
+    }
+
+    /**
+     * Delete the entry with the given Id in the DB Table newsletter
+     * @param array $params Newsletter Id entry
+     */
+
+    public function adminContactDelete(array $params)
+    {
+        $contact = $this->contactService->getContactInfo($params['id']);
+        if (!$contact) redirectTo("/admin/contact/");
+
+        $result = $this->contactService->deleteContact((int) $params['id']);
+        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Contact with Email " . $contact->email . " can not be deleted." : $_SESSION['CRUDMessage'] = "Contact with Email " . $contact->email . " deleted.";
+
+        redirectTo("/admin/contact");
     }
 }

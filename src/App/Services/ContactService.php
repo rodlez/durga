@@ -105,82 +105,18 @@ class ContactService
                 'id' => $id
             ];
 
-        //showNice($params);
-        //debugator($query);
-
-        return $this->db->query($query, $params);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Create a new entry in the DB Table newsletter
-     * @param array $userData form variables, email
-     * @return Database
-     */
-
-    public function insertNewEmail(array $userData): Database
-    {
-        $query = "INSERT INTO newsletter(email) VALUES('{$userData['email']}')";
-        return $this->db->query($query);
-    }
-
-    /**
-     * Given an id obtains all the info from the DB Table newsletter
-     * @param mixed $entryId
-     * @return mixed
-     */
-
-    public function getEmail(mixed $entryId)
-    {
-        $entryId = (int) $entryId;
-        $query = "SELECT * FROM newsletter WHERE id = $entryId";
-        return $this->db->query($query)->find();
-    }
-
-    /**
-     * Update an Email in the Newsletter Database Table based in the ID and the new Email entry in the edit form
-     * @param array $formData - (email) from the POST form in the edit.php file
-     * @param int $id - Route parameter
-     */
-
-    public function updateEmail(array $formData, int $id): Database
-    {
-        $query = "UPDATE newsletter SET 
-          email = :email, updated_at =:now
-          WHERE id = :id";
-
-        $params =
-            [
-                'email' => $formData['email'],
-                'now' => date('Y-m-d H:i:s'),
-                'id' => $id
-            ];
-
         return $this->db->query($query, $params);
     }
 
     /**
-     *  Delete an entry in the newsletter Database Table given an ID     
+     *  Delete an entry in the contact Database Table given an ID     
      * @param int $id - Route parameter
      * @return mixed - number of rows deleted
      */
 
-    public function deleteEmail(int $id)
+    public function deleteContact(int $id)
     {
-        $query = "DELETE FROM newsletter WHERE id = $id";
+        $query = "DELETE FROM contact WHERE id = $id";
         return $this->db->query($query);
     }
 }
