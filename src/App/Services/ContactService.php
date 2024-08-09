@@ -42,30 +42,24 @@ class ContactService
     /* *************************************************** ADMIN ************************************************************* */
 
 
-
-
-
-
-
-
-    public function getNewsletter(array $pagination)
+    public function getContacts(array $pagination)
     {
-        $query = "SELECT * FROM newsletter 
+        $query = "SELECT * FROM contact 
          WHERE {$pagination['searchCol']} LIKE :searchTerm
          ORDER BY {$pagination['sort']} {$pagination['direction']}  
          LIMIT {$pagination['perPage']} OFFSET {$pagination['offset']}";
 
         $params = ['searchTerm' => "%{$pagination['searchTerm']}%"];
 
-        $newsletterList = $this->db->query($query, $params)->findAll();
+        $list = $this->db->query($query, $params)->findAll();
 
         // Another query to know the total number of results without the limit ans offset, we need this to calculate the next page link
-        $queryTotalResults = "SELECT COUNT(*) FROM newsletter 
+        $queryTotalResults = "SELECT COUNT(*) FROM contact 
          WHERE {$pagination['searchCol']} LIKE :searchTerm";
 
         $totalResults = $this->db->query($queryTotalResults, $params)->count();
 
-        return [$newsletterList, $totalResults];
+        return [$list, $totalResults];
     }
 
     /**

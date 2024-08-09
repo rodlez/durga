@@ -2,13 +2,13 @@
 
 <?php
 // Intelephense Error
-/**  @var object $newsletterList */
+/**  @var object $contactList */
 /**  @var int $currentPage */
 /**  @var int $lastPage */
 //showNice($email);
 ?>
 
-<section id="newsletter-table" class="bg-info py-4">
+<section id="contact-table" class="bg-info py-4">
     <div class="container bg-light">
         <div class="row">
             <!-- FLASH MESSAGE CRUD -->
@@ -18,7 +18,7 @@
                         <?php echo $_SESSION['CRUDMessage']; ?>
                     </div>
                     <div class="p-2">
-                        <a class="link-light text-decoration-none" href="/admin/newsletter">X</a>
+                        <a class="link-light text-decoration-none" href="/admin/contact">X</a>
                     </div>
                 </div>
                 <?php unset($_SESSION['CRUDMessage']); ?>
@@ -27,8 +27,8 @@
             <div class="d-flex">
                 <div class="p-2 flex-grow-1"><?php echo $sitemap ?></div>
                 <div class="p-2">
-                    <!-- NEW Newsletter -->
-                    <a class="link-primary" href="/admin/newsletter/create">New Email</a>
+                    <!-- NEW contact -->
+                    <a class="link-primary" href="/admin/contact/create">New Contact</a>
                 </div>
             </div>
         </div>
@@ -37,9 +37,9 @@
             <!-- SEARCH RESULTS-->
             <div class="d-flex ">
                 <div class="p-2 flex-grow-1 "><?php if ($searchTerm === null || trim($searchTerm) === '') : ?>
-                        <?php echo "Found <b>(" . $totalResults . ")</b> emails in the Newsletter DB." ?>
-                    <?php else : echo "Found <b>(" . $totalResults . ")</b> newsletter emails for the search term <b>[$searchTerm]</b> in the column <b>[$searchCol]</b>."; ?>
-                        <a class="link-danger px-2" href="/admin/newsletter">New Search</a>
+                        <?php echo "Found <b>(" . $totalResults . ")</b> contacts in the DB." ?>
+                    <?php else : echo "Found <b>(" . $totalResults . ")</b> contact for the search term <b>[$searchTerm]</b> in the column <b>[$searchCol]</b>."; ?>
+                        <a class="link-danger px-2" href="/admin/contact">New Search</a>
                     <?php endif; ?>
 
                 </div>
@@ -48,13 +48,13 @@
             <!-- RESULTS PER PAGE -->
             <div class="d-flex justify-content-end fw-bold">
                 <div class="px-2 ">
-                    <a href="/admin/newsletter/?s=<?php echo $searchTerm ?>&scol=<?php echo $searchCol ?>&n=10" class="<?php echo ($perPage === 10) ? "link-primary text-decoration-none" : "link-secondary text-decoration-none" ?>">
+                    <a href="/admin/contact/?s=<?php echo $searchTerm ?>&scol=<?php echo $searchCol ?>&n=10" class="<?php echo ($perPage === 10) ? "link-primary text-decoration-none" : "link-secondary text-decoration-none" ?>">
                         10
                     </a> |
-                    <a href="/admin/newsletter/?s=<?php echo $searchTerm ?>&scol=<?php echo $searchCol ?>&n=25" class="<?php echo ($perPage === 25) ? "link-primary text-decoration-none" : "link-secondary text-decoration-none" ?>">
+                    <a href="/admin/contact/?s=<?php echo $searchTerm ?>&scol=<?php echo $searchCol ?>&n=25" class="<?php echo ($perPage === 25) ? "link-primary text-decoration-none" : "link-secondary text-decoration-none" ?>">
                         25
                     </a> |
-                    <a href="/admin/newsletter/?s=<?php echo $searchTerm ?>&scol=<?php echo $searchCol ?>&n=50" class="<?php echo ($perPage === 50) ? "link-primary text-decoration-none" : "link-secondary text-decoration-none" ?>">
+                    <a href="/admin/contact/?s=<?php echo $searchTerm ?>&scol=<?php echo $searchCol ?>&n=50" class="<?php echo ($perPage === 50) ? "link-primary text-decoration-none" : "link-secondary text-decoration-none" ?>">
                         50
                     </a>
                 </div>
@@ -92,19 +92,20 @@
                     </div>
                     <?php if ($searchTerm !== "") : ?>
                         <div class="">
-                            <a class="btn btn-danger" href="/admin/newsletter" role="button">Reset</a>
+                            <a class="btn btn-danger" href="/admin/contact" role="button">Reset</a>
                         </div>
                     <?php endif; ?>
                 </div>
             </div>
         </form>
         <hr>
-        <!-- NEWSLETTER TABLE -->
+        <!-- contact TABLE -->
         <div class="table-responsive">
             <table class="table table-responsive table-striped">
                 <!-- <a class="link-light link-opacity-100 link-opacity-50-hover text-decoration-none" href="/">X</a> -->
                 <thead>
                     <tr>
+                        <!-- ID -->
                         <th class="<?php echo ($sort === 'id') ? "bg-dark" : "bg-primary" ?>">
                             <form method="GET">
                                 <input value="id" name="sort" type="hidden" />
@@ -120,6 +121,23 @@
                                 </button>
                             </form>
                         </th>
+                        <!-- NOMBRE -->
+                        <th class="<?php echo ($sort === 'name') ? "bg-dark" : "bg-primary" ?>">
+                            <form method="GET">
+                                <input value="name" name="sort" type="hidden" />
+                                <input value="<?php echo $direction ?>" name="dir" type="hidden" />
+                                <input value="<?php echo $currentPage ?>" name="p" type="hidden" />
+                                <input value="<?php echo $searchTerm ?>" name="s" type="hidden" />
+                                <input value="<?php echo $searchCol ?>" name="scol" type="hidden" />
+                                <input value="<?php echo $perPage ?>" name="n" type="hidden" />
+                                <button class="btn btn-link text-white text-decoration-none p-0">Name
+                                    <?php if ($sort === 'name') :
+                                        echo $direction === 'ASC' ? "&uarr;" : "&darr;" ?>
+                                    <?php endif; ?>
+                                </button>
+                            </form>
+                        </th>
+                        <!-- EMAIL -->
                         <th class="<?php echo ($sort === 'email') ? "bg-dark" : "bg-primary" ?>">
                             <form method="GET">
                                 <input value="email" name="sort" type="hidden" />
@@ -135,6 +153,55 @@
                                 </button>
                             </form>
                         </th>
+                        <!-- PHONE -->
+                        <th class="<?php echo ($sort === 'phone') ? "bg-dark" : "bg-primary" ?>">
+                            <form method="GET">
+                                <input value="phone" name="sort" type="hidden" />
+                                <input value="<?php echo $direction ?>" name="dir" type="hidden" />
+                                <input value="<?php echo $currentPage ?>" name="p" type="hidden" />
+                                <input value="<?php echo $searchTerm ?>" name="s" type="hidden" />
+                                <input value="<?php echo $searchCol ?>" name="scol" type="hidden" />
+                                <input value="<?php echo $perPage ?>" name="n" type="hidden" />
+                                <button class="btn btn-link text-white text-decoration-none p-0">Phone
+                                    <?php if ($sort === 'phone') :
+                                        echo $direction === 'ASC' ? "&uarr;" : "&darr;" ?>
+                                    <?php endif; ?>
+                                </button>
+                            </form>
+                        </th>
+                        <!-- SUBJECT -->
+                        <th class="<?php echo ($sort === 'subject') ? "bg-dark" : "bg-primary" ?>">
+                            <form method="GET">
+                                <input value="subject" name="sort" type="hidden" />
+                                <input value="<?php echo $direction ?>" name="dir" type="hidden" />
+                                <input value="<?php echo $currentPage ?>" name="p" type="hidden" />
+                                <input value="<?php echo $searchTerm ?>" name="s" type="hidden" />
+                                <input value="<?php echo $searchCol ?>" name="scol" type="hidden" />
+                                <input value="<?php echo $perPage ?>" name="n" type="hidden" />
+                                <button class="btn btn-link text-white text-decoration-none p-0">Subject
+                                    <?php if ($sort === 'subject') :
+                                        echo $direction === 'ASC' ? "&uarr;" : "&darr;" ?>
+                                    <?php endif; ?>
+                                </button>
+                            </form>
+                        </th>
+                        <!-- STATUS -->
+                        <th class="<?php echo ($sort === 'status') ? "bg-dark" : "bg-primary" ?>">
+                            <form method="GET">
+                                <input value="status" name="sort" type="hidden" />
+                                <input value="<?php echo $direction ?>" name="dir" type="hidden" />
+                                <input value="<?php echo $currentPage ?>" name="p" type="hidden" />
+                                <input value="<?php echo $searchTerm ?>" name="s" type="hidden" />
+                                <input value="<?php echo $searchCol ?>" name="scol" type="hidden" />
+                                <input value="<?php echo $perPage ?>" name="n" type="hidden" />
+                                <button class="btn btn-link text-white text-decoration-none p-0">Contestado
+                                    <?php if ($sort === 'status') :
+                                        echo $direction === 'ASC' ? "&uarr;" : "&darr;" ?>
+                                    <?php endif; ?>
+                                </button>
+                            </form>
+                        </th>
+                        <!-- CREATED -->
                         <th class="<?php echo ($sort === 'created_at') ? "bg-dark" : "bg-primary" ?>">
                             <form method="GET">
                                 <input value="created_at" name="sort" type="hidden" />
@@ -143,23 +210,8 @@
                                 <input value="<?php echo $searchTerm ?>" name="s" type="hidden" />
                                 <input value="<?php echo $searchCol ?>" name="scol" type="hidden" />
                                 <input value="<?php echo $perPage ?>" name="n" type="hidden" />
-                                <button class="btn btn-link text-white text-decoration-none p-0">Created
+                                <button class="btn btn-link text-white text-decoration-none p-0">Received
                                     <?php if ($sort === 'created_at') :
-                                        echo $direction === 'ASC' ? "&uarr;" : "&darr;" ?>
-                                    <?php endif; ?>
-                                </button>
-                            </form>
-                        </th>
-                        <th class="<?php echo ($sort === 'updated_at') ? "bg-dark" : "bg-primary" ?>">
-                            <form method="GET">
-                                <input value="updated_at" name="sort" type="hidden" />
-                                <input value="<?php echo $direction ?>" name="dir" type="hidden" />
-                                <input value="<?php echo $currentPage ?>" name="p" type="hidden" />
-                                <input value="<?php echo $searchTerm ?>" name="s" type="hidden" />
-                                <input value="<?php echo $searchCol ?>" name="scol" type="hidden" />
-                                <input value="<?php echo $perPage ?>" name="n" type="hidden" />
-                                <button class="btn btn-link text-white text-decoration-none p-0">Updated
-                                    <?php if ($sort === 'updated_at') :
                                         echo $direction === 'ASC' ? "&uarr;" : "&darr;" ?>
                                     <?php endif; ?>
                                 </button>
@@ -170,27 +222,33 @@
                 </thead>
                 <!-- Transaction Table Body -->
                 <tbody>
-                    <?php foreach ($newsletterList as $newsletter) : ?>
+                    <?php foreach ($contactList as $contact) : ?>
                         <tr>
-                            <td class="p-2"><?php echo $newsletter->id ?></td>
+                            <td class="p-2"><?php echo $contact->id ?></td>
 
-                            <td class="p-2 align-items-center"><?php echo $newsletter->email ?></td>
+                            <td class="p-2r"><?php echo $contact->name ?></td>
 
-                            <td class="p-2"><?php echo date("d/m/Y", strtotime($newsletter->created_at)); ?></td>
+                            <td class="p-2"><?php echo $contact->email ?></td>
 
-                            <td class="p-2"><?php echo date("d/m/Y", strtotime($newsletter->updated_at)); ?></td>
+                            <td class="p-2"><?php echo $contact->phone ?></td>
+
+                            <td class="p-2"><?php echo $contact->subject ?></td>
+
+                            <td class="p-2"><?php echo ($contact->status === 0 ? 'No' : 'Si'); ?></td>
+
+                            <td class="p-2"><?php echo date("d/m/Y", strtotime($contact->created_at)); ?></td>
 
                             <!-- ACTIONS -->
                             <td class="d-flex flex-row align-items-center justify-content-center p-2 gap-3">
                                 <!-- Edit -->
-                                <a href="/admin/newsletter/<?php echo $newsletter->id ?>" class="text-primary">
+                                <a href="/admin/contact/<?php echo $contact->id ?>" class="text-primary">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
                                 <!-- Delete -->
-                                <form action="/admin/newsletter/<?php echo $newsletter->id ?>" method="POST">
+                                <form action="/admin/contact/<?php echo $contact->id ?>" method="POST">
                                     <input type="hidden" name="_METHOD" value="DELETE" />
                                     <?php include $this->resolve("partials/_csrf.php") ?>
-                                    <button class="btn p-0" onclick="return confirm('Are you sure you want to delete this newsletter?');">
+                                    <button class="btn p-0" onclick="return confirm('Are you sure you want to delete this contact?');">
                                         <i class="fa-solid fa-trash text-primary"></i>
                                     </button>
                                 </form>
@@ -209,7 +267,7 @@
                 <!-- First -->
                 <?php if ($currentPage > 4) : ?>
                     <li class="page-item">
-                        <a href="/admin/newsletter?<?php echo $pageLinks[0] ?>" class="page-link bg-dark text-light">
+                        <a href="/admin/contact?<?php echo $pageLinks[0] ?>" class="page-link bg-dark text-light">
                             1
                         </a>
                     </li>
@@ -217,7 +275,7 @@
                 <!-- Previous -->
                 <?php if ($currentPage > 1) : ?>
                     <li class="page-item">
-                        <a href="/admin/newsletter?<?php echo $previousPageQuery ?>" class="page-link">
+                        <a href="/admin/contact?<?php echo $previousPageQuery ?>" class="page-link">
                             < </a>
                     </li>
                 <?php endif; ?>
@@ -228,7 +286,7 @@
                         <?php else : ?>
                         <li class="page-item">
                         <?php endif; ?>
-                        <a href="/admin/newsletter?<?php echo $pageLinks[$x - 1] ?>" class="page-link">
+                        <a href="/admin/contact?<?php echo $pageLinks[$x - 1] ?>" class="page-link">
                             <?php echo $x; ?>
                         </a>
                         </li>
@@ -236,7 +294,7 @@
                     <!-- Next -->
                     <?php if ($currentPage < $lastPage) : ?>
                         <li class="page-item">
-                            <a href="/admin/newsletter?<?php echo $nextPageQuery ?>" class="page-link">
+                            <a href="/admin/contact?<?php echo $nextPageQuery ?>" class="page-link">
                                 >
                             </a>
                         </li>
@@ -244,7 +302,7 @@
                     <!-- Last -->
                     <?php if ($currentPage < $lastPage - 3) : ?>
                         <li class="page-item">
-                            <a href="/admin/newsletter?<?php echo $pageLinks[$lastPage - 1] ?>" class="page-link bg-dark text-light">
+                            <a href="/admin/contact?<?php echo $pageLinks[$lastPage - 1] ?>" class="page-link bg-dark text-light">
                                 <?php echo $lastPage ?>
                             </a>
                         </li>

@@ -10,7 +10,7 @@ namespace App\Controllers;
 
 use Framework\TemplateEngine;
 
-use App\Services\{ValidatorService, ContactService};
+use App\Services\{ValidatorService, ContactService, PaginationService};
 
 
 class ContactController
@@ -20,8 +20,9 @@ class ContactController
 
     public function __construct(
         private TemplateEngine $view,
+        private ContactService $contactService,
         private ValidatorService $validatorService,
-        private ContactService $contactService
+        private PaginationService $paginationService
     ) {}
 
     public function contactView()
@@ -64,6 +65,45 @@ class ContactController
             'sitemap' => '<a href="/">Home</a> / <b>Contacto</b>',
             'header' => "Contacto page",
             'dangerousData' => '<script>alert(123)</script>'
+        ]);
+    }
+
+    /* ********************************************** ADMIN *************************************************** */
+
+    /**
+     * Render the admin panel to manage the newsletter (/admin/newsletter/index.php) using the render method in the TemplateEngine class
+     */
+
+    public function adminContactView()
+    {
+        //debugator($_GET);
+        $pagination = $this->paginationService->generatePagination($_GET, 'email', 'email');
+
+        [$list, $totalResults] = $this->contactService->getContacts($pagination);
+
+        [$pageLinks, $previousPageQuery, $nextPageQuery, $lastPage] = $this->paginationService->generatePaginationLinks($totalResults, $pagination);
+
+        echo $this->view->render("/admin/contact/index.php", [
+            // Template information
+            'title' => 'Admin Panel',
+            'sitemap' => '<a href="/admin">Admin</a> / <b>Contact</b>',
+            'header' => 'Contact List',
+            // query
+            'contactList' => $list,
+            'totalResults' => $totalResults,
+            // pagination
+            'perPage' => $pagination['perPage'],
+            'currentPage' => $pagination['page'],
+            'pageLinks' => $pageLinks,
+            'previousPageQuery' => $previousPageQuery[0],
+            'nextPageQuery' =>  $nextPageQuery[0],
+            'lastPage' => $lastPage,
+            // search
+            'searchTerm' => $pagination['searchTerm'],
+            'searchCol' => $pagination['searchCol'],
+            // sorting
+            'sort' => $pagination['sort'],
+            'direction' => $pagination['direction']
         ]);
     }
 }

@@ -14,6 +14,10 @@
                 <a href="/admin/newsletter" class="btn btn-primary">Newsletter</a>
             </div>
 
+            <div class="col-10 offset-1 bg-light">
+                <a href="/admin/contact" class="btn btn-primary">Contact</a>
+            </div>
+
         </div>
 
     </div>

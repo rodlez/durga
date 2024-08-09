@@ -18,11 +18,12 @@ function registerRoutes(App $app)
 {
     // use the class Magic constant instead the whole path 'use App\Controllers\HomeController;' to avoid typos
 
-    // ***************************************** Public *******************************************************
+    // ***************************************** PUBLIC *******************************************************
 
     // Home Page
     $app->get('/', [HomeController::class, 'home']);
     $app->post('/', [HomeController::class, 'newsletter']);
+
     // Newsletter Page
     $app->get('/newsletter', [NewsletterController::class, 'newsletterOk']);
 
@@ -45,9 +46,10 @@ function registerRoutes(App $app)
     // Logout
     $app->get('/logout', [AuthController::class, 'logout'])->add(AuthRequiredMiddleware::class);
 
-    // ****************************************** Admin ********************************************************
+    // ****************************************** ADMIN ********************************************************
 
     $app->get('/admin', [AdminController::class, 'adminView'])->add(AdminRequiredMiddleware::class);
+
     // Newsletter
     $app->get('/admin/newsletter', [NewsletterController::class, 'newsletterView'])->add(AdminRequiredMiddleware::class);
     $app->get('/admin/newsletter/create', [NewsletterController::class, 'createNewsletterView'])->add(AdminRequiredMiddleware::class);
@@ -55,4 +57,7 @@ function registerRoutes(App $app)
     $app->get('/admin/newsletter/{newsletter}', [NewsletterController::class, 'editNewsletterEntryView'])->add(AdminRequiredMiddleware::class);
     $app->post('/admin/newsletter/{newsletter}', [NewsletterController::class, 'editNewsletterEntry'])->add(AdminRequiredMiddleware::class);
     $app->delete('/admin/newsletter/{newsletter}', [NewsletterController::class, 'deleteNewsletterEntry'])->add(AdminRequiredMiddleware::class);
+
+    // Contact
+    $app->get('/admin/contact', [ContactController::class, 'adminContactView'])->add(AdminRequiredMiddleware::class);
 }

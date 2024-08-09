@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS contact (
     phone varchar(255) NULL,
     subject varchar(255) NOT NULL,
     message text,
+    comments text,
     status tinyint(1) NOT NULL DEFAULT 0,
     created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
