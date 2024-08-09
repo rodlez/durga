@@ -117,6 +117,38 @@ class ContactController
     }
 
     /**
+     * Render the page fot Edit the Contact information given his Id
+     * @param array $params Route Param Id
+     */
+
+    public function adminCreateContactView()
+    {
+
+        echo $this->view->render("/admin/contact/create.php", [
+            // Template information
+            'title' => 'Admin Panel',
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/contact">Contact</a> / <b>Create</b>',
+            'header' => 'Create a new Contact'
+        ]);
+    }
+
+    /**
+     * Validates the Admin Contact form and if it is OK, save the data in the contact DB Table 
+     * 
+     */
+
+    public function adminCreateContact()
+    {
+        $this->validatorService->validateContactAdmin($_POST, 'es');
+
+        $result = $this->contactService->newContactAdmin($_POST);
+
+        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Contact with " . $_POST['email'] . " can not be created." : $_SESSION['CRUDMessage'] = "Contact with Email " . $_POST['email'] . " created.";
+
+        redirectTo('/admin/contact');
+    }
+
+    /**
      * Render the page fot Contact information given his Id
      * @param array $params Route Param Id
      */
@@ -166,7 +198,7 @@ class ContactController
         $contact = $this->contactService->getContactInfo($params['id']);
         if (!$contact) redirectTo("/admin/contact/");
 
-        $this->validatorService->validateContactAdmin($_POST, 'es');
+        $this->validatorService->validateContactEditAdmin($_POST, 'es');
 
         $result = $this->contactService->updateContact($_POST, (int) $params['id']);
 

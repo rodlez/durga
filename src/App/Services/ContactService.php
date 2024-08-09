@@ -79,6 +79,29 @@ class ContactService
 
 
     /**
+     * Insert a new entry in the DB contact Table 
+     * @param array $formData variables send in the Admin Contact form
+     */
+
+    public function newContactAdmin(array $formData)
+    {
+
+        $query = "INSERT INTO contact(status, name, email, phone, subject, message, comments) VALUES(:status, :name, :email, :phone, :subject, :message, :comments)";
+        $params =
+            [
+                'status' => $formData['status'],
+                'name' => $formData['name'],
+                'email' => $formData['email'],
+                'phone' => $formData['phone'],
+                'subject' => $formData['subject'],
+                'message' => $formData['message'],
+                'comments' => $formData['comments']
+            ];
+
+        return $this->db->query($query, $params);
+    }
+
+    /**
      * Update an Email in the Newsletter Database Table based in the ID and the new Email entry in the edit form
      * @param array $formData - form in the contact Admin edit menu
      * @param int $id - Route parameter

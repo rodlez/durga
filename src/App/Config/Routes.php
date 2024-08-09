@@ -58,10 +58,17 @@ function registerRoutes(App $app)
     $app->post('/admin/newsletter/{newsletter}', [NewsletterController::class, 'editNewsletterEntry'])->add(AdminRequiredMiddleware::class);
     $app->delete('/admin/newsletter/{newsletter}', [NewsletterController::class, 'deleteNewsletterEntry'])->add(AdminRequiredMiddleware::class);
 
-    // Contact
+    // CONTACT
+    // Main
     $app->get('/admin/contact', [ContactController::class, 'adminContactView'])->add(AdminRequiredMiddleware::class);
+    // Create
+    $app->get('/admin/contact/create', [ContactController::class, 'adminCreateContactView'])->add(AdminRequiredMiddleware::class);
+    $app->post('/admin/contact/create', [ContactController::class, 'adminCreateContact'])->add(AdminRequiredMiddleware::class);
+    // Read
     $app->get('/admin/contact/{id}', [ContactController::class, 'adminContactInfoView'])->add(AdminRequiredMiddleware::class);
-    $app->delete('/admin/contact/{id}', [ContactController::class, 'adminContactDelete'])->add(AdminRequiredMiddleware::class);
+    // Update
     $app->get('/admin/contact/{id}/edit', [ContactController::class, 'adminContactEditView'])->add(AdminRequiredMiddleware::class);
     $app->post('/admin/contact/{id}/edit', [ContactController::class, 'adminContactEdit'])->add(AdminRequiredMiddleware::class);
+    // Delete
+    $app->delete('/admin/contact/{id}', [ContactController::class, 'adminContactDelete'])->add(AdminRequiredMiddleware::class);
 }
