@@ -17,6 +17,8 @@ class ContactService
     public function __construct(private Database $db) {}
 
 
+    /* ********************************************** PUBLIC *************************************************** */
+
     /**
      * Insert a new entry in the DB contact Table 
      * @param array $formData variables send in the contact form
@@ -38,21 +40,8 @@ class ContactService
         $this->db->query($query, $params);
     }
 
-    /**
-     * Given an id get all the information
-     * @param mixed $id mixed in case the parameter is a string, No need to cast in a query string
-     * @return mixed info found in the DB
-     */
 
-    public function getContactInfo(mixed $id)
-    {
-        $query = "SELECT *, DATE_FORMAT(created_at, '%Y-%m-%d') as formatted_date
-        FROM contact where id = $id";
-        return $this->db->query($query)->find();
-    }
-
-
-    /* *************************************************** ADMIN ************************************************************* */
+    /* ********************************************** ADMIN *************************************************** */
 
 
     public function getContacts(array $pagination)
@@ -73,6 +62,19 @@ class ContactService
         $totalResults = $this->db->query($queryTotalResults, $params)->count();
 
         return [$list, $totalResults];
+    }
+
+    /**
+     * Given an id get all the information
+     * @param mixed $id mixed in case the parameter is a string, No need to cast in a query string
+     * @return mixed info found in the DB
+     */
+
+    public function getContactInfo(mixed $id)
+    {
+        $query = "SELECT *, DATE_FORMAT(created_at, '%Y-%m-%d') as formatted_date
+         FROM contact where id = $id";
+        return $this->db->query($query)->find();
     }
 
 

@@ -25,6 +25,15 @@ class ContactController
         private PaginationService $paginationService
     ) {}
 
+    /* ********************************************** PUBLIC *************************************************** */
+
+
+    /**
+     * Render Page for Contact
+     *
+     * * Use the $_GET['asunto] to now wich subject select in the contact form
+     */
+
     public function contactView()
     {
 
@@ -34,23 +43,17 @@ class ContactController
             'title' => 'Contacto',
             'sitemap' => '<a href="/">Home</a> / <b>Contacto</b>',
             'header' => "Contacto page",
-            'dangerousData' => '<script>alert(123)</script>',
             'asunto' => $param
         ]);
     }
 
     /**
-     * Receives the register form data using the HTTPD POST method 
+     * Validates the Contact form and if it is OK, save the data in the contact DB Table 
      * 
-     * * 1 - Validate the form. 
-     * * 2 - Check if the Email already exists.
-     * * 3 - Create New user in the DB and generate a $_SESSION with the user values.
-     * * 4 - Redirect to the main page.
      */
 
     public function contact()
     {
-        showNice($_POST, 'POST FORM');
         $this->validatorService->validateContact($_POST, 'es');
 
         $this->contactService->newContact($_POST);
@@ -58,25 +61,31 @@ class ContactController
         redirectTo('/contacto/ok');
     }
 
+    /**
+     * Render Page for Contact after the form is send
+     *
+     * * Display a message to the user and a go back link
+     */
+
     public function contactOk()
     {
         echo $this->view->render("contacto-ok.php", [
             'title' => 'Contacto',
             'sitemap' => '<a href="/">Home</a> / <b>Contacto</b>',
             'header' => "Contacto page",
-            'dangerousData' => '<script>alert(123)</script>'
         ]);
     }
 
     /* ********************************************** ADMIN *************************************************** */
 
     /**
-     * Render the admin panel to manage the newsletter (/admin/newsletter/index.php) using the render method in the TemplateEngine class
+     * Render main Admin Page for Contact
+     *
+     * * Show / Edit / Delete contact entries from the contacts DB Table
      */
 
     public function adminContactView()
     {
-        //debugator($_GET);
         $pagination = $this->paginationService->generatePagination($_GET, 'email', 'email');
 
         [$list, $totalResults] = $this->contactService->getContacts($pagination);
@@ -107,6 +116,11 @@ class ContactController
         ]);
     }
 
+    /**
+     * Render the page fot Contact information given his Id
+     * @param array $params Route Param Id
+     */
+
     public function adminContactInfoView(array $params)
     {
         $contact = $this->contactService->getContactInfo($params['id']);
@@ -121,6 +135,11 @@ class ContactController
             'contact' => $contact
         ]);
     }
+
+    /**
+     * Render the page fot Edit the Contact information given his Id
+     * @param array $params Route Param Id
+     */
 
     public function adminContactEditView(array $params)
     {
@@ -138,8 +157,8 @@ class ContactController
     }
 
     /**
-     * Update the entry with the given Id in the DB Table newsletter
-     * @param array $params Newsletter Id entry
+     * Update the entry with the given Id in the DB Table contact
+     * @param array $params Route Param Id
      */
 
     public function adminContactEdit(array $params)
@@ -157,8 +176,8 @@ class ContactController
     }
 
     /**
-     * Delete the entry with the given Id in the DB Table newsletter
-     * @param array $params Newsletter Id entry
+     * Delete the entry with the given Id in the DB Table contact
+     * @param array $params Route Param Id
      */
 
     public function adminContactDelete(array $params)
