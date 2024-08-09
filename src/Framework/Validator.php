@@ -20,7 +20,15 @@ class Validator
     }
 
     // validation will perform a field at a time
-    public function validate(array $formData, array $fields, string $idioma)
+    /**
+     * Method to Validate a form data
+     * * Use validate method in the Validator class to Apply validation
+     * @param array $formData
+     * @param array $fields
+     * @param string $lang Select the language to show the error messages
+     */
+
+    public function validate(array $formData, array $fields, string $lang)
     {
         // TODO: TEST
         //showNice($idioma, 'idioma VALIDATOR validate');
@@ -52,7 +60,7 @@ class Validator
                     continue;
                 }
 
-                $errors[$fieldName][] = $ruleValidator->getMessage($formData, $fieldName, $ruleParams, $idioma);
+                $errors[$fieldName][] = $ruleValidator->getMessage($formData, $fieldName, $ruleParams, $lang);
             }
         }
 

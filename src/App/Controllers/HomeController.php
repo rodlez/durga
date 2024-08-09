@@ -41,14 +41,14 @@ class HomeController
      * 
      * * 1 - Validate the form. 
      * * 2 - Check if the Email already exists.
-     * * 3 - Create New user in the DB and generate a $_SESSION with the user values.
-     * * 4 - Redirect to the main page.
+     * * 3 - Add the email in the newsletter DB Table.
+     * * 4 - Redirect to the newsletter page message.
      */
 
     public function newsletter()
     {
 
-        $this->validatorService->validateNewsletter($_POST);
+        $this->validatorService->validateNewsletter($_POST, 'es');
 
         $this->userService->isEmailTaken($_POST['email'], 'newsletter');
 

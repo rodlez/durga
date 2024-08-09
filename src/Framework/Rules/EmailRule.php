@@ -15,8 +15,10 @@ class EmailRule implements RuleInterface
         return (bool) filter_var($data[$field], FILTER_VALIDATE_EMAIL);
     }
 
-    public function getMessage(array $data, string $field, array $params, string $idioma): string
+    public function getMessage(array $data, string $field, array $params, string $lang): string
     {
-        return "Invalid email.";
+        $lang === 'es' ? $message = "Formato del Email no válido." : $message = "Invalid Email.";
+
+        return $message;
     }
 }
