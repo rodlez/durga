@@ -239,7 +239,11 @@
                             <td class="p-2"><?php echo date("d/m/Y", strtotime($contact->created_at)); ?></td>
 
                             <!-- ACTIONS -->
-                            <td class="d-flex flex-row align-items-center justify-content-center p-2 gap-3">
+                            <td class="d-flex flex-row align-items-center justify-content-center p-2 gap-2">
+                                <!-- View -->
+                                <a href="/admin/contact/<?php echo $contact->id ?>" class="text-primary">
+                                    <i class="fa-regular fa-eye"></i>
+                                </a>
                                 <!-- Edit -->
                                 <a href="/admin/contact/<?php echo $contact->id ?>" class="text-primary">
                                     <i class="fa-regular fa-pen-to-square"></i>

@@ -106,4 +106,19 @@ class ContactController
             'direction' => $pagination['direction']
         ]);
     }
+
+    public function adminContactInfoView(array $params)
+    {
+        $contact = $this->contactService->getContactInfo($params['id']);
+        if (!$contact) redirectTo("/admin/contact");
+
+        echo $this->view->render("/admin/contact/show.php", [
+            // Template information
+            'title' => 'Admin Panel',
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/contact">Contact</a> / <b>Info</b>',
+            'header' => 'Information about the contact',
+            // Contact Information from the DB
+            'contact' => $contact
+        ]);
+    }
 }

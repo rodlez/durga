@@ -200,6 +200,14 @@
   background-color: #c3c3c3;
 }
 
+.separation {
+  padding: 0 55px 0 55px;
+}
+
+.separation .inner {
+  background-color: #fff000;
+}
+
 .to-top-btn {
   position: fixed;
   z-index: 20;
@@ -262,5 +270,10 @@
   }
   .about .about-card {
     margin-top: 20px;
+  }
+  .contact-info {
+    padding: 0 20px 0 20px !important;
+    background-color: tomato;
+    margin-top: 200px;
   }
 }

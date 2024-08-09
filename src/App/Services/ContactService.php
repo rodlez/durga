@@ -38,6 +38,18 @@ class ContactService
         $this->db->query($query, $params);
     }
 
+    /**
+     * Given an id get all the information
+     * @param mixed $id mixed in case the parameter is a string, No need to cast in a query string
+     * @return mixed info found in the DB
+     */
+
+    public function getContactInfo(mixed $id)
+    {
+        $query = "SELECT * FROM contact where id = $id";
+        return $this->db->query($query)->find();
+    }
+
 
     /* *************************************************** ADMIN ************************************************************* */
 

@@ -60,4 +60,5 @@ function registerRoutes(App $app)
 
     // Contact
     $app->get('/admin/contact', [ContactController::class, 'adminContactView'])->add(AdminRequiredMiddleware::class);
+    $app->get('/admin/contact/{id}', [ContactController::class, 'adminContactInfoView'])->add(AdminRequiredMiddleware::class);
 }

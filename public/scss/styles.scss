@@ -239,6 +239,13 @@ $lila: #964d97;
     }
 }
 
+// add space between col in admin contact show
+.separation {
+    padding: 0 55px 0 55px;
+}
+.separation .inner {
+    background-color: #fff000;
+}
 
 // To the Top Button
 .to-top-btn {
@@ -305,7 +312,7 @@ $lila: #964d97;
     .contacto-info {
         padding-top: 40px;
         text-align: center;
-    }
+    }   
 
     // About
     .about {
@@ -316,5 +323,14 @@ $lila: #964d97;
         .about-card {
             margin-top: 20px;
         }
+    }
+
+    // ADMIN
+
+    // contacto
+    .contact-info {
+        padding: 0 20px 0 20px !important;
+        background-color: tomato;
+        margin-top: 200px;
     }
 }
