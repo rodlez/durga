@@ -6,7 +6,7 @@ namespace App\Config;
 
 use Framework\App;
 
-use App\Controllers\{HomeController, NewsletterController, AboutController, ContactoController, AuthController, AdminController};
+use App\Controllers\{HomeController, NewsletterController, AboutController, ContactController, AuthController, AdminController};
 
 use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware, AdminRequiredMiddleware};
 
@@ -30,9 +30,9 @@ function registerRoutes(App $app)
     $app->get('/about', [AboutController::class, 'about']);
 
     // Contacto Page
-    $app->get('/contacto', [ContactoController::class, 'contactoView']);
-    $app->post('/contacto', [ContactoController::class, 'contacto']);
-    $app->get('/contacto/ok', [ContactoController::class, 'contactoOk']);
+    $app->get('/contacto', [ContactController::class, 'contactView']);
+    $app->post('/contacto', [ContactController::class, 'contact']);
+    $app->get('/contacto/ok', [ContactController::class, 'contactOk']);
 
 
     // ******* AuthController ********

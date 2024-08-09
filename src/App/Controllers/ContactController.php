@@ -10,20 +10,21 @@ namespace App\Controllers;
 
 use Framework\TemplateEngine;
 
-use App\Services\{ValidatorService};
+use App\Services\{ValidatorService, ContactService};
 
 
-class ContactoController
+class ContactController
 {
     // We inject now the instance(private TemplateEngine $view) in the __construct method
     // instead of create using $this->view = new TemplateEngine(Paths::VIEW)
 
     public function __construct(
         private TemplateEngine $view,
-        private ValidatorService $validatorService
+        private ValidatorService $validatorService,
+        private ContactService $contactService
     ) {}
 
-    public function contactoView()
+    public function contactView()
     {
 
         isset($_GET['asunto']) ? $param = $_GET['asunto'] : $param = null;
@@ -46,19 +47,17 @@ class ContactoController
      * * 4 - Redirect to the main page.
      */
 
-    public function contacto()
+    public function contact()
     {
         showNice($_POST, 'POST FORM');
         $this->validatorService->validateContact($_POST, 'es');
 
-        //$this->userService->isEmailTaken($_POST['email'], 'users');
-
-        //$this->userService->createNewUser($_POST);
+        $this->contactService->newContact($_POST);
 
         redirectTo('/contacto/ok');
     }
 
-    public function contactoOk()
+    public function contactOk()
     {
         echo $this->view->render("contacto-ok.php", [
             'title' => 'Contacto',

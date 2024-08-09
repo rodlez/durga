@@ -62,12 +62,12 @@
                     <?php include $this->resolve('partials/_csrf.php'); ?>
                     <!-- Nombre -->
                     <div class="mb-4">
-                        <label for="nombre" class="form-label">Nombre <span class="text-primary">*</span></label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo ($oldFormData['nombre'] ?? ''); ?>" placeholder="">
+                        <label for="name" class="form-label">Nombre <span class="text-primary">*</span></label>
+                        <input type="text" class="form-control" id="name" name="name" value="<?php echo ($oldFormData['name'] ?? ''); ?>" placeholder="">
                     </div>
                     <!-- Error Message -->
-                    <?php if (array_key_exists('nombre', $errors)) : ?>
-                        <div class="bg-warning text-white fw-italics rounded mb-4 p-2"><?php echo ($errors['nombre'][0]); ?></div>
+                    <?php if (array_key_exists('name', $errors)) : ?>
+                        <div class="bg-warning text-white fw-italics rounded mb-4 p-2"><?php echo ($errors['name'][0]); ?></div>
                     <?php endif; ?>
                     <!-- Email -->
                     <div class="mb-4">
@@ -101,10 +101,10 @@
                     <div class="mb-4">
                         <label for="subject" class="form-label">Asunto Test</label>
                         <select name="subject" id="subject" class="form-control">
-                            <option value="cita" <?php echo (isset($asunto) && ($asunto === '1')) ? 'selected' : ''; ?>>Pedir Cita</option>
-                            <option value="sesion" <?php echo (isset($asunto) && ($asunto === '2')) ? 'selected' : ''; ?>>Contratar Sesión</option>
-                            <option value="exploracion" <?php echo (isset($asunto) && ($asunto === '3')) ? 'selected' : ''; ?>>Sesión de Exploración</option>
-                            <option value="otra" <?php echo (isset($asunto) && ($asunto === '4')) ? 'selected' : ''; ?>>Otra Consulta</option>
+                            <option value="Pedir Cita" <?php echo (isset($asunto) && ($asunto === '1')) ? 'selected' : ''; ?>>Pedir Cita</option>
+                            <option value="Contratar Sesión" <?php echo (isset($asunto) && ($asunto === '2')) ? 'selected' : ''; ?>>Contratar Sesión</option>
+                            <option value="Sesión de Exploración" <?php echo (isset($asunto) && ($asunto === '3')) ? 'selected' : ''; ?>>Sesión de Exploración</option>
+                            <option value="Otra Consulta" <?php echo (isset($asunto) && ($asunto === '4')) ? 'selected' : ''; ?>>Otra Consulta</option>
                         </select>
                     </div>
                     <!-- Error Message -->
