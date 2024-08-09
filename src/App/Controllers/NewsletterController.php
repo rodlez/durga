@@ -91,7 +91,7 @@ class NewsletterController
 
     public function createNewsletterEntry()
     {
-        $this->validatorService->validateNewsletter($_POST);
+        $this->validatorService->validateNewsletter($_POST, 'es');
 
         $result = $this->newsletterService->insertNewEmail($_POST);
 
@@ -130,7 +130,7 @@ class NewsletterController
         $email = $this->newsletterService->getEmail($params['newsletter']);
         if (!$email) redirectTo('/admin/newsletter');
 
-        $this->validatorService->validateNewsletter($_POST);
+        $this->validatorService->validateNewsletter($_POST, 'es');
 
         $result = $this->newsletterService->updateEmail($_POST, (int) $params['newsletter']);
 

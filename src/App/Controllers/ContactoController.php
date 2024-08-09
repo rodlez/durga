@@ -55,6 +55,16 @@ class ContactoController
 
         //$this->userService->createNewUser($_POST);
 
-        //redirectTo('/');
+        redirectTo('/contacto/ok');
+    }
+
+    public function contactoOk()
+    {
+        echo $this->view->render("contacto-ok.php", [
+            'title' => 'Contacto',
+            'sitemap' => '<a href="/">Home</a> / <b>Contacto</b>',
+            'header' => "Contacto page",
+            'dangerousData' => '<script>alert(123)</script>'
+        ]);
     }
 }

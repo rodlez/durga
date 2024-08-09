@@ -29,9 +29,11 @@ function registerRoutes(App $app)
     // About Page
     $app->get('/about', [AboutController::class, 'about']);
 
-    // About Page
+    // Contacto Page
     $app->get('/contacto', [ContactoController::class, 'contactoView']);
     $app->post('/contacto', [ContactoController::class, 'contacto']);
+    $app->get('/contacto/ok', [ContactoController::class, 'contactoOk']);
+
 
     // ******* AuthController ********
     // Register Page

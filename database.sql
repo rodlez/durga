@@ -17,10 +17,22 @@ CREATE TABLE IF NOT EXISTS users (
     UNIQUE KEY(user_name, email)
 );
 CREATE TABLE IF NOT EXISTS newsletter (
-  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  email varchar(255) NOT NULL,
-  created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-  updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-  PRIMARY KEY (id),
-  UNIQUE KEY(email)
+    id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    email varchar(255) NOT NULL,
+    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    PRIMARY KEY (id),
+    UNIQUE KEY(email)
+);
+CREATE TABLE IF NOT EXISTS contact (
+    id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    name varchar(255) NOT NULL,
+    email varchar(255) NOT NULL,
+    phone varchar(255) NULL,
+    subject varchar(255) NOT NULL,
+    message text,
+    status tinyint(1) NOT NULL DEFAULT 0,
+    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    PRIMARY KEY (id)
 );
