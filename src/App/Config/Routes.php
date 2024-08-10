@@ -6,7 +6,7 @@ namespace App\Config;
 
 use Framework\App;
 
-use App\Controllers\{HomeController, NewsletterController, AboutController, ContactController, BlogController, AuthController, AdminController};
+use App\Controllers\{HomeController, NewsletterController, AboutController, ContactController, BlogController, CategoryController, AuthController, AdminController};
 
 use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware, AdminRequiredMiddleware};
 
@@ -75,4 +75,12 @@ function registerRoutes(App $app)
     // BLOG
     // Main
     $app->get('/admin/blog', [BlogController::class, 'adminBlogView'])->add(AdminRequiredMiddleware::class);
+
+    // BLOG CATEGORIES
+    $app->get('/admin/category', [CategoryController::class, 'categoryView'])->add(AdminRequiredMiddleware::class);
+    $app->get('/admin/category/create', [CategoryController::class, 'createCategoryView'])->add(AdminRequiredMiddleware::class);
+    $app->post('/admin/category/create', [CategoryController::class, 'createCategory'])->add(AdminRequiredMiddleware::class);
+    $app->get('/admin/category/{category}', [CategoryController::class, 'editCategoryView'])->add(AdminRequiredMiddleware::class);
+    $app->post('/admin/category/{category}', [CategoryController::class, 'editCategory'])->add(AdminRequiredMiddleware::class);
+    $app->delete('/admin/category/{category}', [CategoryController::class, 'deleteCategory'])->add(AdminRequiredMiddleware::class);
 }

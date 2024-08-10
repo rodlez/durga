@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use Framework\Validator;
-use Framework\Rules\{BoolRule, RequiredRule, EmailRule, MinRule, InRule, UrlRule, MatchRule, PasswordRule, PhoneRule, DateFormatRule};
+use Framework\Rules\{BoolRule, RequiredRule, EmailRule, MinRule, InRule, UrlRule, MatchRule, PasswordRule, PhoneRule, DateFormatRule, LengthMinRule};
 
 // SERVICES are Not tied to an specific Controller, should be available to any Controller who needs them
 
@@ -31,6 +31,8 @@ class ValidatorService
         $this->validator->add("dateFormat", new DateFormatRule());
         // TODO: Bool, check
         $this->validator->add("bool", new BoolRule());
+        // Blog
+        $this->validator->add("minChars", new LengthMinRule());
     }
 
     /**
@@ -143,6 +145,21 @@ class ValidatorService
             'subject' => ['required', 'in:Pedir Cita,Contratar Sesión,Sesión de Exploración,Otra Consulta'],
             'message' => ['required'],
             'date' => ['required', 'dateFormat:Y-m-d']
+        ], $lang);
+    }
+
+    /**
+     * Method to Validate the Blog Category Form in the Admin Panel
+     * * Use validate method in the Validator class to Apply validation
+     * @param array $formData
+     * @param string $lang Select the language to show the error messages
+     */
+
+    public function validateCategory(array $formData, string $lang)
+    {
+        // we pass an associative array with the field as key and the rule as value(if we have different rules for the same filed we add it to the array)
+        $this->validator->validate($formData, [
+            'category' => ['required', 'minChars:4']
         ], $lang);
     }
 }
