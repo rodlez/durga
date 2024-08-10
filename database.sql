@@ -37,3 +37,62 @@ CREATE TABLE IF NOT EXISTS contact (
     updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     PRIMARY KEY (id)
 );
+
+/* TEST BLOG */
+
+CREATE TABLE IF NOT EXISTS blog_categories (
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  name varchar(255) NOT NULL,
+  created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  PRIMARY KEY (id),
+  UNIQUE KEY(name)
+);
+
+CREATE TABLE IF NOT EXISTS blog_tags (
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  name varchar(255) NOT NULL,
+  created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  PRIMARY KEY (id),
+  UNIQUE KEY(name)
+);
+
+CREATE TABLE IF NOT EXISTS blog (
+    id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+    published tinyint(1) NOT NULL DEFAULT 0,
+    author varchar(255) NOT NULL,
+    title varchar(255) NOT NULL,
+    subtitle varchar(255) NOT NULL,
+    content text,
+    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    user_id bigint(20) unsigned NOT NULL,
+    blog_category_id bigint(20) unsigned NOT NULL,
+    PRIMARY KEY(id),
+    FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY(blog_category_id) REFERENCES blog_categories(id)
+);
+
+CREATE TABLE IF NOT EXISTS blog_images(
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  original_filename varchar(255) NOT NULL,
+  storage_filename varchar(255) NOT NULL,
+  thumbnail_filename varchar(255) DEFAULT NULL,
+  media_type varchar(255) NOT NULL,
+  created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  blog_id bigint(20) unsigned NOT NULL,
+  size mediumint unsigned NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY(blog_id) REFERENCES blog(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS blog_tag_rel (
+  blog_id bigint(20) unsigned NOT NULL,
+  tag_id bigint(20) unsigned NOT NULL,
+  CONSTRAINT blog_tag_pk PRIMARY KEY (blog_id, tag_id),
+  CONSTRAINT FK_blog 
+      FOREIGN KEY (blog_id) REFERENCES blog (id) ON DELETE CASCADE,
+  CONSTRAINT FK_tag 
+      FOREIGN KEY (tag_id) REFERENCES blog_tags (id) ON DELETE CASCADE
+);

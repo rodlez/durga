@@ -6,7 +6,7 @@ namespace App\Config;
 
 use Framework\App;
 
-use App\Controllers\{HomeController, NewsletterController, AboutController, ContactController, AuthController, AdminController};
+use App\Controllers\{HomeController, NewsletterController, AboutController, ContactController, BlogController, AuthController, AdminController};
 
 use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware, AdminRequiredMiddleware};
 
@@ -71,4 +71,8 @@ function registerRoutes(App $app)
     $app->post('/admin/contact/{id}/edit', [ContactController::class, 'adminContactEdit'])->add(AdminRequiredMiddleware::class);
     // Delete
     $app->delete('/admin/contact/{id}', [ContactController::class, 'adminContactDelete'])->add(AdminRequiredMiddleware::class);
+
+    // BLOG
+    // Main
+    $app->get('/admin/blog', [BlogController::class, 'adminBlogView'])->add(AdminRequiredMiddleware::class);
 }

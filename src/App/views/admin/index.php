@@ -10,12 +10,16 @@
         <p><?php echo $sitemap; ?></p>
         <div class="row">
 
-            <div class="col-10 offset-1 bg-light">
+            <div class="col-10 offset-1 bg-light my-2">
                 <a href="/admin/newsletter" class="btn btn-primary">Newsletter</a>
             </div>
 
-            <div class="col-10 offset-1 bg-light">
+            <div class="col-10 offset-1 bg-light my-2">
                 <a href="/admin/contact" class="btn btn-primary">Contact</a>
+            </div>
+
+            <div class="col-10 offset-1 bg-light my-2">
+                <a href="/admin/blog" class="btn btn-primary">Blog</a>
             </div>
 
         </div>

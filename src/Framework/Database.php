@@ -27,6 +27,7 @@ class Database
         try {
             $this->connection = new PDO($dsn, $username, $password, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ]);
         } catch (PDOException $e) {
+            // TODO: crate a error page
             //if the attempt to connect to the requested database fails.
             die('ERROR: Unable to connect to database.');
         }
