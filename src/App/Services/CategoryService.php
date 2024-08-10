@@ -120,7 +120,7 @@ class CategoryService
     }
 
     /**
-     *  Method in TransactionService to delete one transactions based on his Route Parameter id.     
+     *  Delete Category     
      * @param int $id - route parameter transaction id to delete the transaction
      * @return mixed - number of rows deleted
      */

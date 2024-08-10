@@ -1,11 +1,7 @@
 <?php include $this->resolve("partials/_header.php"); ?>
 
-<?php
-// Intelephense Error
-/**  @var object $category */
-?>
 
-<section id="newsletter-create" class="bg-info py-4">
+<section id="tag-create" class="bg-info py-4">
     <!-- Container -->
     <div class="container  bg-light">
 
@@ -14,7 +10,8 @@
             <div class="d-flex">
                 <div class="p-2 flex-grow-1"><?php echo $sitemap ?></div>
                 <div class="p-2">
-                    <a class="link-dark text-decoration-none fw-bold" href="/admin/category">Back</a>
+                    <!-- NEW tag -->
+                    <a class="link-dark text-decoration-none fw-bold" href="/admin/tag">Back</a>
                 </div>
             </div>
         </div>
@@ -26,22 +23,18 @@
                 <form method="POST" class="grid grid-cols-1 gap-6">
                     <!-- CSRF TOKEN  -->
                     <?php include $this->resolve('./partials/_csrf.php'); ?>
-                    <!-- Category -->
+                    <!-- tag -->
                     <div class="mb-4">
-                        <label for="category" class="form-label">Category</label>
+                        <label for="tag" class="form-label">tag</label>
                         <div class="input-group">
-                            <span class="input-group-text bg-primary">
-                                <i class="fa fa-envelope fa-1x text-light"></i>
-                            </span>
-                            <input type="text" class="form-control" id="category" name="category" value="<?php echo $category->name; ?>" placeholder="">
+                            <input type="text" class="form-control" id="tag" name="tag" value="<?php echo ($oldFormData['tag'] ?? ''); ?>" placeholder="">
                         </div>
                     </div>
                     <!-- Error Message -->
-                    <?php if (array_key_exists('category', $errors)) : ?>
-                        <div class="text-danger fst-italic mb-4 p-2 rounded"><?php echo ($errors['category'][0]); ?></div>
+                    <?php if (array_key_exists('tag', $errors)) : ?>
+                        <div class="text-danger fst-italic mb-4 p-2 rounded"><?php echo ($errors['tag'][0]); ?></div>
                     <?php endif; ?>
                     <!-- Send -->
-                    <p>Created: <?php echo date("d/m/Y", strtotime($category->created_at)); ?> | Updated: <?php echo date("d/m/Y", strtotime($category->updated_at)); ?></p>
                     <div class="mb-5">
                         <div class="d-grid">
                             <button class="btn btn-primary" type="submit">Submit</button>

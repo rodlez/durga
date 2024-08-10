@@ -6,7 +6,7 @@ namespace App\Config;
 
 use Framework\App;
 
-use App\Controllers\{HomeController, NewsletterController, AboutController, ContactController, BlogController, CategoryController, AuthController, AdminController};
+use App\Controllers\{HomeController, NewsletterController, AboutController, ContactController, BlogController, CategoryController, TagController, AuthController, AdminController};
 
 use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware, AdminRequiredMiddleware};
 
@@ -83,4 +83,12 @@ function registerRoutes(App $app)
     $app->get('/admin/category/{category}', [CategoryController::class, 'editCategoryView'])->add(AdminRequiredMiddleware::class);
     $app->post('/admin/category/{category}', [CategoryController::class, 'editCategory'])->add(AdminRequiredMiddleware::class);
     $app->delete('/admin/category/{category}', [CategoryController::class, 'deleteCategory'])->add(AdminRequiredMiddleware::class);
+
+    // BLOG TAGS
+    $app->get('/admin/tag', [TagController::class, 'tagView'])->add(AdminRequiredMiddleware::class);
+    $app->get('/admin/tag/create', [TagController::class, 'createTagView'])->add(AdminRequiredMiddleware::class);
+    $app->post('/admin/tag/create', [TagController::class, 'createTag'])->add(AdminRequiredMiddleware::class);
+    $app->get('/admin/tag/{tag}', [TagController::class, 'editTagView'])->add(AdminRequiredMiddleware::class);
+    $app->post('/admin/tag/{tag}', [TagController::class, 'editTag'])->add(AdminRequiredMiddleware::class);
+    $app->delete('/admin/tag/{tag}', [TagController::class, 'deleteTag'])->add(AdminRequiredMiddleware::class);
 }

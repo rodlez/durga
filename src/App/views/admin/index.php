@@ -26,6 +26,10 @@
                 <a href="/admin/category" class="btn btn-primary">Blog Categories</a>
             </div>
 
+            <div class="col-10 offset-1 bg-light my-2">
+                <a href="/admin/tag" class="btn btn-primary">Blog Tags</a>
+            </div>
+
         </div>
 
     </div>
