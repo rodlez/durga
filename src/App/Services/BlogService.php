@@ -59,6 +59,36 @@ class BlogService
         return $this->db->query($query, $params)->find();
     }
 
+    /**
+     * Get all the tag ids for a given blog id
+     * @param int $transactionId
+     * @return mixed All the tag ids
+     */
+
+    public function getTagsInBlog(mixed $id)
+    {
+        $id = (int) $id;
+        $query = "SELECT tag_id FROM blog_tag_rel WHERE blog_id = $id";
+        return $this->db->query($query)->findAll();
+    }
+
+    /**
+     * Given an array with the tags ids return an array with the corresponding names and sorted alphabetically
+     * @param mixed $tags list with the tags ids
+     * @return array tag names sorted alphabetically
+     */
+
+    public function tagsOrderByName(mixed $tags)
+    {
+        $names = [];
+        foreach ($tags as $tag) {
+            $query = "SELECT name FROM blog_tags WHERE id = $tag->tag_id";
+            array_push($names, $this->db->query($query)->find()->name);
+        }
+        usort($names, 'strnatcasecmp');
+        return $names;
+    }
+
 
     /**
      * Given an id get all the information

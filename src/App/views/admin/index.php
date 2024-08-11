@@ -8,6 +8,8 @@
         <h2 class="fw-bold text-primary py-4 title-page"><?php echo escapeChar($title); ?></h2>
         <hr class="hr-heading-page">
         <p><?php echo $sitemap; ?></p>
+        test
+        <img src="./images/web/terapia.svg" alt="" class="img-fluid rounded-2">
         <div class="row">
 
             <div class="col-10 offset-1 bg-light my-2">

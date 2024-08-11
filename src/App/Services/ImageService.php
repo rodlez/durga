@@ -78,7 +78,7 @@ class ImageService
         $newFilename = $randomFilename . "." . $fileExtension;
 
         // 2 - get the file type (PDF or IMG) Because the previous validation can only be pdf/jpg/png
-        $uploadPath = Paths::STORAGE_UPLOADS . "/" . $newFilename;
+        $uploadPath = Paths::STORAGE_BLOG_IMAGES . "/" . $newFilename;
 
         // 3 - Upload the file
         // move_uploaded_file -> move from the temporary directory to the recent uploadPath that we have created
@@ -116,47 +116,25 @@ class ImageService
 
 
 
-    public function uploadBackup(array $file, int $transaction)
+    /**
+     * Given a transaction id return all his receipts
+     * @param int $transactionId
+     * @return mixed all the receipts
+     */
+
+    public function getAllImages(int $id)
     {
-        // generate a random file name
-        $fileExtension = pathinfo($file['name'], PATHINFO_EXTENSION);
-        $newFilename = bin2hex(random_bytes(16)) . "." . $fileExtension;
-
-        // Move the upload file to the storage/uploads directory
-        // create the Path to move the file
-        $uploadPath = Paths::STORAGE_UPLOADS . "/" . $newFilename;
-
-        // move_uploaded_file -> move from the temporary directory to the recent uploadPath that we have created
-        if (!move_uploaded_file($file['tmp_name'], $uploadPath)) {
-            throw new ValidationException([
-                'receipt' => ['Fail to upload file.']
-            ]);
-        }
-
-        // STORE the Receipt in the database
-        $query = "INSERT INTO receipts (transaction_id, original_filename, storage_filename, media_type) VALUES(:transaction_id, :original_filename, :storage_filename, :media_type)";
-        $params =
-            [
-                'transaction_id' => $transaction,
-                'original_filename' => $file['name'],
-                'storage_filename' => $newFilename,
-                'media_type' => $file['type']
-
-            ];
-
-        $result = $this->db->query($query, $params);
-
-        if ($result->errors) {
-            // Delete the file that we try to upload and then Throw an exception
-            unlink($uploadPath);
-
-            throw new ValidationException([
-                'receipt' => ['Error (' . $result->errors['SQLCode'] . ' ) uploading the file.']
-            ]);
-        }
-
-        return $result;
+        $query = "SELECT * FROM blog_images WHERE blog_id = $id";
+        return $this->db->query($query)->findAll();
     }
+
+
+
+
+
+
+
+
 
     public function uploadImages(array $file, int $transaction) {}
 
@@ -174,17 +152,6 @@ class ImageService
         return $this->db->query($query)->find();
     }
 
-    /**
-     * Given a transaction id return all his receipts
-     * @param int $transactionId
-     * @return mixed all the receipts
-     */
-
-    public function getAllReceipts(int $transactionId)
-    {
-        $query = "SELECT * FROM receipts WHERE transaction_id = $transactionId";
-        return $this->db->query($query)->findAll();
-    }
 
     /**
      *  Get the array of receipts

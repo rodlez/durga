@@ -18,4 +18,5 @@ class Paths
     public const ROOT = __DIR__ . "/../../../";
     // path to the root directory on our project
     public const STORAGE_UPLOADS = __DIR__ . "/../../../uploads/blog";
+    public const STORAGE_BLOG_IMAGES = __DIR__ . "/../../../public/images/blog";
 }

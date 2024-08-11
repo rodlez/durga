@@ -10,7 +10,9 @@ namespace App\Controllers;
 
 use Framework\TemplateEngine;
 
-use App\Services\{ValidatorService, BlogService, CategoryService, TagService, ContactService, PaginationService};
+use App\Config\Paths;
+
+use App\Services\{ValidatorService, BlogService, CategoryService, TagService, ContactService, ImageService, PaginationService};
 
 
 class BlogController
@@ -24,6 +26,7 @@ class BlogController
         private CategoryService $categoryService,
         private TagService $tagService,
         private ContactService $contactService,
+        private ImageService $imageService,
         private ValidatorService $validatorService,
         private PaginationService $paginationService
     ) {}
@@ -163,19 +166,26 @@ class BlogController
 
     public function infoBlogView(array $params)
     {
-        /*
-        $contact = $this->contactService->getBlogEntry($params['id']);
-        if (!$contact) redirectTo("/admin/contact");
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/admin/blog");
 
-        echo $this->view->render("/admin/contact/show.php", [
+        $tags = $this->blogService->getTagsInBlog($params['id']);
+        $tagNames = $this->blogService->tagsOrderByName($tags);
+
+        $images = $this->imageService->getAllImages((int) $params['id']);
+
+        $path = Paths::STORAGE_UPLOADS;
+
+        echo $this->view->render("/admin/blog/show.php", [
             // Template information
             'title' => 'Admin Panel',
-            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/contact">Contact</a> / <b>Info</b>',
-            'header' => 'Information about the contact',
-            // Contact Information from the DB
-            'contact' => $contact
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/blog">Blog</a> / <b>Info</b>',
+            'header' => 'Information about the blog entry',
+            // Blog Information from the DB
+            'blog' => $blog,
+            'tags' => $tagNames,
+            'images' => $images,
         ]);
-        */
     }
 
     /**
