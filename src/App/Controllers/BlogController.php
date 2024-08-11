@@ -10,7 +10,7 @@ namespace App\Controllers;
 
 use Framework\TemplateEngine;
 
-use App\Services\{ValidatorService, BlogService, ContactService, PaginationService};
+use App\Services\{ValidatorService, BlogService, CategoryService, TagService, ContactService, PaginationService};
 
 
 class BlogController
@@ -21,6 +21,8 @@ class BlogController
     public function __construct(
         private TemplateEngine $view,
         private BlogService $blogService,
+        private CategoryService $categoryService,
+        private TagService $tagService,
         private ContactService $contactService,
         private ValidatorService $validatorService,
         private PaginationService $paginationService
@@ -85,9 +87,9 @@ class BlogController
      * * Show / Edit / Delete contact entries from the contacts DB Table
      */
 
-    public function adminBlogView()
+    public function blogView()
     {
-        $pagination = $this->paginationService->generatePagination($_GET, 'date', 'id');
+        $pagination = $this->paginationService->generatePagination($_GET, 'created_at', 'id');
 
         [$list, $totalResults] = $this->blogService->getBlogEntries($pagination);
 
@@ -122,14 +124,18 @@ class BlogController
      * @param array $params Route Param Id
      */
 
-    public function adminCreateContactView()
+    public function createBlogView()
     {
+        $categories = $this->categoryService->getAllCategories();
+        $tags = $this->tagService->getAllTags();
 
-        echo $this->view->render("/admin/contact/create.php", [
+        echo $this->view->render("/admin/blog/create.php", [
             // Template information
             'title' => 'Admin Panel',
-            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/contact">Contact</a> / <b>Create</b>',
-            'header' => 'Create a new Contact'
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/blog">Blog</a> / <b>Create</b>',
+            'header' => 'Create a new Blog Entry',
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 
@@ -138,15 +144,16 @@ class BlogController
      * 
      */
 
-    public function adminCreateContact()
+    public function createBlog()
     {
-        $this->validatorService->validateContactAdmin($_POST, 'es');
+        $this->validatorService->validateBlog($_POST, 'es');
 
-        $result = $this->contactService->newContactAdmin($_POST);
+        $result = $this->blogService->newBlogEntry((int) $_SESSION['user'], $_POST, (int) $_POST['category'], $_POST['tag']);
 
-        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Contact with " . $_POST['email'] . " can not be created." : $_SESSION['CRUDMessage'] = "Contact with Email " . $_POST['email'] . " created.";
-
-        redirectTo('/admin/contact');
+        //TODO: use an exception instead?
+        ($result['error']) ? $_SESSION['CRUDMessage'] = "Error(" . $result['error'] . ") - Blog <b>(" . excerpt($_POST['title'], 30) . ")</b> can not be created." : $_SESSION['CRUDMessage'] = "Transaction <b>(" . excerpt($_POST['title'], 30) . ")</b> created.";
+        //debugator();       
+        redirectTo('/admin/blog');
     }
 
     /**

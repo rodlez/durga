@@ -67,6 +67,19 @@ class Database
         }
     }
 
+    /**  
+     * Method that performs queries that supports prepared statements and parameters using the PDOStatement class
+     * return an instance of the Database class
+     */
+    public function queryForTransactions(string $query, array $params = []): Database
+    {
+        $this->stmt = $this->connection->prepare(($query));
+
+        $this->stmt->execute($params);
+
+        return $this;
+    }
+
     /**
      * Alias for fetchColumn to use in combination with SQL COUNT() to know the total number of results for a query
      */
@@ -99,5 +112,40 @@ class Database
     public function findAll()
     {
         return $this->stmt->fetchAll();
+    }
+
+    /* Transaction Methods */
+
+    /**
+     * Calling {@link PDO::rollBack()} will roll back all changes to the database and return the connection to autocommit mode.
+     * @return bool — TRUE on success or FALSE on failure.
+     */
+    public function beginTransaction()
+    {
+        return $this->connection->beginTransaction();
+    }
+
+    /**
+     * Method from the Database class that find the number of rows affected
+     */
+    public function commit()
+    {
+        return $this->connection->commit();
+    }
+
+    /**
+     * Method from the Database class that find the number of rows affected
+     */
+    public function inTransaction()
+    {
+        return $this->connection->inTransaction();
+    }
+
+    /**
+     * Method from the Database class that find the number of rows affected
+     */
+    public function rollBack()
+    {
+        return $this->connection->rollBack();
     }
 }

@@ -17,33 +17,6 @@ class BlogService
     public function __construct(private Database $db) {}
 
 
-    /* ********************************************** PUBLIC *************************************************** */
-
-    /**
-     * Insert a new entry in the DB contact Table 
-     * @param array $formData variables send in the contact form
-     */
-
-    public function newContact(array $formData)
-    {
-
-        $query = "INSERT INTO contact(name, email, phone, subject, message) VALUES(:name, :email, :phone, :subject, :message)";
-        $params =
-            [
-                'name' => $formData['name'],
-                'email' => $formData['email'],
-                'phone' => $formData['phone'],
-                'subject' => $formData['subject'],
-                'message' => $formData['message']
-            ];
-
-        $this->db->query($query, $params);
-    }
-
-
-    /* ********************************************** ADMIN *************************************************** */
-
-
     public function getBlogEntries(array $pagination)
     {
         $query = "SELECT * FROM blog 
@@ -76,6 +49,98 @@ class BlogService
          FROM contact where id = $id";
         return $this->db->query($query)->find();
     }
+
+
+
+
+    //****************************************************************************************************************************************** */
+
+    /**
+     * Insert a new entry in the transactions Table and the corresponding pair (transaction_id, tag_id) in the relational Table transaction_tag
+     * @param array $formData variables send in the form
+     * @param int $categoryId id of the category selected in the form
+     * @param array $tagsIds ids of the tags selected in the form
+     * @return array result->status [0,1] and result->error in case of error
+     */
+
+    public function newBlogEntry(int $userId, array $formData, int $categoryId, array $tagsId)
+    {
+
+        try {
+            // Start the Transaction
+            $result = $this->db->beginTransaction();
+
+            // 1 - INSERT BLOG
+            $query = "INSERT INTO blog (published, author, title, subtitle, content, user_id, blog_category_id) VALUES(:published, :author, :title, :subtitle, :content, :userId, :categoryId)";
+            $params =
+                [
+                    'published' => $formData['published'],
+                    'author' => $formData['author'],
+                    'title' => $formData['title'],
+                    'subtitle' => $formData['subtitle'],
+                    'content' => $formData['content'],
+                    'userId' => $userId,
+                    'categoryId' => $categoryId
+                ];
+
+            $this->db->queryForTransactions($query, $params);
+
+            // 2 - GEt the ID for the transaction
+            $lastId = $this->db->lastId();
+
+            // 3 - foreach tag_id insert in the TRANSACTIONS_TAG the transaction_id and the tags_id for each par
+            foreach ($tagsId as $tag) {
+                $query = "INSERT INTO blog_tag_rel (blog_id, tag_id) VALUES(:blog_id, :tag_id)";
+                $params =
+                    [
+                        'blog_id' => (int) $lastId,
+                        'tag_id' => (int) $tag
+                    ];
+                $this->db->queryForTransactions($query, $params);
+            }
+
+            // End the Transaction
+            $this->db->commit();
+
+            $result = ['status' => 1];
+
+            return $result;
+        } catch (PDOException $e) {
+            // If the Transaction fails, we need to revert the changes manually. rollback will revert the changes made by the queries in the transaction.
+            // But if a Transaction is NOT active, this method produces an error. Best use in a condition to check if the transaction is active.
+            if ($this->db->inTransaction()) {
+                $this->db->rollBack();
+            }
+
+            $result = [
+                'status' => 0,
+                'error' => $e->getCode()
+            ];
+
+            return $result;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**

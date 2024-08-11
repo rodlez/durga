@@ -74,7 +74,10 @@ function registerRoutes(App $app)
 
     // BLOG
     // Main
-    $app->get('/admin/blog', [BlogController::class, 'adminBlogView'])->add(AdminRequiredMiddleware::class);
+    $app->get('/admin/blog', [BlogController::class, 'blogView'])->add(AdminRequiredMiddleware::class);
+    $app->get('/admin/blog/create', [BlogController::class, 'createBlogView'])->add(AdminRequiredMiddleware::class);
+    $app->post('/admin/blog/create', [BlogController::class, 'createBlog'])->add(AdminRequiredMiddleware::class);
+
 
     // BLOG CATEGORIES
     $app->get('/admin/category', [CategoryController::class, 'categoryView'])->add(AdminRequiredMiddleware::class);
