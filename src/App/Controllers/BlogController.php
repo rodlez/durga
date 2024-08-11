@@ -161,9 +161,10 @@ class BlogController
      * @param array $params Route Param Id
      */
 
-    public function adminContactInfoView(array $params)
+    public function infoBlogView(array $params)
     {
-        $contact = $this->contactService->getContactInfo($params['id']);
+        /*
+        $contact = $this->contactService->getBlogEntry($params['id']);
         if (!$contact) redirectTo("/admin/contact");
 
         echo $this->view->render("/admin/contact/show.php", [
@@ -174,6 +175,7 @@ class BlogController
             // Contact Information from the DB
             'contact' => $contact
         ]);
+        */
     }
 
     /**

@@ -226,6 +226,17 @@
 
                             <!-- ACTIONS -->
                             <td class="d-flex flex-row align-items-center justify-content-center p-2 gap-2">
+
+                                <!-- Show -->
+                                <a href="/admin/blog/<?php echo $blog->id ?>" class="text-primary">
+                                    <i class="fa-regular fa-eye"></i>
+                                </a>
+
+                                <!-- UPLOAD Image -->
+                                <a href="/admin/blog/<?php echo $blog->id ?>/image" class="text-primary">
+                                    <i class="fa-solid fa-file-arrow-up"></i>
+                                </a>
+
                                 <!-- Edit -->
                                 <a href="/admin/blog/<?php echo $blog->id ?>" class="text-primary">
                                     <i class="fa-regular fa-pen-to-square"></i>

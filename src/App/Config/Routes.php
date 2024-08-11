@@ -6,7 +6,7 @@ namespace App\Config;
 
 use Framework\App;
 
-use App\Controllers\{HomeController, NewsletterController, AboutController, ContactController, BlogController, CategoryController, TagController, AuthController, AdminController};
+use App\Controllers\{HomeController, NewsletterController, AboutController, ContactController, BlogController, ImageController, CategoryController, TagController, AuthController, AdminController};
 
 use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware, AdminRequiredMiddleware};
 
@@ -77,6 +77,11 @@ function registerRoutes(App $app)
     $app->get('/admin/blog', [BlogController::class, 'blogView'])->add(AdminRequiredMiddleware::class);
     $app->get('/admin/blog/create', [BlogController::class, 'createBlogView'])->add(AdminRequiredMiddleware::class);
     $app->post('/admin/blog/create', [BlogController::class, 'createBlog'])->add(AdminRequiredMiddleware::class);
+    // Blog Show    
+    $app->get('/admin/blog/{id}', [BlogController::class, 'infoBlogView'])->add(AuthRequiredMiddleware::class);
+    // Blog Image    
+    $app->get('/admin/blog/{id}/image', [ImageController::class, 'uploadView'])->add(AuthRequiredMiddleware::class);
+    $app->post('/admin/blog/{id}/image', [ImageController::class, 'upload'])->add(AuthRequiredMiddleware::class);
 
 
     // BLOG CATEGORIES

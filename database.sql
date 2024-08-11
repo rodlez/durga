@@ -78,7 +78,6 @@ CREATE TABLE IF NOT EXISTS blog_images(
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   original_filename varchar(255) NOT NULL,
   storage_filename varchar(255) NOT NULL,
-  thumbnail_filename varchar(255) DEFAULT NULL,
   media_type varchar(255) NOT NULL,
   created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
   blog_id bigint(20) unsigned NOT NULL,
