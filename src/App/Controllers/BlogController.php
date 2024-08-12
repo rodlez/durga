@@ -173,7 +173,7 @@ class BlogController
         $category = $this->categoryService->getCategoryName($blog->blog_category_id);
         $tags = $this->blogService->getTagsInBlog($params['id']);
         $tagNames = $this->blogService->tagsOrderByName($tags);
-        $images = $this->imageService->getAllImages((int) $params['id']);
+        $images = $this->imageService->getAllBlogImages((int) $params['id']);
         $user = $this->userService->getUserInfo($_SESSION['user']);
 
         echo $this->view->render("/admin/blog/show.php", [
@@ -258,7 +258,7 @@ class BlogController
 
     public function deleteBlog(array $params)
     {
-        $images = $this->imageService->getAllImages((int) $params['id']);
+        $images = $this->imageService->getAllBlogImages((int) $params['id']);
 
         $result = $this->blogService->deleteBlogEntry((int) $_SESSION['user'], (int) $params['id']);
 

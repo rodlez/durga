@@ -6,7 +6,7 @@ namespace App\Controllers;
 
 use Framework\TemplateEngine;
 
-use App\Services\{ValidatorService, UserService};
+use App\Services\{ValidatorService, UserService, BlogService, ImageService};
 
 // Controllers are classes responsible to render a page content,
 // by convention PagenameController for the class and the filename.
@@ -20,7 +20,9 @@ class HomeController
     public function __construct(
         private TemplateEngine $view,
         private ValidatorService $validatorService,
-        private UserService $userService
+        private UserService $userService,
+        private BlogService $blogService,
+        private ImageService $imageService
     ) {
         // To check that HomeController and TemplateDataMiddleware have 2 different instances of the object(Framework\TemplateEngine)#11
         // After apply Singleton Pattern they both have the same instance
@@ -31,9 +33,34 @@ class HomeController
 
     public function home()
     {
+        $blogList = $this->blogService->getAllBlogEntries();
+        $images = $this->imageService->getAllImages();
+
+        $blogTotal = [];
+        $count = 0;
+
+        foreach ($images as $image) {
+            //showNice($blogList[$image->blog_id], "BLOG_ID $image->blog_id");
+            foreach ($blogList as $blog) {
+                if ($image->blog_id === $blog->id) {
+                    $blogTotal[$count]['data'] = $blog;
+                    $blogTotal[$count]['images'] = $image;
+                }
+            }
+            $count++;
+        }
+
+
+
+        //debugator($blogTotal);
+
         // Because of the Singleton Pattern, Now if we do not specify a title, the App will take the title define
         // on the TemplateDataMiddleware
-        echo $this->view->render("index.php");
+        echo $this->view->render("index.php", [
+            'blogList' => $blogList,
+            'images' => $images,
+            'blogTotal' => $blogTotal
+        ]);
     }
 
     /**

@@ -114,6 +114,17 @@ class ImageService
         return $result;
     }
 
+    /**
+     * Given a transaction id return all his receipts
+     * @param int $transactionId
+     * @return mixed all the receipts
+     */
+
+    public function getAllImages()
+    {
+        $query = "SELECT * FROM blog_images";
+        return $this->db->query($query)->findAll();
+    }
 
 
     /**
@@ -122,7 +133,7 @@ class ImageService
      * @return mixed all the receipts
      */
 
-    public function getAllImages(int $id)
+    public function getAllBlogImages(int $id)
     {
         $query = "SELECT * FROM blog_images WHERE blog_id = $id";
         return $this->db->query($query)->findAll();
