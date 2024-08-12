@@ -222,4 +222,31 @@ class ContactController
 
         redirectTo("/admin/contact");
     }
+
+
+    /** TEST PHPMAILER */
+
+    /**
+     * Render the page fot Edit the Contact information given his Id
+     * @param array $params Route Param Id
+     */
+
+    public function adminContactAnswerView(array $params)
+    {
+        $contact = $this->contactService->getContactInfo($params['id']);
+        if (!$contact) redirectTo("/admin/contact/");
+
+        // send
+        $resultado = $this->contactService->sendEmailContact($contact);
+
+        echo $this->view->render("/admin/contact/answer.php", [
+            // Template information
+            'title' => 'Admin Panel',
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/contact">Contact</a> / <b>Answer</b>',
+            'header' => 'Edit Contact Information',
+            // Contact Information from the DB
+            'contact' => $contact,
+            'resultado' => $resultado
+        ]);
+    }
 }

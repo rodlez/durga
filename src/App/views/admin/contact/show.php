@@ -4,6 +4,7 @@
 // Intelephense Error
 /**  @var object $contact */
 //showNice($contact);
+echo $_ENV['DB_PORT'];
 ?>
 
 <section id="contact-table" class="bg-info py-4">
@@ -99,7 +100,7 @@
                 <a href="/admin/contact/<?php echo $contact->id ?>/edit" class="btn btn-dark w-100" role="button">Edit</a>
             </div>
             <div class="col-lg-4 my-2">
-                <a href="/admin/contact" class="btn btn-success w-100" role="button">Answer</a>
+                <a href="/admin/contact/<?php echo $contact->id ?>/answer" class="btn btn-success w-100" role="button">Answer</a>
             </div>
             <div class="col-lg-4 my-2">
                 <a href="/admin/contact" class="btn btn-warning w-100" role="button">Back</a>
