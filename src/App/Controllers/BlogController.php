@@ -12,7 +12,7 @@ use Framework\TemplateEngine;
 
 use App\Config\Paths;
 
-use App\Services\{ValidatorService, BlogService, CategoryService, TagService, ContactService, ImageService, PaginationService};
+use App\Services\{ValidatorService, BlogService, CategoryService, TagService, ContactService, ImageService, PaginationService, UserService};
 
 
 class BlogController
@@ -28,7 +28,8 @@ class BlogController
         private ContactService $contactService,
         private ImageService $imageService,
         private ValidatorService $validatorService,
-        private PaginationService $paginationService
+        private PaginationService $paginationService,
+        private UserService $userService
     ) {}
 
     /* ********************************************** PUBLIC *************************************************** */
@@ -169,12 +170,11 @@ class BlogController
         $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
         if (!$blog) redirectTo("/admin/blog");
 
+        $category = $this->categoryService->getCategoryName($blog->blog_category_id);
         $tags = $this->blogService->getTagsInBlog($params['id']);
         $tagNames = $this->blogService->tagsOrderByName($tags);
-
         $images = $this->imageService->getAllImages((int) $params['id']);
-
-        $path = Paths::STORAGE_UPLOADS;
+        $user = $this->userService->getUserInfo($_SESSION['user']);
 
         echo $this->view->render("/admin/blog/show.php", [
             // Template information
@@ -183,63 +183,96 @@ class BlogController
             'header' => 'Information about the blog entry',
             // Blog Information from the DB
             'blog' => $blog,
+            'category' => $category,
             'tags' => $tagNames,
             'images' => $images,
+            // User Info
+            'user' => $user
         ]);
     }
 
     /**
-     * Render the page fot Edit the Contact information given his Id
-     * @param array $params Route Param Id
+     * Render the edit form (/transactions/edit.php) using the render method in the TemplateEngine class
+     * @param array $params pass in the 
      */
 
-    public function adminContactEditView(array $params)
+    public function editBlogView(array $params)
     {
-        $contact = $this->contactService->getContactInfo($params['id']);
-        if (!$contact) redirectTo("/admin/contact/");
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/admin/blog");
 
-        echo $this->view->render("/admin/contact/edit.php", [
+        $categories = $this->categoryService->getAllCategories();
+        $tags = $this->tagService->getAllTags();
+        $selectedTags = $this->tagService->getTagsInBlogEntry($blog->id);
+
+        echo $this->view->render("/admin/blog/edit.php", [
             // Template information
             'title' => 'Admin Panel',
-            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/contact">Contact</a> / <b>Edit</b>',
-            'header' => 'Edit Contact Information',
-            // Contact Information from the DB
-            'contact' => $contact
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/blog">Blog</a> / <b>Edit</b>',
+            'header' => 'Information about the blog entry to Edit',
+            // Blog Information from the DB
+            'blog' => $blog,
+            'tags' => $tags,
+            'selectedTags' => $selectedTags,
+            'categories' => $categories
         ]);
     }
 
+
     /**
-     * Update the entry with the given Id in the DB Table contact
-     * @param array $params Route Param Id
+     * Receives the form data from the transactions/edit.php using the HTTPD POST method 
+     * 
+     * * 1 - Get the transaction information checking the parameter id in the router
+     * * 2 - Validate the edit form. 
+     * * 3 - cast the categoryId as (int) because as a POST parameter is a string
+     * * 4 - Update the Tables transactions, categories and transaction_tag using a transaction to be sure that all are successful
+     * * 5 - Redirect to the same page to show if the edition was successful or not.
      */
 
-    public function adminContactEdit(array $params)
+    public function editBlog(array $params)
     {
-        $contact = $this->contactService->getContactInfo($params['id']);
-        if (!$contact) redirectTo("/admin/contact/");
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/admin/blog");
 
-        $this->validatorService->validateContactEditAdmin($_POST, 'es');
+        $this->validatorService->validateBlogEdit($_POST, 'es');
 
-        $result = $this->contactService->updateContact($_POST, (int) $params['id']);
+        $result = $this->blogService->updateBlogEntry($blog->id, (int) $_SESSION['user'], $_POST, (int) $_POST['category'], $_POST['tag']);
 
-        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Contact with " . $_POST['email'] . " can not be edited." : $_SESSION['CRUDMessage'] = "Contact with Email " . $_POST['email'] . " edited.";
+        //TODO: use an exception instead?
+        ($result['error']) ? $_SESSION['CRUDMessage'] = "Error(" . $result['error'] . ") - Blog Entry can not be updated." : $_SESSION['CRUDMessage'] = "Blog Entry updated.";
 
-        redirectTo("/admin/contact/{$params['id']}");
+        // after create the transaction go to the main page
+        redirectTo("/admin/blog/{$params['id']}");
     }
 
     /**
-     * Delete the entry with the given Id in the DB Table contact
-     * @param array $params Route Param Id
+     * Activated when the button delete is pressed and send to transactions/{transactions} with method="DELETE" in an input type hidden in the form
+     * 
+     * @params hidden id variables user and transaction send in the delete form, and transactionName to show the name of the deleted transaction
+     * 
+     * * Delete the transaction with the same id in the Table transactions, 
+     * * ON CASCADE will delete all the entries in the relational Table transaction_tag
+     * * If the Transaction is deleted from the DB, then delete also all the receipts files associated
+     * * Redirect to the main page.
      */
 
-    public function adminContactDelete(array $params)
+    public function deleteBlog(array $params)
     {
-        $contact = $this->contactService->getContactInfo($params['id']);
-        if (!$contact) redirectTo("/admin/contact/");
+        $images = $this->imageService->getAllImages((int) $params['id']);
 
-        $result = $this->contactService->deleteContact((int) $params['id']);
-        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Contact with Email " . $contact->email . " can not be deleted." : $_SESSION['CRUDMessage'] = "Contact with Email " . $contact->email . " deleted.";
+        $result = $this->blogService->deleteBlogEntry((int) $_SESSION['user'], (int) $params['id']);
 
-        redirectTo("/admin/contact");
+        //TODO: use an exception instead?
+        if ($result !== 1) {
+            $_SESSION['CRUDMessage'] = "Blog Entry Can NOT be deleted.";
+        } else {
+            // if OK delete from the DB, delete all the receipts files related
+            $_SESSION['CRUDMessage'] = "Blog Entry whit ID <b>({$params['id']})</b> has been deleted.";
+            foreach ($images as $image) {
+                $this->imageService->deleteImageFile($image);
+            }
+        }
+
+        redirectTo('/admin/blog');
     }
 }

@@ -131,17 +131,17 @@ class TagService
 
     /**
      * Get all the tag ids for a given transaction id
-     * @param int $transactionId
+     * @param int $blogId
      * @return mixed All the tag ids
      */
-    /*
-    public function getTagsInTransaction(mixed $transactionId)
+
+    public function getTagsInBlogEntry(mixed $blogId)
     {
-        $transactionId = (int) $transactionId;
-        $query = "SELECT tag_id FROM transaction_tag WHERE transaction_id = $transactionId";
+        $blogId = (int) $blogId;
+        $query = "SELECT tag_id FROM blog_tag_rel WHERE blog_id = $blogId";
         return $this->db->query($query)->findAll();
     }
-*/
+
     /**
      * Given an array with the tags ids return an array with the corresponding names and sorted alphabetically
      * @param mixed $tags list with the tags ids

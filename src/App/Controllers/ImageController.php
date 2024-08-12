@@ -51,7 +51,7 @@ class ImageController
 
         if ($result) $_SESSION['CRUDMessage'] = "Image for blog <b>({$blog->title})</b> uploaded.";
 
-        redirectTo("/admin/blog");
+        redirectTo("/admin/blog/{$params['id']}");
     }
 
     /**
@@ -78,24 +78,22 @@ class ImageController
      * Delete the receipt file and the entry in the DB receipt Table
      * @param array $params We get the transaction id and receipt id to delete 
      */
-    /*
+
     public function delete(array $params)
     {
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/admin/blog");
 
-        $transaction = $this->blogService->getTransaction($params['transaction'], $_SESSION['user']);
-        if (!$transaction) redirectTo("/");
+        $image = $this->imageService->getImage($params['imageId']);
+        if (!$image) redirectTo("/admin/blog");
 
-        $receipt = $this->imageService->getReceipt($params['receipt']);
-        if (!$receipt) redirectTo("/");
+        // Prevent user to access an image from a different blog entry the id from blog and blog_images MUST match
+        if ($image->blog_id !== $blog->id) redirectTo("/admin/blog");
 
-        // Prevent user to access a receipt from a different transaction the id from transactions and receipt MUST match
-        if ($receipt->transaction_id !== $transaction->id) redirectTo("/");
+        $result = $this->imageService->deleteImage($image);
 
-        $result = $this->imageService->delete($receipt);
+        ($result !== 1) ? $_SESSION['CRUDMessage'] = "Error - Image Can NOT be deleted." : $_SESSION['CRUDMessage'] = "Image deleted.";
 
-        ($result !== 1) ? $_SESSION['CRUDMessage'] = "Error - Receipt Can NOT be deleted." : $_SESSION['CRUDMessage'] = "Receipt deleted.";
-
-        redirectTo('/');
+        redirectTo('/admin/blog');
     }
-        */
 }

@@ -17,8 +17,7 @@ class UserService
 {
     public function __construct(
         private Database $db,
-    ) {
-    }
+    ) {}
 
     /** 
      * If the email already exists throw an exception and save the error in the log file
@@ -181,6 +180,19 @@ class UserService
         // LOG - LOGOUT
         //$this->log->accessLog('logout');
     }
+
+    /**
+     * Given an user id get all the information
+     * @param mixed $userId mixed in case the parameter is a string, No need to cast in a query string
+     * @return mixed user info found in the DB
+     */
+
+    public function getUserInfo(mixed $userId)
+    {
+        $query = "SELECT * FROM users where id = $userId";
+        return $this->db->query($query)->find();
+    }
+
 
     /**
      * Create a new entry in the DB Table newsletter

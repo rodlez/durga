@@ -114,6 +114,14 @@ class Database
         return $this->stmt->fetchAll();
     }
 
+    /**
+     * Method from the Database class that find the number of rows affected
+     */
+    public function rowCount()
+    {
+        return $this->stmt->rowCount();
+    }
+
     /* Transaction Methods */
 
     /**

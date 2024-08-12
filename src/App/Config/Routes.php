@@ -82,7 +82,12 @@ function registerRoutes(App $app)
     // Blog Image    
     $app->get('/admin/blog/{id}/image', [ImageController::class, 'uploadView'])->add(AuthRequiredMiddleware::class);
     $app->post('/admin/blog/{id}/image', [ImageController::class, 'upload'])->add(AuthRequiredMiddleware::class);
-
+    $app->delete('/admin/blog/{id}/image/{imageId}', [ImageController::class, 'delete'])->add(AuthRequiredMiddleware::class);
+    // Blog Edit    
+    $app->get('/admin/blog/{id}/edit', [BlogController::class, 'editBlogView'])->add(AuthRequiredMiddleware::class);
+    $app->post('/admin/blog/{id}/edit', [BlogController::class, 'editBlog'])->add(AuthRequiredMiddleware::class);
+    // Blog Delete
+    $app->delete('/admin/blog/{id}', [BlogController::class, 'deleteBlog'])->add(AdminRequiredMiddleware::class);
 
     // BLOG CATEGORIES
     $app->get('/admin/category', [CategoryController::class, 'categoryView'])->add(AdminRequiredMiddleware::class);

@@ -128,6 +128,34 @@ class ImageService
         return $this->db->query($query)->findAll();
     }
 
+    /**
+     * Given a receipt id return the receipt
+     * @param string $receiptId Will be cast as int to make the DB query
+     * @return mixed receipt
+     */
+
+    public function getImage(string $id)
+    {
+        $id = (int) $id;
+        $query = "SELECT * FROM blog_images WHERE id = $id";
+        return $this->db->query($query)->find();
+    }
+
+    /**
+     * Delete the Receipt file (PDF or Image) store in the server given a receipt object. 
+     * @return - true if OK false if error.
+     */
+
+    public function deleteImageFile(mixed $image): bool
+    {
+        // 1 - We find the file concatenating the path and the storage filename (was randomly generated). Check filePath to pdf or img file      
+        $filePath = Paths::STORAGE_BLOG_IMAGES . '/' . $image->storage_filename;
+
+        // 2 - Delete the files 
+        $result = unlink($filePath);
+
+        return $result;
+    }
 
 
 
@@ -139,18 +167,7 @@ class ImageService
     public function uploadImages(array $file, int $transaction) {}
 
 
-    /**
-     * Given a receipt id return the receipt
-     * @param string $receiptId Will be cast as int to make the DB query
-     * @return mixed receipt
-     */
 
-    public function getReceipt(string $receiptId)
-    {
-        $receiptId = (int) $receiptId;
-        $query = "SELECT * FROM receipts WHERE id = $receiptId";
-        return $this->db->query($query)->find();
-    }
 
 
     /**
@@ -199,55 +216,24 @@ class ImageService
      * @return - true if OK false if error.
      */
 
-    public function delete(mixed $receipt)
+    public function deleteImage(mixed $image)
     {
         // 1 - We find the file concatenating the path and the storage filename (was randomly generated). Check filePath to pdf or img file
-        if ($receipt->media_type === 'application/pdf') {
-            $filePath = Paths::STORAGE_UPLOADS . '/' . $receipt->storage_filename;
-            $thumbnailPath = null;
-        } else {
-            $filePath = Paths::STORAGE_IMG . '/' . $receipt->storage_filename;
-            $thumbnailPath = Paths::STORAGE_IMG . '/' . $receipt->thumbnail_filename;
-        }
+        $filePath = Paths::STORAGE_BLOG_IMAGES . '/' . $image->storage_filename;
 
         // 2 - Delete the files 
         unlink($filePath);
-        // if is an IMG also delete the Thumbnail
-        if (isset($thumbnailPath)) unlink($thumbnailPath);
 
         // 3 - Delete from the DB
-        $query = "DELETE FROM receipts WHERE id = :id";
-        $params = ['id' => $receipt->id];
+        $query = "DELETE FROM blog_images WHERE id = :imageId";
+        $params = ['imageId' => $image->id];
         // if the delete is successful would return 1(number of rows affected) otherwise return 0.
         $result = $this->db->query($query, $params)->rowCount();
 
         return $result;
     }
 
-    /**
-     * Delete the Receipt file (PDF or Image) store in the server given a receipt object. 
-     * @return - true if OK false if error.
-     */
 
-    public function deleteReceiptFile(mixed $receipt): bool
-    {
-        // 1 - We find the file concatenating the path and the storage filename (was randomly generated). Check filePath to pdf or img file
-        if ($receipt->media_type === 'application/pdf') {
-            $filePath = Paths::STORAGE_UPLOADS . '/' . $receipt->storage_filename;
-            $thumbnailPath = null;
-        } else {
-            $filePath = Paths::STORAGE_IMG . '/' . $receipt->storage_filename;
-            $thumbnailPath = Paths::STORAGE_IMG . '/' . $receipt->thumbnail_filename;
-        }
-
-        // 2 - Delete the files 
-        $result = unlink($filePath);
-        // if is an IMG also delete the Thumbnail
-        if (isset($thumbnailPath)) $result = unlink($thumbnailPath);
-
-        // If one or both unlink() are successful return true if some failed return false
-        return $result;
-    }
 
     // ****************** Statistics *************************
 

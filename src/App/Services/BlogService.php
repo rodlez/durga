@@ -176,90 +176,99 @@ class BlogService
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
-     * Insert a new entry in the DB contact Table 
-     * @param array $formData variables send in the Admin Contact form
+     *  Update a Transaction 
+     * @param array $formData    
+     * @param int $transactionId 
+     * @param int $categoryId 
+     * @param int $periodId 
+     * @param array $tags_id    
+     * @param int $userId $_SESSION['user'] for public, and the userId in admmin panel
+     * @return mixed object or array depending on the PDO::ATTR_DEFAULT_FETCH_MODE => (PDO::FETCH_ASSOC, PDO::FETCH_OBJ)
      */
 
-    public function newContactAdmin(array $formData)
-    {
-
-        $query = "INSERT INTO contact(status, name, email, phone, subject, message, comments) VALUES(:status, :name, :email, :phone, :subject, :message, :comments)";
-        $params =
-            [
-                'status' => $formData['status'],
-                'name' => $formData['name'],
-                'email' => $formData['email'],
-                'phone' => $formData['phone'],
-                'subject' => $formData['subject'],
-                'message' => $formData['message'],
-                'comments' => $formData['comments']
-            ];
-
-        return $this->db->query($query, $params);
-    }
-
-    /**
-     * Update an Email in the Newsletter Database Table based in the ID and the new Email entry in the edit form
-     * @param array $formData - form in the contact Admin edit menu
-     * @param int $id - Route parameter
-     */
-
-    public function updateContact(array $formData, int $id): Database
+    public function updateBlogEntry(int $blogId, int $userId, array $formData, int $categoryId, array $tagsId)
     {
         // to avoid the time(HH:MM:SS) DATETIME type to be created by the DB, we stablish it to the midnight because in this case only care for the date(YYY-MM-DD)
         $formattedDate = "{$formData['date']} 00:00:00";
 
-        $query = "UPDATE contact SET 
-           name = :name, email = :email, phone = :phone, subject = :subject, message = :message, status = :status, comments = :comments, created_at = :date, updated_at =:now
-           WHERE id = :id";
 
-        $params =
-            [
-                'name' => $formData['name'],
-                'email' => $formData['email'],
-                'phone' => $formData['phone'],
-                'subject' => $formData['subject'],
-                'message' => $formData['message'],
-                'status' => $formData['status'],
-                'comments' => $formData['comments'],
-                'date' => $formattedDate,
-                'now' => date('Y-m-d H:i:s'),
-                'id' => $id
+        try {
+            // Start the Transaction
+            $result = $this->db->beginTransaction();
+
+            // 1 - UPDATE TRANSACTION
+            $query = "UPDATE blog SET 
+               published = :published, author = :author, title = :title, subtitle = :subtitle, content = :content, created_at = :date, updated_at = :now, blog_category_id = :categoryId
+               WHERE id = :blogId AND user_id = :userId";
+            $params =
+                [
+                    'published' => $formData['published'],
+                    'author' => $formData['author'],
+                    'title' => $formData['title'],
+                    'subtitle' => $formData['subtitle'],
+                    'content' => $formData['content'],
+                    'userId' => $userId,
+                    'blogId' => $blogId,
+                    'categoryId' => $categoryId,
+                    'date' => $formattedDate,
+                    'now' => date('Y-m-d H:i:s')
+                ];
+            $this->db->queryForTransactions($query, $params);
+
+            // 2 - DELETE the previous values in the blog_tag_rel table for the current blog entry
+            $query = "DELETE FROM blog_tag_rel WHERE blog_id = :blogId";
+            $params = ['blogId' => $blogId];
+
+            $this->db->queryForTransactions($query, $params);
+
+            // 3 - foreach tag_id insert in the TRANSACTIONS_TAG the transaction_id and the tags_id for each par
+            foreach ($tagsId as $tag) {
+                $query = "INSERT INTO blog_tag_rel (blog_id, tag_id) VALUES(:blogId, :tagId)";
+                $params =
+                    [
+                        'blogId' => $blogId,
+                        'tagId' => (int) $tag
+                    ];
+                $this->db->queryForTransactions($query, $params);
+            }
+
+            // End the Transaction
+            $this->db->commit();
+
+            $result = [
+                'status' => 1
             ];
 
-        return $this->db->query($query, $params);
+            return $result;
+        } catch (PDOException $e) {
+            // If the Transaction fails, we need to revert the changes manually. rollback will revert the changes made by the queries in the transaction.
+            // But if a Transaction is NOT active, this method produces an error. Best use in a condition to check if the transaction is active.
+            if ($this->db->inTransaction()) {
+                $this->db->rollBack();
+            }
+
+            $result = [
+                'status' => 0,
+                'error' => $e->getCode()
+            ];
+
+            return $result;
+        }
     }
 
     /**
-     *  Delete an entry in the contact Database Table given an ID     
-     * @param int $id - Route parameter
-     * @return mixed - number of rows deleted
+     * With the constraints ON DELETE CASCADE for the FK transaction_id and tag_id, if we delete them
+     * the transaction_tag Table and the receipt Table will be automatically updated
+     * include the user_id to prevent users to delete transactions that NOT belong to them
+     * @param int $userId
+     * @param int $transactionId
+     * @return int - if the delete is successful would return 1 (number of rows affected) otherwise return 0.
      */
 
-    public function deleteContact(int $id)
+    public function deleteBlogEntry(int $userId, int $blogId): int
     {
-        $query = "DELETE FROM contact WHERE id = $id";
-        return $this->db->query($query);
+        $query = "DELETE FROM blog WHERE id = $blogId AND user_id = $userId";
+        return $this->db->query($query)->rowCount();
     }
 }

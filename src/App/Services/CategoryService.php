@@ -77,8 +77,9 @@ class CategoryService
      * @return string name
      */
 
-    public function getCategoryName(int $id): string
+    public function getCategoryName(mixed $id): string
     {
+        $id = (int) $id;
         $query = "SELECT name FROM blog_categories WHERE id = $id";
         $result = $this->db->query($query)->find();
         return $result->name;
