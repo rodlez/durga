@@ -6,10 +6,11 @@
 /**  @var object $images */
 /**  @var object $blogTotal */
 //showNice($blogTotal);
-foreach ($blogTotal as $blog) {
+/*foreach ($blogTotal as $blog) {
     showNice($blog['data']->author);
     showNice($blog['images']->storage_filename);
-} ?>
+} */
+?>
 
 
 <!-- Header, 1 col -->
@@ -27,39 +28,6 @@ foreach ($blogTotal as $blog) {
         </div>
     </div>
 </header>
-
-<!-- Blog, 1 row 3 col per row with cards -->
-<section id="blog" class="blog bg-light py-5">
-    <div class="container">
-        <h2 class="text-center fw-bold text-primary pb-4">
-            Blog
-        </h2>
-        <!-- Blog Row 1 -->
-
-        <div class="row mb-4 justify-content-center">
-
-            <?php foreach ($blogTotal as $blog) : ?>
-
-                <div class="col-lg-4 col-md-4 my-4">
-                    <div class="card">
-                        <img src="<?php echo "/images/blog/" . $blog['images']->storage_filename; ?>" class="card-img" alt="" />
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $blog['data']->title; ?></h5>
-                            <p class="card-text">
-                                <?php echo excerpt($blog['data']->content, 50); ?>
-                                <a href="./blog/la-diosa-durga.html" class="blog-link">Leer Más</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-
-            <?php endforeach; ?>
-
-        </div>
-
-    </div>
-</section>
 
 <?php /*
 <!-- Blog, 1 row 3 col per row with cards -->
@@ -510,6 +478,7 @@ foreach ($blogTotal as $blog) {
     </div>
 </section>
 
+<?php /*
 <!-- Blog, 1 row 3 col per row with cards -->
 <section id="blog" class="blog bg-light py-5">
     <div class="container">
@@ -562,9 +531,34 @@ foreach ($blogTotal as $blog) {
         </div>
     </div>
 </section>
+*/ ?>
 
+<!-- Blog, 1 row 3 col per row with cards -->
+<section id="blog" class="blog bg-light py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold text-primary pb-4">
+            Blog
+        </h2>
+        <!-- Blog Row , 3 cols per row -->
+        <div class="row mb-4 justify-content-center">
+            <?php foreach ($blogTotal as $blog) : ?>
+                <div class="col-lg-4 col-md-4 my-4">
+                    <div class="card">
+                        <img src="<?php echo "/images/blog/" . $blog['images']->storage_filename; ?>" class="card-img" alt="" />
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $blog['data']->title; ?></h5>
+                            <p class="card-text">
+                                <?php echo excerpt($blog['data']->content, 50); ?>
+                                <a href="/blog/<?php echo $blog['data']->id ?>" class="blog-link">Leer Más</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
 
-
+    </div>
+</section>
 
 
 

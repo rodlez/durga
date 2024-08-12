@@ -35,51 +35,72 @@ class BlogController
     /* ********************************************** PUBLIC *************************************************** */
 
 
-    /**
-     * Render Page for Contact
-     *
-     * * Use the $_GET['asunto] to now wich subject select in the contact form
-     */
-
-    public function contactView()
+    public function blogView()
     {
+        $blogList = $this->blogService->getAllBlogEntries();
+        $images = $this->imageService->getAllImages();
 
-        isset($_GET['asunto']) ? $param = $_GET['asunto'] : $param = null;
+        $blogTotal = [];
+        $count = 0;
 
-        echo $this->view->render("contacto.php", [
-            'title' => 'Contacto',
-            'sitemap' => '<a href="/">Home</a> / <b>Contacto</b>',
-            'header' => "Contacto page",
-            'asunto' => $param
+        foreach ($images as $image) {
+            //showNice($blogList[$image->blog_id], "BLOG_ID $image->blog_id");
+            foreach ($blogList as $blog) {
+                if ($image->blog_id === $blog->id) {
+                    $blogTotal[$count]['data'] = $blog;
+                    $blogTotal[$count]['images'] = $image;
+                }
+            }
+            $count++;
+        }
+
+
+
+        //debugator($blogTotal);
+
+        // Because of the Singleton Pattern, Now if we do not specify a title, the App will take the title define
+        // on the TemplateDataMiddleware
+        echo $this->view->render("/blog/index.php", [
+            // Template information
+            'title' => 'Blog',
+            'sitemap' => '<a href="/admin">Admin</a> / <b>Blog</b>',
+            'header' => 'Contact List',
+            // Info
+            'blogList' => $blogList,
+            'images' => $images,
+            'blogTotal' => $blogTotal
         ]);
     }
 
     /**
-     * Validates the Contact form and if it is OK, save the data in the contact DB Table 
-     * 
+     * Render the page fot Edit the Contact information given his Id
+     * @param array $params Route Param Id
      */
 
-    public function contact()
+    public function blogEntryView($params)
     {
-        $this->validatorService->validateContact($_POST, 'es');
 
-        $this->contactService->newContact($_POST);
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/blog");
 
-        redirectTo('/contacto/ok');
-    }
+        $category = $this->categoryService->getCategoryName($blog->blog_category_id);
+        $tags = $this->blogService->getTagsInBlog($params['id']);
+        $tagNames = $this->blogService->tagsOrderByName($tags);
+        $images = $this->imageService->getAllBlogImages((int) $params['id']);
+        //$user = $this->userService->getUserInfo($_SESSION['user']);
 
-    /**
-     * Render Page for Contact after the form is send
-     *
-     * * Display a message to the user and a go back link
-     */
-
-    public function contactOk()
-    {
-        echo $this->view->render("contacto-ok.php", [
-            'title' => 'Contacto',
-            'sitemap' => '<a href="/">Home</a> / <b>Contacto</b>',
-            'header' => "Contacto page",
+        echo $this->view->render("/blog/show.php", [
+            // Template information
+            'title' => 'Blog',
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/blog">Blog</a> / <b>Info</b>',
+            'header' => $blog->title,
+            // Blog Information from the DB
+            'blog' => $blog,
+            'category' => $category,
+            'tags' => $tagNames,
+            'images' => $images
+            // User Info
+            //'user' => $user
         ]);
     }
 
@@ -91,7 +112,7 @@ class BlogController
      * * Show / Edit / Delete contact entries from the contacts DB Table
      */
 
-    public function blogView()
+    public function adminBlogView()
     {
         $pagination = $this->paginationService->generatePagination($_GET, 'created_at', 'id');
 

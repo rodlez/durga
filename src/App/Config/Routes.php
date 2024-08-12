@@ -30,6 +30,10 @@ function registerRoutes(App $app)
     // About Page
     $app->get('/about', [AboutController::class, 'about']);
 
+    // Blog Page
+    $app->get('/blog', [BlogController::class, 'blogView']);
+    $app->get('/blog/{id}', [BlogController::class, 'blogEntryView']);
+
     // Contacto Page
     $app->get('/contacto', [ContactController::class, 'contactView']);
     $app->post('/contacto', [ContactController::class, 'contact']);
@@ -74,7 +78,7 @@ function registerRoutes(App $app)
 
     // BLOG
     // Main
-    $app->get('/admin/blog', [BlogController::class, 'blogView'])->add(AdminRequiredMiddleware::class);
+    $app->get('/admin/blog', [BlogController::class, 'adminBlogView'])->add(AdminRequiredMiddleware::class);
     $app->get('/admin/blog/create', [BlogController::class, 'createBlogView'])->add(AdminRequiredMiddleware::class);
     $app->post('/admin/blog/create', [BlogController::class, 'createBlog'])->add(AdminRequiredMiddleware::class);
     // Blog Show    

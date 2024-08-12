@@ -25,7 +25,7 @@
                         <a href="/" class="footer-link">Inicio</a> |
                         <a href="/about" class="footer-link">About</a> |
                         <a href="/contacto" class="footer-link">Contacto</a> |
-                        <a href="#" class="footer-link">Blog</a>
+                        <a href="/blog" class="footer-link">Blog</a>
                     </li>
                 </ul>
             </div>

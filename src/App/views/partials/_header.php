@@ -50,6 +50,9 @@
                     <li class="nav-item px-2">
                         <a class="nav-link" href="/contacto">Contacto</a>
                     </li>
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="/blog">Blog</a>
+                    </li>
                     <!-- Conditional Rendering if the user is login -->
                     <?php if (isset($_SESSION['user'])) : ?>
                         <li class="nav-item px-2">
