@@ -51,6 +51,26 @@ class BlogService
         return $this->db->query($query)->findAll();
     }
 
+    /**
+     *  Given a Transaction id and the user id return all the transactions. transactionId and userId will be cast to int to perform the query
+     * @param mixed $transactionId mixed because if it comes from the params will be a string
+     * @param mixed $userId mixed because if it comes from the params will be a string
+     * @return mixed object or array depending on the PDO::ATTR_DEFAULT_FETCH_MODE => (PDO::FETCH_ASSOC, PDO::FETCH_OBJ)
+     */
+
+    public function getBlogEntrybyId(mixed $id)
+    {
+        $query = "SELECT *, DATE_FORMAT(created_at, '%Y-%m-%d') as formatted_date 
+           FROM blog 
+           WHERE id = :id";
+        $params =
+            [
+                'id' => (int) $id,
+            ];
+
+        return $this->db->query($query, $params)->find();
+    }
+
 
     /**
      *  Given a Transaction id and the user id return all the transactions. transactionId and userId will be cast to int to perform the query

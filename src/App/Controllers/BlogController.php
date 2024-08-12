@@ -77,7 +77,7 @@ class BlogController
     public function blogEntryView($params)
     {
 
-        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        $blog = $this->blogService->getBlogEntrybyId($params['id']);
         if (!$blog) redirectTo("/blog");
 
         $category = $this->categoryService->getCategoryName($blog->blog_category_id);
