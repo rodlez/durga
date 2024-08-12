@@ -218,7 +218,7 @@
 
                             <td class="p-2"><?php echo $blog->blog_category_id ?></td>
 
-                            <td class="p-2"><?php echo $blog->title ?></td>
+                            <td class="p-2"><?php echo excerpt($blog->title, 40); ?></td>
 
                             <td class="p-2"><?php echo date("d/m/Y", strtotime($blog->created_at)); ?></td>
 

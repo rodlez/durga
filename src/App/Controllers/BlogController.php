@@ -53,9 +53,6 @@ class BlogController
             }
             $count++;
         }
-
-
-
         //debugator($blogTotal);
 
         // Because of the Singleton Pattern, Now if we do not specify a title, the App will take the title define
@@ -64,7 +61,7 @@ class BlogController
             // Template information
             'title' => 'Blog',
             'sitemap' => '<a href="/admin">Admin</a> / <b>Blog</b>',
-            'header' => 'Contact List',
+            'header' => 'Aquí podrás encontrar una selección de artículos',
             // Info
             'blogList' => $blogList,
             'images' => $images,
