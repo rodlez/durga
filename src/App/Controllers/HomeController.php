@@ -83,4 +83,17 @@ class HomeController
 
         redirectTo('/newsletter');
     }
+
+    /**
+     * Destroy the user SESSION and delete the cookie
+     */
+
+    public function langChange()
+    {
+        //debugator($_GET);
+        isset($_GET['lang']) ? $param = $_GET['lang'] : $param = null;
+        $this->userService->changeLanguage($param);
+
+        redirectTo($_SERVER['HTTP_REFERER']);
+    }
 }

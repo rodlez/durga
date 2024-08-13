@@ -20,14 +20,13 @@ class AdminController
 {
     public function __construct(
         private TemplateEngine $view
-    ) {
-    }
+    ) {}
 
     public function adminView()
     {
         echo $this->view->render("/admin/index.php", [
             'title' => 'Admin Panel',
-            'sitemap' => '<b>Admin Panel</b>',
+            'sitemap' => 'Admin Panel',
             'header' => 'Admin Panel'
         ]);
     }

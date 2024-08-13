@@ -1,6 +1,8 @@
 <?php
 
 include __DIR__ . "/../src/App/functions.php";
+// Test Language
+include __DIR__ . "/../src/App/langTest.php";
 
 // we get the instance of the App class with all the methods that we need to run the application
 $app = include __DIR__ . '/../src/App/bootstrap.php';

@@ -205,4 +205,17 @@ class UserService
         $query = "INSERT INTO newsletter(email) VALUES('{$userData['email']}')";
         return $this->db->query($query);
     }
+
+    /**
+     * Create a new entry in the DB Table newsletter
+     * @param array $userData form variables, category name
+     * @return 
+     */
+
+    public function changeLanguage($lang)
+    {
+        $_SESSION['lang'] = $lang;
+        showNice($_SESSION, 'SESSION');
+        //debugator($lang);
+    }
 }

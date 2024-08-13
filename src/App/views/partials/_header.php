@@ -2,7 +2,8 @@
 <html lang="en">
 <!-- DEVELOPMENT -->
 <?php
-//showNice($_SESSION, 'DEV - $_SESSION');
+showNice($_SESSION, 'DEV - $_SESSION');
+$navLink = navLinks($_SESSION['lang']);
 ?>
 <!-- ***********  -->
 
@@ -42,17 +43,26 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item px-2">
-                        <a class="nav-link" aria-current="page" href="/">Home</a>
+                        <a class="nav-link" aria-current="page" href="/"><?php echo $navLink['link1']; ?></a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/about">Sobre mí</a>
+                        <a class="nav-link" href="/about"><?php echo $navLink['link2']; ?></a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/contacto">Contacto</a>
+                        <a class="nav-link" href="/contacto"><?php echo $navLink['link3']; ?></a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/blog">Blog</a>
+                        <a class="nav-link" href="/blog"><?php echo $navLink['link4']; ?></a>
                     </li>
+                    <?php if ((isset($_SESSION['lang']) && ($_SESSION['lang']) === 'cat')) : ?>
+                        <li class="nav-item px-2">
+                            <a class="nav-link" href="/lang?lang=esp">ESP</a>
+                        </li>
+                    <?php else : ?>
+                        <li class="nav-item px-2">
+                            <a class="nav-link" href="/lang?lang=cat">CAT</a>
+                        </li>
+                    <?php endif; ?>
                     <!-- Conditional Rendering if the user is login -->
                     <?php if (isset($_SESSION['user'])) : ?>
                         <li class="nav-item px-2">

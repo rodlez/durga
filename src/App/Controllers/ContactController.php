@@ -39,11 +39,16 @@ class ContactController
 
         isset($_GET['asunto']) ? $param = $_GET['asunto'] : $param = null;
 
+        $content = contactContent($_SESSION['lang']);
+
         echo $this->view->render("contacto.php", [
             'title' => 'Contacto',
             'sitemap' => '<a href="/">Home</a> / <b>Contacto</b>',
             'header' => "Contacto page",
-            'asunto' => $param
+            // param
+            'asunto' => $param,
+            // content
+            'content' => $content
         ]);
     }
 

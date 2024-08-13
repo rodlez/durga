@@ -22,11 +22,15 @@ class AboutController
 
     public function about()
     {
+        $content = aboutContent($_SESSION['lang']);
+        //debugator($content);
         echo $this->view->render("about.php", [
             'title' => 'Sobre mí',
             'sitemap' => '<a href="/">Home</a> / <b>About</b>',
             'header' => "Sobre mi page",
-            'dangerousData' => '<script>alert(123)</script>'
+            'dangerousData' => '<script>alert(123)</script>',
+            // CONTENT
+            'content' => $content
         ]);
     }
 }

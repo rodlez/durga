@@ -5,9 +5,9 @@
 <!-- Contacto-->
 <section id="contacto" class="contacto bg-info py-4">
     <div class="container">
-        <h2 class="fw-bold text-primary">Contacto</h2>
+        <h2 class="fw-bold text-primary"><?php echo $content['title']; ?></h2>
         <hr class="hr-heading-page" />
-        <p class="text-secondary">Envia el formulario para consultar cualquier duda, también puedes contactar conmigo a través de mis redes sociales.</p>
+        <p class="text-secondary"><?php echo $content['header']; ?></p>
 
         <div class="row py-2">
 
@@ -18,7 +18,7 @@
                     </div>
                     <div class="col contacto-name pt-2">
                         <h4 class="info-title">Mamen Carrasco</h4>
-                        <p class="info-subtitle">Psicóloga y Terapeuta Gestalt</p>
+                        <p class="info-subtitle"><?php echo $content['subtitle']; ?></p>
                     </div>
                     <div class="col pt-4 px-1">
                         <a href="#" class="text-decoration-none">
@@ -62,7 +62,7 @@
                     <?php include $this->resolve('partials/_csrf.php'); ?>
                     <!-- Nombre -->
                     <div class="mb-4">
-                        <label for="name" class="form-label">Nombre <span class="text-primary">*</span></label>
+                        <label for="name" class="form-label"><?php echo $content['name']; ?> <span class="text-primary">*</span></label>
                         <input type="text" class="form-control" id="name" name="name" value="<?php echo ($oldFormData['name'] ?? ''); ?>" placeholder="">
                     </div>
                     <!-- Error Message -->
@@ -71,7 +71,7 @@
                     <?php endif; ?>
                     <!-- Email -->
                     <div class="mb-4">
-                        <label for="email" class="form-label">Email <span class="text-primary">*</span></label>
+                        <label for="email" class="form-label"><?php echo $content['email']; ?> <span class="text-primary">*</span></label>
                         <div class="input-group">
                             <span class="input-group-text bg-primary">
                                 <i class="fa fa-envelope fa-1x text-light"></i>
@@ -85,7 +85,7 @@
                     <?php endif; ?>
                     <!-- Phone -->
                     <div class="mb-4">
-                        <label for="phone" class="form-label">Teléfono <span class="text-primary">*</span></label>
+                        <label for="phone" class="form-label"><?php echo $content['phone']; ?> <span class="text-primary">*</span></label>
                         <div class="input-group">
                             <span class="input-group-text bg-primary">
                                 <i class="fa fa-phone fa-1x text-light"></i>
@@ -99,7 +99,7 @@
                     <?php endif; ?>
                     <!-- Asunto -->
                     <div class="mb-4">
-                        <label for="subject" class="form-label">Asunto Test</label>
+                        <label for="subject" class="form-label"><?php echo $content['subject']; ?></label>
                         <select name="subject" id="subject" class="form-control">
                             <option value="Pedir Cita" <?php echo (isset($asunto) && ($asunto === '1')) ? 'selected' : ''; ?>>Pedir Cita</option>
                             <option value="Contratar Sesión" <?php echo (isset($asunto) && ($asunto === '2')) ? 'selected' : ''; ?>>Contratar Sesión</option>
@@ -114,7 +114,7 @@
                     <!-- Mensaje -->
                     <div class="mb-4">
                         <div class="col">
-                            <label for="message" class="form-label">Mensaje <span class="text-primary">*</span></label>
+                            <label for="message" class="form-label"><?php echo $content['message']; ?> <span class="text-primary">*</span></label>
                         </div>
                         <div class="col">
                             <textarea name="message" rows="4" cols="50" class="w-100 rounded"><?php echo ($oldFormData['message'] ?? ''); ?></textarea>
@@ -128,7 +128,7 @@
                     <div class="mb-2">
                         <input <?php echo $oldFormData['tos'] ?? false ? 'checked' : ''; ?> type="checkbox" id="agree-check" name="tos" />
                         <label for="agree-check" class="form-check-label">
-                            He leído y acepto la <a href="#" class="text-dark">Política de Privacidad</a>
+                            <?php echo $content['tos']; ?> <a href="#" class="text-dark"><?php echo $content['privacy']; ?></a>
                         </label>
                     </div>
                     <!-- Error Message -->

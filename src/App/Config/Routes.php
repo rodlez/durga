@@ -50,6 +50,9 @@ function registerRoutes(App $app)
     // Logout
     $app->get('/logout', [AuthController::class, 'logout'])->add(AuthRequiredMiddleware::class);
 
+    // Lang
+    $app->get('/lang', [HomeController::class, 'langChange']);
+
     // ****************************************** ADMIN ********************************************************
 
     $app->get('/admin', [AdminController::class, 'adminView'])->add(AdminRequiredMiddleware::class);
