@@ -2,8 +2,9 @@
 <html lang="en">
 <!-- DEVELOPMENT -->
 <?php
-showNice($_SESSION, 'DEV - $_SESSION');
-$navLink = navLinks($_SESSION['lang']);
+//showNice($_SESSION, 'DEV - $_SESSION');
+$navLinks = navLinks($_SESSION['lang']);
+$footerLinks = footerLinks($_SESSION['lang']);
 ?>
 <!-- ***********  -->
 
@@ -43,16 +44,16 @@ $navLink = navLinks($_SESSION['lang']);
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item px-2">
-                        <a class="nav-link" aria-current="page" href="/"><?php echo $navLink['link1']; ?></a>
+                        <a class="nav-link" aria-current="page" href="/"><?php echo $navLinks['link1']; ?></a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/about"><?php echo $navLink['link2']; ?></a>
+                        <a class="nav-link" href="/about"><?php echo $navLinks['link2']; ?></a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/contacto"><?php echo $navLink['link3']; ?></a>
+                        <a class="nav-link" href="/contacto"><?php echo $navLinks['link3']; ?></a>
                     </li>
                     <li class="nav-item px-2">
-                        <a class="nav-link" href="/blog"><?php echo $navLink['link4']; ?></a>
+                        <a class="nav-link" href="/blog"><?php echo $navLinks['link4']; ?></a>
                     </li>
                     <?php if ((isset($_SESSION['lang']) && ($_SESSION['lang']) === 'cat')) : ?>
                         <li class="nav-item px-2">

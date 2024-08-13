@@ -50,13 +50,32 @@ class HomeController
             $count++;
         }
 
-
+        $header = homeHeader($_SESSION['lang']);
+        $terapia = homeTerapia($_SESSION['lang']);
+        $sintomas = homeSintomas($_SESSION['lang']);
+        $exploracion = homeSesionExploracion($_SESSION['lang']);
+        $metodo = homeMetodo($_SESSION['lang']);
+        $motivos = homeMotivos($_SESSION['lang']);
+        $beneficios = homeBeneficios($_SESSION['lang']);
+        $precios = homePrecios($_SESSION['lang']);
+        $newsletter = homeNewsletter($_SESSION['lang']);
 
         //debugator($blogTotal);
 
         // Because of the Singleton Pattern, Now if we do not specify a title, the App will take the title define
         // on the TemplateDataMiddleware
         echo $this->view->render("index.php", [
+            // SECTION TEXTS            
+            'header' => $header,
+            'terapia' => $terapia,
+            'sintomas' => $sintomas,
+            'exploracion' => $exploracion,
+            'metodo' => $metodo,
+            'motivos' => $motivos,
+            'beneficios' => $beneficios,
+            'precios' => $precios,
+            'newsletter' => $newsletter,
+            // BLOG
             'blogList' => $blogList,
             'images' => $images,
             'blogTotal' => $blogTotal

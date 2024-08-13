@@ -6,26 +6,26 @@
                 <img src="/images/web/footer-logo.png" alt="" width="150" />
             </div>
             <div class="col-md-4 my-3">
-                <h6 class="text-light">Links</h6>
+                <h6 class="text-light"><?php echo $footerLinks['title']; ?></h6>
                 <ul class="list-unstyled">
                     <li class="text-dark fw-bold text-uppercase">
-                        Importante
+                        <?php echo $footerLinks['subtitle1']; ?>
                     </li>
                     <li class="text-warning">
-                        <a href="#" class="footer-link">Nota Legal</a> |
-                        <a href="#" class="footer-link">Política de Privacidad</a>
+                        <a href="#" class="footer-link"><?php echo $footerLinks['link1']; ?></a> |
+                        <a href="#" class="footer-link"><?php echo $footerLinks['link2']; ?></a>
                     </li>
                     <li>
-                        <a href="#" class="footer-link">Política de Cookies</a>
+                        <a href="#" class="footer-link"><?php echo $footerLinks['link3']; ?></a>
                     </li>
                     <li class="text-dark fw-bold text-uppercase">
-                        Menu
+                        <?php echo $footerLinks['subtitle2']; ?>
                     </li>
                     <li class="text-warning">
-                        <a href="/" class="footer-link">Inicio</a> |
-                        <a href="/about" class="footer-link">About</a> |
-                        <a href="/contacto" class="footer-link">Contacto</a> |
-                        <a href="/blog" class="footer-link">Blog</a>
+                        <a href="/" class="footer-link"><?php echo $footerLinks['link4']; ?></a> |
+                        <a href="/about" class="footer-link"><?php echo $footerLinks['link5']; ?></a> |
+                        <a href="/contacto" class="footer-link"><?php echo $footerLinks['link6']; ?></a> |
+                        <a href="/blog" class="footer-link"><?php echo $footerLinks['link7']; ?></a>
                     </li>
                 </ul>
             </div>
@@ -45,7 +45,7 @@
                     </a>
                 </div>
                 <p class="text-light">
-                    También puedes contactarme en
+                    <?php echo $footerLinks['socialText']; ?>
                 </p>
                 <div class="row">
                     <div class="col-12">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <p class="copyright">
-                    website made by <a href="xavrod.com" class="copyright-link">xavrod</a>
+                    web by <a href="xavrod.com" class="copyright-link">xavrod</a>
                 </p>
 
             </div>

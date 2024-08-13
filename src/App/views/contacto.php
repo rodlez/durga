@@ -101,10 +101,10 @@
                     <div class="mb-4">
                         <label for="subject" class="form-label"><?php echo $content['subject']; ?></label>
                         <select name="subject" id="subject" class="form-control">
-                            <option value="Pedir Cita" <?php echo (isset($asunto) && ($asunto === '1')) ? 'selected' : ''; ?>>Pedir Cita</option>
-                            <option value="Contratar Sesión" <?php echo (isset($asunto) && ($asunto === '2')) ? 'selected' : ''; ?>>Contratar Sesión</option>
-                            <option value="Sesión de Exploración" <?php echo (isset($asunto) && ($asunto === '3')) ? 'selected' : ''; ?>>Sesión de Exploración</option>
-                            <option value="Otra Consulta" <?php echo (isset($asunto) && ($asunto === '4')) ? 'selected' : ''; ?>>Otra Consulta</option>
+                            <option value="Pedir Cita" <?php echo (isset($asunto) && ($asunto === '1')) ? 'selected' : ''; ?>><?php echo $content['subject1']; ?></option>
+                            <option value="Contratar Sesión" <?php echo (isset($asunto) && ($asunto === '2')) ? 'selected' : ''; ?>><?php echo $content['subject2']; ?></option>
+                            <option value="Sesión de Exploración" <?php echo (isset($asunto) && ($asunto === '3')) ? 'selected' : ''; ?>><?php echo $content['subject3']; ?></option>
+                            <option value="Otra Consulta" <?php echo (isset($asunto) && ($asunto === '4')) ? 'selected' : ''; ?>><?php echo $content['subject4']; ?></option>
                         </select>
                     </div>
                     <!-- Error Message -->
