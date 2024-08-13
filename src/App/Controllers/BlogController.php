@@ -53,7 +53,9 @@ class BlogController
             }
             $count++;
         }
-        //debugator($blogTotal);
+
+        $content = blogContent($_SESSION['lang']);
+
 
         // Because of the Singleton Pattern, Now if we do not specify a title, the App will take the title define
         // on the TemplateDataMiddleware
@@ -65,7 +67,9 @@ class BlogController
             // Info
             'blogList' => $blogList,
             'images' => $images,
-            'blogTotal' => $blogTotal
+            'blogTotal' => $blogTotal,
+            // Content
+            'content' => $content
         ]);
     }
 

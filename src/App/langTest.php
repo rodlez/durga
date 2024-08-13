@@ -1,5 +1,7 @@
 <?php
 
+/* ABOUT PAGE */
+
 function aboutContent($lang): array
 {
     $content = [];
@@ -108,6 +110,8 @@ L&#39;essència de tot el que vaig aprendre, la qual cosa realment va significar
     return $content;
 }
 
+/* CONTACT PAGE */
+
 function contactContent($lang): array
 {
     $content = [];
@@ -150,6 +154,7 @@ function contactContent($lang): array
     return $content;
 }
 
+/* NAVIGATION LINKS */
 
 function navLinks($lang): array
 {
@@ -172,6 +177,8 @@ function navLinks($lang): array
     }
     return $content;
 }
+
+/* FOOTER LINKS */
 
 function footerLinks($lang): array
 {
@@ -209,6 +216,30 @@ function footerLinks($lang): array
     return $content;
 }
 
+/* HOME PAGE */
+
+function blogContent($lang): array
+{
+    $content = [];
+    if ($lang === 'esp') {
+        $content = [
+            'title' => 'Mi Blog',
+            'subtitle' => 'Aquí podrás encontrar una selección de artículos',
+            'button' => 'Volver'
+        ];
+    }
+    if ($lang === 'cat') {
+        $content = [
+
+            'title' => 'El meu Blog',
+            'subtitle' => 'Aquí podràs trobar una selecció d&#39;articles',
+            'button' => 'Tornar'
+        ];
+    }
+    return $content;
+}
+
+/* HOME PAGE */
 
 function homeHeader($lang): array
 {
