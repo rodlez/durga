@@ -124,7 +124,7 @@ class ContactService
 
         $params =
             [
-                'name' => $formData['name'],
+                'name' => escapeChar($formData['name']),
                 'email' => $formData['email'],
                 'phone' => $formData['phone'],
                 'subject' => $formData['subject'],
@@ -173,7 +173,7 @@ class ContactService
             $mail->CharSet      = PHPMailer::CHARSET_UTF8;
 
             //Recipients
-            $mail->setFrom($_ENV['MAIL_SENDER'], $_ENV['MAIL_COMPANY']);
+            $mail->setFrom($_ENV['MAIL_SENDER'], 'Durgga - Mamen Carrasco');
             $mail->addAddress($contact->email, $contact->name);     //Add a recipient
             //$mail->addAddress('ellen@example.com');               //Name is optional
             //$mail->addReplyTo('info@example.com', 'Information');
@@ -184,11 +184,19 @@ class ContactService
             //$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
             //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
+            // img test
+            //$mail->addAttachment("images/web/footer-logo.png");
+            $mail->AddEmbeddedImage("images/web/footer-logo.png", "my-image", "durgga.png");
+
+
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = $formData['subject'];
-            $mail->Body    = $formData['answer'];
+            //$mail->Body    = $formData['answer'];
+            $mail->Body    = $formData['answer'] . '<img alt="Durgga" src="cid:my-image">' . '<hr><br>Su consulta: <br>' . $formData['message'];
             $mail->AltBody = $formData['answer'];
+
+
 
             $mail->send();
 

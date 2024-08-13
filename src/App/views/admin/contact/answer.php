@@ -132,6 +132,8 @@
                         <?php echo ($errors['answer'][0]); ?>
                     </div>
                 <?php endif; ?>
+                <!-- Original question message -->
+                <input value="<?php echo $contact->message; ?>" name="message" type="hidden" />
                 <!-- Submit -->
                 <div class="col-lg-2">
                 </div>

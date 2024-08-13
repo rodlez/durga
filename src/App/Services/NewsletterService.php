@@ -8,6 +8,12 @@ use Framework\Database;
 
 use Framework\Exceptions\ValidationException;
 
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 // Service for performing queries to the DataBase related to users, the AuthController will use this service to register and authenticate users
 
 // Currently the Container can only inject instances in the Middleware and Controllers. 
@@ -93,5 +99,56 @@ class NewsletterService
     {
         $query = "DELETE FROM newsletter WHERE id = $id";
         return $this->db->query($query);
+    }
+
+    /**
+     * Given an id obtains all the info from the DB Table newsletter
+     * @param mixed $entryId
+     * @return mixed
+     */
+
+    public function getAllEmails()
+    {
+        $query = "SELECT email FROM newsletter";
+        return $this->db->query($query)->findAll();
+    }
+
+    public function sendNewsletter(mixed $newsletterList, array $formData)
+    {
+        //Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
+
+        try {
+            //Server settings
+            $mail->SMTPDebug    = SMTP::DEBUG_OFF;                      //Enable verbose debug output
+            $mail->isSMTP();                                         //Send using SMTP
+            $mail->Host         = $_ENV['MAIL_HOST'];                  //Set the SMTP server to send through
+            $mail->SMTPAuth     = true;                                //Enable SMTP authentication
+            $mail->Username     = $_ENV['MAIL_USERNAME'];              //SMTP username
+            $mail->Password     = $_ENV['MAIL_PASS'];                  //SMTP password
+            $mail->SMTPSecure   = PHPMailer::ENCRYPTION_SMTPS;         //Enable implicit TLS encryption
+            $mail->Port         = $_ENV['MAIL_PORT'];                  //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->CharSet      = PHPMailer::CHARSET_UTF8;
+
+            //Recipients
+            $mail->setFrom($_ENV['MAIL_SENDER'], 'Durgga - Mamen Carrasco');
+
+            foreach ($newsletterList as $newsletter) {
+                $mail->addAddress($newsletter->email);
+                // Image
+                $mail->AddEmbeddedImage("images/web/footer-logo.png", "my-image", "durgga.png");
+                //Content
+                $mail->isHTML(true);                                  //Set email format to HTML
+                $mail->Subject = $formData['subject'];
+                $mail->Body    = $formData['answer'] . '<img alt="Durgga" src="cid:my-image">';
+                $mail->AltBody = $formData['answer'];
+                $mail->send();
+                $mail->clearAllRecipients();
+            }
+
+            return 1;
+        } catch (Exception $e) {
+            return $mail->ErrorInfo;
+        }
     }
 }

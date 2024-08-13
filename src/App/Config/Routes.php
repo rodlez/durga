@@ -56,11 +56,20 @@ function registerRoutes(App $app)
 
     // Newsletter
     $app->get('/admin/newsletter', [NewsletterController::class, 'newsletterView'])->add(AdminRequiredMiddleware::class);
+    // Create
     $app->get('/admin/newsletter/create', [NewsletterController::class, 'createNewsletterView'])->add(AdminRequiredMiddleware::class);
     $app->post('/admin/newsletter/create', [NewsletterController::class, 'createNewsletterEntry'])->add(AdminRequiredMiddleware::class);
+    // Send Newsletter
+    $app->get('/admin/newsletter/send', [NewsletterController::class, 'sendNewsletterView'])->add(AdminRequiredMiddleware::class);
+    $app->post('/admin/newsletter/send', [NewsletterController::class, 'sendNewsletter'])->add(AdminRequiredMiddleware::class);
+    // Edit
     $app->get('/admin/newsletter/{newsletter}', [NewsletterController::class, 'editNewsletterEntryView'])->add(AdminRequiredMiddleware::class);
     $app->post('/admin/newsletter/{newsletter}', [NewsletterController::class, 'editNewsletterEntry'])->add(AdminRequiredMiddleware::class);
+    // Delete
     $app->delete('/admin/newsletter/{newsletter}', [NewsletterController::class, 'deleteNewsletterEntry'])->add(AdminRequiredMiddleware::class);
+
+
+
 
     // CONTACT
     // Main

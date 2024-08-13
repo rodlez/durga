@@ -16,7 +16,8 @@ function escapeChar(mixed $data): string
     // force to return a string using casting (string)
     // Sometimes you need to change a variable from one data type into another, 
     // and sometimes you want a variable to have a specific data type. This can be done with casting.
-    $data = trim($data);
+    $data = trim(preg_replace('/\s\s+/', ' ', str_replace("\n", " ", $data)));
+    //$data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;

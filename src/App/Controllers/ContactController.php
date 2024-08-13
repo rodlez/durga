@@ -264,8 +264,6 @@ class ContactController
         // send mail using phpMailer
         $result = $this->contactService->sendEmailContact($contact, $_POST);
 
-        //($result !== 1) ? $_SESSION['CRUDMessage'] = "Error - Email answer to " . $contact->email . " can not be sent. <br><br>" . $result : $_SESSION['CRUDMessage'] = "Email answer to " . $contact->email . " sent.";
-
         // If send is OK, then update the DB Table contacts with 
         if ($result !== 1) {
             $_SESSION['CRUDMessage'] = "Error - Email answer to " . $contact->email . " can not be sent. <br><br>" . $result;

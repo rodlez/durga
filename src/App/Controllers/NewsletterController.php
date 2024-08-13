@@ -34,6 +34,8 @@ class NewsletterController
         ]);
     }
 
+    /**************************** ADMIN *******************************************/
+
     /**
      * Render the admin panel to manage the newsletter (/admin/newsletter/index.php) using the render method in the TemplateEngine class
      */
@@ -153,5 +155,47 @@ class NewsletterController
         ($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") " . $email->email . " can not be deleted." : $_SESSION['CRUDMessage'] = "Email " . $email->email . " deleted.";
 
         redirectTo("/admin/newsletter");
+    }
+
+
+    /**
+     * Render the page fot Edit the Contact information given his Id
+     * @param array $params Route Param Id
+     */
+
+    public function sendNewsletterView()
+    {
+        $newsletterList = $this->newsletterService->getAllEmails();
+        if (!$newsletterList) redirectTo('/admin/newsletter');
+
+        echo $this->view->render("/admin/newsletter/send.php", [
+            // Template information
+            'title' => 'Admin Panel - Newsletter',
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/newsletter">Newsletter</a> / <b>Send Newsletter</b>',
+            'header' => 'Newsletter',
+            // Contact Information from the DB
+            'newsletterList' => $newsletterList
+        ]);
+    }
+
+    /**
+     * Render the page fot Edit the Contact information given his Id
+     * @param array $params Route Param Id
+     */
+
+    public function sendNewsletter(array $params)
+    {
+        $newsletterList = $this->newsletterService->getAllEmails();
+        if (!$newsletterList) redirectTo('/admin/newsletter');
+
+        $this->validatorService->validateContactAnswerAdmin($_POST, 'es');
+        //debugator($newsletterList);
+        // send mail using phpMailer
+        $result = $this->newsletterService->sendNewsletter($newsletterList, $_POST);
+        // If send is OK, then update the DB Table contacts with 
+
+        ($result !== 1) ? $_SESSION['CRUDMessage'] = "Error - Newsletter can not be sent." : $_SESSION['CRUDMessage'] = "Newsletter sent.";
+
+        redirectTo("/admin/newsletter/send");
     }
 }

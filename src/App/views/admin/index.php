@@ -16,6 +16,10 @@
             </div>
 
             <div class="col-10 offset-1 bg-light my-2">
+                <a href="/admin/newsletter/send" class="btn btn-primary">Enviar Newsletter</a>
+            </div>
+
+            <div class="col-10 offset-1 bg-light my-2">
                 <a href="/admin/contact" class="btn btn-primary">Contact</a>
             </div>
 
