@@ -121,12 +121,17 @@
 
         <div class="row bg-light justify-content-center align-items-center py-4">
             <!-- BUTTONS -->
+            <!-- Edit -->
             <div class="col-lg-4 my-2">
                 <a href="/admin/contact/<?php echo $contact->id ?>/edit" class="btn btn-dark w-100" role="button">Edit</a>
             </div>
-            <div class="col-lg-4 my-2">
-                <a href="/admin/contact/<?php echo $contact->id ?>/answer" class="btn btn-success w-100" role="button">Answer</a>
-            </div>
+            <!-- Answer -->
+            <?php if ($contact->status === 0) : ?>
+                <div class="col-lg-4 my-2">
+                    <a href="/admin/contact/<?php echo $contact->id ?>/answer" class="btn btn-success w-100" role="button">Answer</a>
+                </div>
+            <?php endif; ?>
+            <!-- Back -->
             <div class="col-lg-4 my-2">
                 <a href="/admin/contact" class="btn btn-warning w-100" role="button">Back</a>
             </div>

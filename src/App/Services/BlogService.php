@@ -208,8 +208,6 @@ class BlogService
         }
     }
 
-
-
     /**
      *  Update a Transaction 
      * @param array $formData    
@@ -304,5 +302,28 @@ class BlogService
     {
         $query = "DELETE FROM blog WHERE id = $blogId AND user_id = $userId";
         return $this->db->query($query)->rowCount();
+    }
+
+    /**
+     * Update an Email in the Newsletter Database Table based in the ID and the new Email entry in the edit form
+     * @param array $formData - form in the contact Admin edit menu
+     * @param int $id - Route parameter
+     */
+
+    public function publishBlogEntry(int $id, mixed $published): Database
+    {
+
+        $query = "UPDATE blog SET 
+            published = :published, updated_at =:now
+            WHERE id = :id";
+
+        $params =
+            [
+                'published' => $published,
+                'now' => date('Y-m-d H:i:s'),
+                'id' => $id
+            ];
+
+        return $this->db->query($query, $params);
     }
 }

@@ -264,6 +264,36 @@ class BlogController
     }
 
     /**
+     * Receives the form data from the transactions/edit.php using the HTTPD POST method 
+     * 
+     * * 1 - Get the transaction information checking the parameter id in the router
+     * * 2 - Validate the edit form. 
+     * * 3 - cast the categoryId as (int) because as a POST parameter is a string
+     * * 4 - Update the Tables transactions, categories and transaction_tag using a transaction to be sure that all are successful
+     * * 5 - Redirect to the same page to show if the edition was successful or not.
+     */
+
+    public function adminBlogPublish(array $params)
+    {
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/admin/blog");
+
+        $result = $this->blogService->publishBlogEntry($blog->id, $params['pub']);
+
+        //($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Blog " . $blog->title . " published status can not be changed." : $_SESSION['CRUDMessage'] = "Blog " . $blog->title . " published status changed.";
+
+        if ($result->errors) {
+            $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Entry Blog " . $blog->title . " published status can not be changed.";
+        } else {
+            ($params['pub'] == 0) ? $_SESSION['CRUDMessage'] = "Entry Blog " . $blog->title . " is now NOT published." : $_SESSION['CRUDMessage'] = "Entry Blog " . $blog->title . " is now published.";
+        }
+
+
+        // after create the transaction go to the main page
+        redirectTo("/admin/blog/{$params['id']}");
+    }
+
+    /**
      * Activated when the button delete is pressed and send to transactions/{transactions} with method="DELETE" in an input type hidden in the form
      * 
      * @params hidden id variables user and transaction send in the delete form, and transactionName to show the name of the deleted transaction

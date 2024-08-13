@@ -86,6 +86,7 @@ function registerRoutes(App $app)
     $app->post('/admin/blog/create', [BlogController::class, 'createBlog'])->add(AdminRequiredMiddleware::class);
     // Blog Show    
     $app->get('/admin/blog/{id}', [BlogController::class, 'infoBlogView'])->add(AuthRequiredMiddleware::class);
+    $app->get('/admin/blog/{id}/published/{pub}', [BlogController::class, 'adminBlogPublish'])->add(AuthRequiredMiddleware::class);
     // Blog Image    
     $app->get('/admin/blog/{id}/image', [ImageController::class, 'uploadView'])->add(AuthRequiredMiddleware::class);
     $app->post('/admin/blog/{id}/image', [ImageController::class, 'upload'])->add(AuthRequiredMiddleware::class);

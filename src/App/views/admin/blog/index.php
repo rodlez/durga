@@ -212,7 +212,7 @@
                         <tr>
                             <td class="p-2"><?php echo $blog->id ?></td>
 
-                            <td class="p-2"><?php echo $blog->published ?></td>
+                            <td class="p-2"><?php echo ($blog->published === 0) ? 'No' : 'Yes'; ?></td>
 
                             <td class="p-2"><?php echo $blog->author ?></td>
 

@@ -19,7 +19,7 @@
                         <?php echo $_SESSION['CRUDMessage']; ?>
                     </div>
                     <div class="p-2">
-                        <a class="link-light text-decoration-none" href="/admin/blog">X</a>
+                        <a class="link-light text-decoration-none" href="/admin/blog/<?php echo $blog->id ?>">X</a>
                     </div>
                 </div>
                 <?php unset($_SESSION['CRUDMessage']); ?>
@@ -58,7 +58,7 @@
                 Published
             </div>
             <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                <?php echo ($blog->published === 0) ? 'No' : 'YES'; ?>
+                <?php echo ($blog->published === 0) ? 'No' : 'Yes'; ?>
             </div>
             <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
                 Author
@@ -152,9 +152,17 @@
             <div class="col-lg-4 my-2">
                 <a href="/admin/blog/<?php echo $blog->id ?>/edit" class="btn btn-dark w-100" role="button">Edit</a>
             </div>
-            <div class="col-lg-4 my-2">
-                <a href="/admin/blog" class="btn btn-success w-100" role="button">Publish / Unpublish</a>
-            </div>
+            <!-- PUBLISH / UNPUBLISH -->
+            <?php if ($blog->published === 0) : ?>
+                <div class="col-lg-4 my-2">
+                    <a href="/admin/blog/<?php echo $blog->id; ?>/published/1" class="btn btn-success w-100" role="button">Publish</a>
+                </div>
+            <?php else : ?>
+                <div class="col-lg-4 my-2">
+                    <a href="/admin/blog/<?php echo $blog->id; ?>/published/0" class="btn btn-danger w-100" role="button">UnPublish</a>
+                </div>
+            <?php endif; ?>
+            <!-- BACK -->
             <div class="col-lg-4 my-2">
                 <a href="/admin/blog" class="btn btn-warning w-100" role="button">Back</a>
             </div>

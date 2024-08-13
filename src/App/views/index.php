@@ -542,18 +542,20 @@
         <!-- Blog Row , 3 cols per row -->
         <div class="row mb-4 justify-content-center">
             <?php foreach ($blogTotal as $blog) : ?>
-                <div class="col-lg-4 col-md-4 my-4">
-                    <div class="card">
-                        <img src="<?php echo "/images/blog/" . $blog['images']->storage_filename; ?>" class="card-img" alt="" />
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $blog['data']->title; ?></h5>
-                            <p class="card-text">
-                                <?php echo excerpt($blog['data']->content, 50); ?>
-                                <a href="/blog/<?php echo $blog['data']->id ?>" class="blog-link">Leer Más</a>
-                            </p>
+                <?php if ($blog['data']->published === 1) : ?>
+                    <div class="col-lg-4 col-md-4 my-4">
+                        <div class="card">
+                            <img src="<?php echo "/images/blog/" . $blog['images']->storage_filename; ?>" class="card-img" alt="" />
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $blog['data']->title; ?></h5>
+                                <p class="card-text">
+                                    <?php echo excerpt($blog['data']->content, 50); ?>
+                                    <a href="/blog/<?php echo $blog['data']->id ?>" class="blog-link">Leer Más</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
 
