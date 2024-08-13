@@ -217,6 +217,22 @@
                                 </button>
                             </form>
                         </th>
+                        <!-- UPDATED -->
+                        <th class="<?php echo ($sort === 'updated_at') ? "bg-dark" : "bg-primary" ?>">
+                            <form method="GET">
+                                <input value="updated_at" name="sort" type="hidden" />
+                                <input value="<?php echo $direction ?>" name="dir" type="hidden" />
+                                <input value="<?php echo $currentPage ?>" name="p" type="hidden" />
+                                <input value="<?php echo $searchTerm ?>" name="s" type="hidden" />
+                                <input value="<?php echo $searchCol ?>" name="scol" type="hidden" />
+                                <input value="<?php echo $perPage ?>" name="n" type="hidden" />
+                                <button class="btn btn-link text-white text-decoration-none p-0">Updated
+                                    <?php if ($sort === 'updated_at') :
+                                        echo $direction === 'ASC' ? "&uarr;" : "&darr;" ?>
+                                    <?php endif; ?>
+                                </button>
+                            </form>
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
@@ -226,7 +242,7 @@
                         <tr>
                             <td class="p-2"><?php echo $contact->id ?></td>
 
-                            <td class="p-2r"><?php echo $contact->name ?></td>
+                            <td class="p-2"><?php echo $contact->name ?></td>
 
                             <td class="p-2"><?php echo $contact->email ?></td>
 
@@ -238,8 +254,10 @@
 
                             <td class="p-2"><?php echo date("d/m/Y", strtotime($contact->created_at)); ?></td>
 
+                            <td class="p-2"><?php echo date("d/m/Y", strtotime($contact->updated_at)); ?></td>
+
                             <!-- ACTIONS -->
-                            <td class="d-flex flex-row align-items-center justify-content-center p-2 gap-2">
+                            <td class="d-flex flex-row align-items-center justify-content-center p-4 gap-2">
                                 <!-- View -->
                                 <a href="/admin/contact/<?php echo $contact->id ?>" class="text-primary">
                                     <i class="fa-regular fa-eye"></i>

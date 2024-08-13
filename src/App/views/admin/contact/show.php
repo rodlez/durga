@@ -89,7 +89,32 @@
             <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
                 <p class="p-2"><?php echo $contact->comments; ?></p>
             </div>
-
+            <!-- ANSWER INFO -->
+            <?php if ($contact->status === 1) : ?>
+                <div class="col-lg-2">
+                </div>
+                <div class="col-lg-8 offset-lg-1 bg-dark text-white my-2 p-2 rounded">
+                    ANSWER
+                </div>
+                <div class="col-lg-2 bg-secondary text-white text-uppercase fw-400 my-2 p-2 rounded">
+                    Date
+                </div>
+                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
+                    <?php echo date("d/m/Y", strtotime($contact->updated_at)); ?>
+                </div>
+                <div class="col-lg-2 bg-secondary text-white text-uppercase fw-400 my-2 p-2 rounded">
+                    Re Subject
+                </div>
+                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
+                    <?php echo $contact->subject_answer; ?>
+                </div>
+                <div class="col-lg-2 bg-secondary text-white text-uppercase fw-400 my-2 p-2 rounded">
+                    Answer
+                </div>
+                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
+                    <p class="p-2"><?php echo $contact->answer; ?></p>
+                </div>
+            <?php endif; ?>
         </div>
 
         <hr class="hr-heading-page w-100 my-2">

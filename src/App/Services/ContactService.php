@@ -36,14 +36,14 @@ class ContactService
         $query = "INSERT INTO contact(name, email, phone, subject, message) VALUES(:name, :email, :phone, :subject, :message)";
         $params =
             [
-                'name' => $formData['name'],
-                'email' => $formData['email'],
-                'phone' => $formData['phone'],
+                'name' => escapeChar($formData['name']),
+                'email' => escapeChar($formData['email']),
+                'phone' => escapeChar($formData['phone']),
                 'subject' => $formData['subject'],
-                'message' => $formData['message']
+                'message' => escapeChar($formData['message'])
             ];
 
-        $this->db->query($query, $params);
+        return $this->db->query($query, $params);
     }
 
 
@@ -154,7 +154,7 @@ class ContactService
 
     /** TEST PHPMAILER */
 
-    public function sendEmailContact(mixed $contact)
+    public function sendEmailContact(mixed $contact, array $formData)
     {
         //debugator($contact);
         //Create an instance; passing `true` enables exceptions
@@ -162,18 +162,19 @@ class ContactService
 
         try {
             //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_OFF;                      //Enable verbose debug output
-            $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = $_ENV['MAIL_HOST'];                     //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = $_ENV['MAIL_USERNAME'];                     //SMTP username
-            $mail->Password   = $_ENV['MAIL_PASS'];                               //SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-            $mail->Port       = $_ENV['MAIL_PORT'];                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->SMTPDebug    = SMTP::DEBUG_OFF;                      //Enable verbose debug output
+            $mail->isSMTP();                                         //Send using SMTP
+            $mail->Host         = $_ENV['MAIL_HOST'];                  //Set the SMTP server to send through
+            $mail->SMTPAuth     = true;                                //Enable SMTP authentication
+            $mail->Username     = $_ENV['MAIL_USERNAME'];              //SMTP username
+            $mail->Password     = $_ENV['MAIL_PASS'];                  //SMTP password
+            $mail->SMTPSecure   = PHPMailer::ENCRYPTION_SMTPS;         //Enable implicit TLS encryption
+            $mail->Port         = $_ENV['MAIL_PORT'];                  //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->CharSet      = PHPMailer::CHARSET_UTF8;
 
             //Recipients
             $mail->setFrom($_ENV['MAIL_SENDER'], $_ENV['MAIL_COMPANY']);
-            $mail->addAddress($contact->email, 'Xavulinki');     //Add a recipient
+            $mail->addAddress($contact->email, $contact->name);     //Add a recipient
             //$mail->addAddress('ellen@example.com');               //Name is optional
             //$mail->addReplyTo('info@example.com', 'Information');
             //$mail->addCC('cc@example.com');
@@ -185,15 +186,40 @@ class ContactService
 
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = $contact->subject;
-            $mail->Body    = $contact->message;
-            $mail->AltBody = 'Test Durgini Contact Reply';
+            $mail->Subject = $formData['subject'];
+            $mail->Body    = $formData['answer'];
+            $mail->AltBody = $formData['answer'];
 
             $mail->send();
 
-            return 'Message has been sent';
+            return 1;
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            return $mail->ErrorInfo;
+            //return $e;
         }
+    }
+
+    /**
+     * Update an Email in the Newsletter Database Table based in the ID and the new Email entry in the edit form
+     * @param array $formData - form in the contact Admin edit menu
+     * @param int $id - Route parameter
+     */
+
+    public function updateContactAfterEmailSend(array $formData, int $id): Database
+    {
+        $query = "UPDATE contact SET 
+            status = :published, subject_answer = :resubject, answer = :answer, updated_at =:now
+            WHERE id = :id";
+
+        $params =
+            [
+                'published' => 1,
+                'resubject' => $formData['subject'],
+                'answer' => $formData['answer'],
+                'now' => date('Y-m-d H:i:s'),
+                'id' => $id
+            ];
+
+        return $this->db->query($query, $params);
     }
 }

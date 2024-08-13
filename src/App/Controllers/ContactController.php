@@ -56,7 +56,10 @@ class ContactController
     {
         $this->validatorService->validateContact($_POST, 'es');
 
-        $this->contactService->newContact($_POST);
+        $result = $this->contactService->newContact($_POST);
+
+        //debugator($result);
+        //($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Contact with " . $_POST['email'] . " can not be created." : $_SESSION['CRUDMessage'] = "Contact with Email " . $_POST['email'] . " created.";
 
         redirectTo('/contacto/ok');
     }
@@ -259,7 +262,18 @@ class ContactController
         $this->validatorService->validateContactAnswerAdmin($_POST, 'es');
 
         // send mail using phpMailer
-        //$resultado = $this->contactService->sendEmailContact($contact);
+        $result = $this->contactService->sendEmailContact($contact, $_POST);
+
+        //($result !== 1) ? $_SESSION['CRUDMessage'] = "Error - Email answer to " . $contact->email . " can not be sent. <br><br>" . $result : $_SESSION['CRUDMessage'] = "Email answer to " . $contact->email . " sent.";
+
+        // If send is OK, then update the DB Table contacts with 
+        if ($result !== 1) {
+            $_SESSION['CRUDMessage'] = "Error - Email answer to " . $contact->email . " can not be sent. <br><br>" . $result;
+        } else {
+            // update contact DB
+            $result = $this->contactService->updateContactAfterEmailSend($_POST, (int) $params['id']);
+            ($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Contact with " . $_POST['email'] . " can not be edited after the email answer." : $_SESSION['CRUDMessage'] = "Email answer to " . $contact->email . " sent.";
+        }
 
         redirectTo("/admin/contact/{$params['id']}");
     }

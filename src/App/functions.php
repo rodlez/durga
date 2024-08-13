@@ -11,12 +11,15 @@ declare(strict_types=1);
  * @return string escaped string
  */
 
-function escapeChar(mixed $value): string
+function escapeChar(mixed $data): string
 {
     // force to return a string using casting (string)
     // Sometimes you need to change a variable from one data type into another, 
     // and sometimes you want a variable to have a specific data type. This can be done with casting.
-    return htmlspecialchars((string) $value);
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 
 
