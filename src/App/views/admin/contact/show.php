@@ -4,7 +4,7 @@
 // Intelephense Error
 /**  @var object $contact */
 //showNice($contact);
-echo $_ENV['DB_PORT'];
+//echo $_ENV['DB_PORT'];
 ?>
 
 <section id="contact-table" class="bg-info py-4">

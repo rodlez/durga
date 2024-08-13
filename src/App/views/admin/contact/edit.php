@@ -156,11 +156,17 @@
                 <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
                     <textarea name="comments" rows="4" cols="50" class="w-100 rounded"><?php echo $contact->comments; ?></textarea>
                 </div>
-                <!-- Send -->
+                <!-- Submit -->
                 <div class="col-lg-2">
                 </div>
                 <div class="col-lg-8 offset-lg-1 my-2 p-2 rounded">
                     <button class="btn btn-secondary w-100" type="submit">Submit</button>
+                </div>
+                <!-- Back -->
+                <div class="col-lg-2">
+                </div>
+                <div class="col-lg-8 offset-lg-1 my-2 p-2 rounded">
+                    <a href="/admin/contact/<?php echo $contact->id ?>" class="btn btn-warning w-100" role="button">Back</a>
                 </div>
 
             </div>

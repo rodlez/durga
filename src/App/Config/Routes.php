@@ -77,6 +77,7 @@ function registerRoutes(App $app)
     $app->delete('/admin/contact/{id}', [ContactController::class, 'adminContactDelete'])->add(AdminRequiredMiddleware::class);
     // Answer
     $app->get('/admin/contact/{id}/answer', [ContactController::class, 'adminContactAnswerView'])->add(AdminRequiredMiddleware::class);
+    $app->post('/admin/contact/{id}/answer', [ContactController::class, 'adminContactAnswer'])->add(AdminRequiredMiddleware::class);
 
     // BLOG
     // Main

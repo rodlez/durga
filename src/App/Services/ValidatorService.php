@@ -149,6 +149,22 @@ class ValidatorService
     }
 
     /**
+     * Method to Validate the Contact Form in the Admin Panel
+     * * Use validate method in the Validator class to Apply validation
+     * @param array $formData
+     * @param string $lang Select the language to show the error messages
+     */
+
+    public function validateContactAnswerAdmin(array $formData, string $lang)
+    {
+        // we pass an associative array with the field as key and the rule as value(if we have different rules for the same filed we add it to the array)
+        $this->validator->validate($formData, [
+            'subject' => ['required', 'minChars:4'],
+            'answer' => ['required', 'minChars:20']
+        ], $lang);
+    }
+
+    /**
      * Method to Validate the Blog Form in the Admin Panel
      * * Use validate method in the Validator class to Apply validation
      * @param array $formData
