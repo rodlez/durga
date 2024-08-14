@@ -91,7 +91,7 @@ class CategoryController
 
         $result = $this->categoryService->createNewCategory($_POST);
 
-        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error(" . $result->errors['SQLCode'] . ") - Category " . $_POST['category'] . " can not be created." : $_SESSION['CRUDMessage'] = "Category " . $_POST['category'] . " created.";
+        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error(" . $result->errors['SQLCode'] . ") - Category " . $_POST['name'] . " can not be created." : $_SESSION['CRUDMessage'] = "Category " . $_POST['name'] . " created.";
 
         redirectTo('/admin/category');
     }
@@ -128,7 +128,7 @@ class CategoryController
 
         $result = $this->categoryService->updateCategory($_POST, (int) $params['category']);
 
-        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error(" . $result->errors['SQLCode'] . ") - Category " . $_POST['category'] . " can not be edited." : $_SESSION['CRUDMessage'] = "Category " . $_POST['category'] . " edited.";
+        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error(" . $result->errors['SQLCode'] . ") - Category " . $_POST['name'] . " can not be edited." : $_SESSION['CRUDMessage'] = "Category " . $_POST['name'] . " edited.";
 
         redirectTo("/admin/category");
     }

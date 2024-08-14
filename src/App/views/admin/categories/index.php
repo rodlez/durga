@@ -35,7 +35,7 @@
             <!-- SEARCH RESULTS-->
             <div class="d-flex ">
                 <div class="p-2 flex-grow-1 "><?php if ($searchTerm === null || trim($searchTerm) === '') : ?>
-                        <?php echo "Found <b>(" . $totalResults . ")</b> categorys in the DB." ?>
+                        <?php echo "Found <b>(" . $totalResults . ")</b> categories in the DB." ?>
                     <?php else : echo "Found <b>(" . $totalResults . ")</b> category for the search term <b>[$searchTerm]</b> in the column <b>[$searchCol]</b>."; ?>
                         <a class="link-danger px-2" href="/admin/category">New Search</a>
                     <?php endif; ?>
@@ -135,6 +135,22 @@
                                 </button>
                             </form>
                         </th>
+                        <!-- LANGUAGE -->
+                        <th class="<?php echo ($sort === 'lang') ? "bg-dark" : "bg-primary" ?>">
+                            <form method="GET">
+                                <input value="lang" name="sort" type="hidden" />
+                                <input value="<?php echo $direction ?>" name="dir" type="hidden" />
+                                <input value="<?php echo $currentPage ?>" name="p" type="hidden" />
+                                <input value="<?php echo $searchTerm ?>" name="s" type="hidden" />
+                                <input value="<?php echo $searchCol ?>" name="scol" type="hidden" />
+                                <input value="<?php echo $perPage ?>" name="n" type="hidden" />
+                                <button class="btn btn-link text-white text-decoration-none p-0">Lang
+                                    <?php if ($sort === 'lang') :
+                                        echo $direction === 'ASC' ? "&uarr;" : "&darr;" ?>
+                                    <?php endif; ?>
+                                </button>
+                            </form>
+                        </th>
                         <!-- CREATED -->
                         <th class="<?php echo ($sort === 'created_at') ? "bg-dark" : "bg-primary" ?>">
                             <form method="GET">
@@ -177,6 +193,8 @@
                             <td class="p-2"><?php echo $category->id ?></td>
 
                             <td class="p-2"><?php echo $category->name ?></td>
+
+                            <td class="p-2"><?php echo $category->lang ?></td>
 
                             <td class="p-2"><?php echo date("d/m/Y", strtotime($category->created_at)); ?></td>
 

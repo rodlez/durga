@@ -24,16 +24,27 @@
                 <form method="POST" class="grid grid-cols-1 gap-6">
                     <!-- CSRF TOKEN  -->
                     <?php include $this->resolve('./partials/_csrf.php'); ?>
-                    <!-- category -->
+                    <!-- Category -->
                     <div class="mb-4">
-                        <label for="category" class="form-label">Category</label>
+                        <label for="name" class="form-label">Category</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="category" name="category" value="<?php echo ($oldFormData['category'] ?? ''); ?>" placeholder="">
+                            <input type="text" class="form-control" id="name" name="name" value="<?php echo ($oldFormData['name'] ?? ''); ?>" placeholder="">
                         </div>
                     </div>
                     <!-- Error Message -->
-                    <?php if (array_key_exists('category', $errors)) : ?>
-                        <div class="text-danger fst-italic mb-4 p-2 rounded"><?php echo ($errors['category'][0]); ?></div>
+                    <?php if (array_key_exists('name', $errors)) : ?>
+                        <div class="text-danger fst-italic mb-4 p-2 rounded"><?php echo ($errors['name'][0]); ?></div>
+                    <?php endif; ?>
+                    <!-- Language -->
+                    <div class="mb-4">
+                        <label for="lang" class="form-label">Language (Use ISO 639-2 Codes)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="lang" name="lang" value="<?php echo ($oldFormData['lang'] ?? ''); ?>" placeholder="">
+                        </div>
+                    </div>
+                    <!-- Error Message -->
+                    <?php if (array_key_exists('lang', $errors)) : ?>
+                        <div class="text-danger fst-italic mb-4 p-2 rounded"><?php echo ($errors['lang'][0]); ?></div>
                     <?php endif; ?>
                     <!-- Send -->
                     <div class="mb-5">

@@ -45,10 +45,10 @@ CREATE TABLE IF NOT EXISTS contact (
 CREATE TABLE IF NOT EXISTS blog_categories (
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
+  lang varchar(6) NOT NULL,
   created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
   updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-  PRIMARY KEY (id),
-  UNIQUE KEY(name)
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS blog_tags (
@@ -97,3 +97,4 @@ CREATE TABLE IF NOT EXISTS blog_tag_rel (
   CONSTRAINT FK_tag 
       FOREIGN KEY (tag_id) REFERENCES blog_tags (id) ON DELETE CASCADE
 );
+

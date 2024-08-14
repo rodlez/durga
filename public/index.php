@@ -13,4 +13,4 @@ $app->run();
 
 // Sugar functions to debug
 //showNice($app);
-debugator($app, 1, 3);
+//debugator($app, 1, 3);

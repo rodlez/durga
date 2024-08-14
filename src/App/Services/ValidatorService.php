@@ -213,7 +213,8 @@ class ValidatorService
     {
         // we pass an associative array with the field as key and the rule as value(if we have different rules for the same filed we add it to the array)
         $this->validator->validate($formData, [
-            'category' => ['required', 'minChars:4']
+            'name' => ['required', 'minChars:4'],
+            'lang' => ['required', 'minChars:2']
         ], $lang);
     }
 

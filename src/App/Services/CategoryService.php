@@ -38,14 +38,19 @@ class CategoryService
 
     /**
      * Create a new entry in the DB Table categories
-     * @param array $userData form variables, category name
+     * @param array $formData form variables, category name
      * @return 
      */
 
-    public function createNewCategory(array $userData): Database
+    public function createNewCategory(array $formData): Database
     {
-        $query = "INSERT INTO blog_categories(name) VALUES('{$userData['category']}')";
-        return $this->db->query($query);
+        $query = "INSERT INTO blog_categories(name, lang) VALUES(:name, :lang)";
+        $params = [
+            'name' => escapeChar($formData['name']),
+            'lang' => escapeChar($formData['lang'])
+        ];
+
+        return $this->db->query($query, $params);
     }
 
     /**
@@ -104,17 +109,18 @@ class CategoryService
      * @param int $id - come from the getUserTransaction method in the transactionService
      */
 
-    public function updateCategory(array $formData, int $categoryId): Database
+    public function updateCategory(array $formData, int $catId): Database
     {
         $query = "UPDATE blog_categories SET 
-         name = :name, updated_at =:now
-         WHERE id = :categoryId";
+         name = :name, lang = :lang, updated_at =:now
+         WHERE id = :catId";
 
         $params =
             [
-                'name' => $formData['category'],
+                'name' => escapeChar($formData['name']),
+                'lang' => escapeChar($formData['lang']),
                 'now' => date('Y-m-d H:i:s'),
-                'categoryId' => $categoryId
+                'catId' => $catId
             ];
 
         return $this->db->query($query, $params);
