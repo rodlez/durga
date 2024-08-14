@@ -3,10 +3,11 @@
 <?php
 // Intelephense Error
 /**  @var object $blog */
+/**  @var object $blogTranslations */
 /**  @var object $user */
 /**  @var object $images */
 /**  @var array $tags */
-//showNice($tags);
+// showNice($blogTranslations);
 ?>
 
 <section id="contact-table" class="bg-info py-4">
@@ -43,6 +44,12 @@
 
         <div class="row bg-light justify-content-center p-4 mb-5">
             <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
+                User
+            </div>
+            <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
+                <?php echo $user->email; ?>
+            </div>
+            <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
                 Created
             </div>
             <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
@@ -72,75 +79,86 @@
             <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
                 <?php echo $blog->title; ?>
             </div>
-            <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                Subtitle
-            </div>
-            <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                <?php echo $blog->subtitle; ?>
-            </div>
-            <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                Category
-            </div>
-            <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                <?php echo $category; ?>
-            </div>
-            <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                User
-            </div>
-            <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                <?php echo $user->email; ?>
-            </div>
-            <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                Tags
-            </div>
-            <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                <?php foreach ($tags as $tag) :
-                    echo "$tag | ";
-                endforeach;
-                ?>
-            </div>
-            <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                Content
-            </div>
-            <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                <?php echo $blog->content; ?>
-            </div>
-
+            <!-- IMAGES -->
             <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
                 Images (<?php echo count($images) ?>)
             </div>
             <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
                 <?php if ($images) : ?>
-                    <table class="table table-bordered table-light">
-                        <tbody>
-                            <?php foreach ($images as $image) : ?>
-                                <tr>
-                                    <td class="flex align-middle justify-content-center">
+                    <div class="table-responsive">
+                        <table class="table table-responsive table-bordered table-light">
+                            <tbody>
+                                <?php foreach ($images as $image) : ?>
+                                    <tr>
+                                        <td class="flex align-middle justify-content-center">
 
-                                        <?php if ($image->media_type !== 'application/pdf') : ?>
-                                            <img src="<?php echo "/images/blog/" . $image->storage_filename; ?>" width="150" alt="image">
-                                        <?php else : ?>
-                                            <i class="fa-solid fa-file-pdf"></i>
-                                        <?php endif; ?>
+                                            <?php if ($image->media_type !== 'application/pdf') : ?>
+                                                <img src="<?php echo "/images/blog/" . $image->storage_filename; ?>" width="150" alt="image">
+                                            <?php else : ?>
+                                                <i class="fa-solid fa-file-pdf"></i>
+                                            <?php endif; ?>
 
-                                    </td>
-                                    <td class="align-bottom"><?php echo $image->original_filename ?></td>
-                                    <td class="align-bottom"><?php echo ceil($image->size / 1024); ?>KB</td>
-                                    <td class="align-bottom text-center">
-                                        <form action="/admin/blog/<?php echo $blog->id ?>/image/<?php echo $image->id ?>" method="POST">
-                                            <?php include $this->resolve("partials/_csrf.php"); ?>
-                                            <input type="hidden" name="_METHOD" value="DELETE" />
-                                            <button type="submit" class="p-0 m-0 border-0" onclick="return confirm('Are you sure you want to delete the image: <?php echo $image->original_filename ?> ?');">
-                                                <i class="fa-solid fa-trash text-primary"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                                        </td>
+                                        <td class="align-bottom"><?php echo $image->original_filename ?></td>
+                                        <td class="align-bottom"><?php echo ceil($image->size / 1024); ?>KB</td>
+                                        <td class="align-bottom text-center">
+                                            <form action="/admin/blog/<?php echo $blog->id ?>/image/<?php echo $image->id ?>" method="POST">
+                                                <?php include $this->resolve("partials/_csrf.php"); ?>
+                                                <input type="hidden" name="_METHOD" value="DELETE" />
+                                                <button type="submit" class="p-0 m-0 border-0" onclick="return confirm('Are you sure you want to delete the image: <?php echo $image->original_filename ?> ?');">
+                                                    <i class="fa-solid fa-trash text-primary"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
                 <?php endif; ?>
                 <a href="/admin/blog/<?php echo $blog->id ?>/image" class="fw-bold text-decoration-none text-success">Upload a image</a>
+            </div>
+            <!-- TRANSLATIONS -->
+            <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
+                Translations (<?php echo count($blogTranslations) ?>)
+            </div>
+            <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
+                <?php if ($blogTranslations) : ?>
+                    <div class="table-responsive">
+                        <table class="table table-responsive table-bordered table-light">
+                            <tbody>
+                                <?php foreach ($blogTranslations as $translation) : ?>
+                                    <tr>
+                                        <td class="align-bottom"><?php echo $translation->lang ?></td>
+                                        <!-- SHOW -->
+                                        <td class="align-bottom text-center">
+                                            <a href="/admin/blog/<?php echo $blog->id ?>/trans/<?php echo $translation->id ?>" class="text-primary">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </a>
+                                        </td>
+                                        <!-- EDIT -->
+                                        <td class="align-bottom text-center">
+                                            <a href="/admin/blog/<?php echo $blog->id ?>/trans/<?php echo $translation->id ?>/edit" class="text-primary">
+                                                <i class="fa-regular fa-pen-to-square"></i>
+                                            </a>
+                                        </td>
+                                        <!-- DELETE -->
+                                        <td class="align-bottom text-center">
+                                            <form action="/admin/blog/<?php echo $blog->id ?>/trans/<?php echo $translation->id ?>" method="POST">
+                                                <?php include $this->resolve("partials/_csrf.php"); ?>
+                                                <input type="hidden" name="_METHOD" value="DELETE" />
+                                                <button type="submit" class="p-0 m-0 border-0" onclick="return confirm('Are you sure you want to delete the translation: <?php echo $translation->lang ?> ?');">
+                                                    <i class="fa-solid fa-trash text-primary"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php endif; ?>
+                <a href="/admin/blog/<?php echo $blog->id ?>/trans" class="fw-bold text-decoration-none text-success">New Translation</a>
             </div>
 
         </div>
@@ -149,10 +167,6 @@
 
         <div class="row bg-light justify-content-center align-items-center py-4">
             <!-- BUTTONS -->
-            <!-- TRANSLATE -->
-            <div class="col-lg-3 my-2">
-                <a href="/admin/blog/<?php echo $blog->id ?>/trans" class="btn btn-primary w-100" role="button">Translate</a>
-            </div>
             <!-- EDIT -->
             <div class="col-lg-3 my-2">
                 <a href="/admin/blog/<?php echo $blog->id ?>/edit" class="btn btn-dark w-100" role="button">Edit</a>

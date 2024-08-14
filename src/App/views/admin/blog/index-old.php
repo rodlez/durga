@@ -153,6 +153,8 @@
                                 </button>
                             </form>
                         </th>
+                        <!-- CATEGORY -->
+                        <th>Category</th>
                         <!-- TITLE -->
                         <th class="<?php echo ($sort === 'title') ? "bg-dark" : "bg-primary" ?>">
                             <form method="GET">
@@ -213,6 +215,8 @@
                             <td class="p-2"><?php echo ($blog->published === 0) ? 'No' : 'Yes'; ?></td>
 
                             <td class="p-2"><?php echo $blog->author ?></td>
+
+                            <td class="p-2"><?php echo $blog->blog_category_id ?></td>
 
                             <td class="p-2"><?php echo excerpt($blog->title, 40); ?></td>
 

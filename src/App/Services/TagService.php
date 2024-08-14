@@ -117,7 +117,7 @@ class TagService
 
     public function getAllTags()
     {
-        $query = "SELECT * FROM blog_tags  ORDER BY lang DESC, name";
+        $query = "SELECT * FROM blog_tags ORDER BY lang DESC, name";
         return $this->db->query($query)->findAll();
     }
 

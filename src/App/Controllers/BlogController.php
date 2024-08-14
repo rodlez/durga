@@ -150,18 +150,13 @@ class BlogController
      * @param array $params Route Param Id
      */
 
-    public function createBlogView()
+    public function createBlogEntryView()
     {
-        $categories = $this->categoryService->getAllCategories();
-        $tags = $this->tagService->getAllTags();
-
         echo $this->view->render("/admin/blog/create.php", [
             // Template information
             'title' => 'Admin Panel',
             'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/blog">Blog</a> / <b>Create</b>',
-            'header' => 'Create a new Blog Entry',
-            'categories' => $categories,
-            'tags' => $tags
+            'header' => 'Create a new Blog Entry'
         ]);
     }
 
@@ -170,75 +165,30 @@ class BlogController
      * 
      */
 
-    public function createBlog()
+    public function createBlogEntry()
     {
-        $this->validatorService->validateBlog($_POST, 'es');
+        $this->validatorService->validateBlogEntry($_POST, 'es');
 
-        $result = $this->blogService->newBlogEntry((int) $_SESSION['user'], $_POST, (int) $_POST['category'], $_POST['tag']);
+        $result = $this->blogService->newBlogEntry((int) $_SESSION['user'], $_POST);
 
-        //TODO: use an exception instead?
-        ($result['error']) ? $_SESSION['CRUDMessage'] = "Error(" . $result['error'] . ") - Blog <b>(" . excerpt($_POST['title'], 30) . ")</b> can not be created." : $_SESSION['CRUDMessage'] = "Transaction <b>(" . excerpt($_POST['title'], 30) . ")</b> created.";
-        //debugator();       
+        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error(" . $result->errors['SQLCode'] . ") - Blog Entry " . $_POST['title'] . " can not be created." : $_SESSION['CRUDMessage'] = "Blog entry " . $_POST['title'] . " created.";
+
         redirectTo('/admin/blog');
     }
 
-    /**
-     * Render the page fot Edit the Contact information given his Id
-     * @param array $params Route Param Id
-     */
-
-    public function createBlogTransView(array $params)
-    {
-        //$categories = $this->categoryService->getAllCategories();
-        //$tags = $this->tagService->getAllTags();
-
-        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
-        if (!$blog) redirectTo("/admin/blog");
-
-        echo $this->view->render("/admin/blog/translate.php", [
-            // Template information
-            'title' => 'Admin Panel',
-            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/blog">Blog</a> / <b>Translate</b>',
-            'header' => 'Translate Blog Entry',
-            'blog' => $blog
-            //  'categories' => $categories,
-            //  'tags' => $tags
-        ]);
-    }
-
-    /**
-     * Validates the Admin Contact form and if it is OK, save the data in the contact DB Table 
-     * 
-     */
-
-    public function createBlogTrans(array $params)
-    {
-        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
-        if (!$blog) redirectTo("/admin/blog");
-
-        $this->validatorService->validateBlogTranslation($_POST, 'es');
-        //debugator();
-
-        $result = $this->blogService->newBlogEntryTranslation($blog->id, $_POST);
-
-        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error(" . $result->errors['SQLCode'] . ") - Blog Translation for Entry with ID: " . $blog->id . " can not be created." : $_SESSION['CRUDMessage'] = "Blog Translation for Entry with ID: " . $blog->id . " created.";
-
-        redirectTo('/admin/blog');
-    }
 
     /**
      * Render the page fot Contact information given his Id
      * @param array $params Route Param Id
      */
 
-    public function infoBlogView(array $params)
+    public function infoBlogEntryView(array $params)
     {
         $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
         if (!$blog) redirectTo("/admin/blog");
 
-        $category = $this->categoryService->getCategoryName($blog->blog_category_id);
-        $tags = $this->blogService->getTagsInBlog($params['id']);
-        $tagNames = $this->blogService->tagsOrderByName($tags);
+        $blogTranslations = $this->blogService->getAllBlogEntryTranslations($blog->id);
+
         $images = $this->imageService->getAllBlogImages((int) $params['id']);
         $user = $this->userService->getUserInfo($_SESSION['user']);
 
@@ -249,12 +199,38 @@ class BlogController
             'header' => 'Information about the blog entry',
             // Blog Information from the DB
             'blog' => $blog,
-            'category' => $category,
-            'tags' => $tagNames,
+            'blogTranslations' => $blogTranslations,
             'images' => $images,
             // User Info
             'user' => $user
         ]);
+    }
+
+    /**
+     * Receives the form data from the transactions/edit.php using the HTTPD POST method 
+     * 
+     * * 1 - Get the transaction information checking the parameter id in the router
+     * * 2 - Validate the edit form. 
+     * * 3 - cast the categoryId as (int) because as a POST parameter is a string
+     * * 4 - Update the Tables transactions, categories and transaction_tag using a transaction to be sure that all are successful
+     * * 5 - Redirect to the same page to show if the edition was successful or not.
+     */
+
+    public function publishBlog(array $params)
+    {
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/admin/blog");
+
+        $result = $this->blogService->publishBlogEntry($blog->id, $params['pub']);
+
+        if ($result->errors) {
+            $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Entry Blog " . $blog->title . " published status can not be changed.";
+        } else {
+            ($params['pub'] == 0) ? $_SESSION['CRUDMessage'] = "Entry Blog " . $blog->title . " is now NOT published." : $_SESSION['CRUDMessage'] = "Entry Blog " . $blog->title . " is now published.";
+        }
+
+        // after create the transaction go to the main page
+        redirectTo("/admin/blog/{$params['id']}");
     }
 
     /**
@@ -267,32 +243,18 @@ class BlogController
         $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
         if (!$blog) redirectTo("/admin/blog");
 
-        $categories = $this->categoryService->getAllCategories();
-        $tags = $this->tagService->getAllTags();
-        $selectedTags = $this->tagService->getTagsInBlogEntry($blog->id);
-
         echo $this->view->render("/admin/blog/edit.php", [
             // Template information
             'title' => 'Admin Panel',
             'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/blog">Blog</a> / <b>Edit</b>',
             'header' => 'Information about the blog entry to Edit',
             // Blog Information from the DB
-            'blog' => $blog,
-            'tags' => $tags,
-            'selectedTags' => $selectedTags,
-            'categories' => $categories
+            'blog' => $blog
         ]);
     }
 
-
     /**
-     * Receives the form data from the transactions/edit.php using the HTTPD POST method 
-     * 
-     * * 1 - Get the transaction information checking the parameter id in the router
-     * * 2 - Validate the edit form. 
-     * * 3 - cast the categoryId as (int) because as a POST parameter is a string
-     * * 4 - Update the Tables transactions, categories and transaction_tag using a transaction to be sure that all are successful
-     * * 5 - Redirect to the same page to show if the edition was successful or not.
+     
      */
 
     public function editBlog(array $params)
@@ -300,42 +262,11 @@ class BlogController
         $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
         if (!$blog) redirectTo("/admin/blog");
 
-        $this->validatorService->validateBlogEdit($_POST, 'es');
+        $this->validatorService->validateBlogEntryEdit($_POST, 'es');
 
-        $result = $this->blogService->updateBlogEntry($blog->id, (int) $_SESSION['user'], $_POST, (int) $_POST['category'], $_POST['tag']);
+        $result = $this->blogService->updateBlogEntry($blog->id, (int) $_SESSION['user'], $_POST);
 
-        //TODO: use an exception instead?
-        ($result['error']) ? $_SESSION['CRUDMessage'] = "Error(" . $result['error'] . ") - Blog Entry can not be updated." : $_SESSION['CRUDMessage'] = "Blog Entry updated.";
-
-        // after create the transaction go to the main page
-        redirectTo("/admin/blog/{$params['id']}");
-    }
-
-    /**
-     * Receives the form data from the transactions/edit.php using the HTTPD POST method 
-     * 
-     * * 1 - Get the transaction information checking the parameter id in the router
-     * * 2 - Validate the edit form. 
-     * * 3 - cast the categoryId as (int) because as a POST parameter is a string
-     * * 4 - Update the Tables transactions, categories and transaction_tag using a transaction to be sure that all are successful
-     * * 5 - Redirect to the same page to show if the edition was successful or not.
-     */
-
-    public function adminBlogPublish(array $params)
-    {
-        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
-        if (!$blog) redirectTo("/admin/blog");
-
-        $result = $this->blogService->publishBlogEntry($blog->id, $params['pub']);
-
-        //($result->errors) ? $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Blog " . $blog->title . " published status can not be changed." : $_SESSION['CRUDMessage'] = "Blog " . $blog->title . " published status changed.";
-
-        if ($result->errors) {
-            $_SESSION['CRUDMessage'] = "Error (" . $result->errors['SQLCode'] . ") Entry Blog " . $blog->title . " published status can not be changed.";
-        } else {
-            ($params['pub'] == 0) ? $_SESSION['CRUDMessage'] = "Entry Blog " . $blog->title . " is now NOT published." : $_SESSION['CRUDMessage'] = "Entry Blog " . $blog->title . " is now published.";
-        }
-
+        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error(" . $result->errors['SQLCode'] . ") - Blog Entry " . $_POST['title'] . " can not be edited." : $_SESSION['CRUDMessage'] = "Blog entry " . $_POST['title'] . " edited.";
 
         // after create the transaction go to the main page
         redirectTo("/admin/blog/{$params['id']}");
@@ -360,7 +291,7 @@ class BlogController
 
         //TODO: use an exception instead?
         if ($result !== 1) {
-            $_SESSION['CRUDMessage'] = "Blog Entry Can NOT be deleted.";
+            $_SESSION['CRUDMessage'] = "Error - Blog Entry Can NOT be deleted.";
         } else {
             // if OK delete from the DB, delete all the receipts files related
             $_SESSION['CRUDMessage'] = "Blog Entry whit ID <b>({$params['id']})</b> has been deleted.";
@@ -368,6 +299,150 @@ class BlogController
                 $this->imageService->deleteImageFile($image);
             }
         }
+
+        redirectTo('/admin/blog');
+    }
+
+
+    /* ****************************************** TRANSLATE BLOG ********************************************* */
+
+    /**
+     * Render the page fot Edit the Contact information given his Id
+     * @param array $params Route Param Id
+     */
+
+    public function createBlogTransView($params)
+    {
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/admin/blog");
+
+        $user = $this->userService->getUserInfo($_SESSION['user']);
+        $categories = $this->categoryService->getAllCategories();
+        $tags = $this->tagService->getAllTags();
+
+        echo $this->view->render("/admin/blog/translate.php", [
+            // Template information
+            'title' => 'Admin Panel',
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/blog">Blog</a> / <b>Translate</b>',
+            'header' => 'Translate Blog Entry',
+            // Content Info
+            'blog' => $blog,
+            'user' => $user,
+            'categories' => $categories,
+            'tags' => $tags
+        ]);
+    }
+
+    /**
+     * Validates the Admin Contact form and if it is OK, save the data in the contact DB Table 
+     * 
+     */
+
+    public function createBlogTrans($params)
+    {
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/admin/blog");
+
+        $this->validatorService->validateBlogTranslation($_POST, 'es');
+        $result = $this->blogService->newBlogTransEntry($blog->id, $_POST, (int) $_POST['category'], $_POST['tag']);
+
+        //TODO: use an exception instead?
+        ($result['error']) ? $_SESSION['CRUDMessage'] = "Error(" . $result['error'] . ") - Blog Translation <b>(" . excerpt($_POST['title'], 30) . ")</b> can not be created." : $_SESSION['CRUDMessage'] = "Blog Translation for <b>(" . excerpt($_POST['title'], 30) . ")</b> created.";
+
+        redirectTo("/admin/blog/$blog->id");
+    }
+
+    /**
+     * Render the page fot Contact information given his Id
+     * @param array $params Route Param Id
+     */
+
+    public function infoBlogTransView(array $params)
+    {
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/admin/blog");
+
+        $translation = $this->blogService->getBlogEntryTranslation($params['transId']);
+
+        $user = $this->userService->getUserInfo($_SESSION['user']);
+        $category = $this->categoryService->getCategoryName($params['transId']);
+        $tags = $this->blogService->getTagsInBlog($params['transId']);
+        $tagNames = $this->blogService->tagsOrderByName($tags);
+
+        echo $this->view->render("/admin/blog/translations/show.php", [
+            // Template information
+            'title' => 'Admin Panel',
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/blog">Blog</a> / <b>Translation</b>',
+            'header' => 'Information about the Translation for the blog entry',
+            // Blog Information from the DB
+            'blog' => $blog,
+            'translation' => $translation,
+            'user' => $user,
+            'category' => $category,
+            'tags' => $tagNames
+        ]);
+    }
+
+    /**
+     * Render the page fot Edit the Contact information given his Id
+     * @param array $params Route Param Id
+     */
+
+    public function editBlogTransView($params)
+    {
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/admin/blog");
+
+        $translation = $this->blogService->getBlogEntryTranslation($params['transId']);
+        if (!$translation) redirectTo("/admin/blog");
+
+        $user = $this->userService->getUserInfo($_SESSION['user']);
+        $categories = $this->categoryService->getAllCategories();
+        $tags = $this->tagService->getAllTags();
+        $selectedTags = $this->tagService->getTagsInBlogEntry($params['transId']);
+
+        echo $this->view->render("/admin/blog/translations/edit.php", [
+            // Template information
+            'title' => 'Admin Panel',
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/blog">Blog</a> / <b>Translate</b> / <b>Edit</b>',
+            'header' => 'Translate Blog Entry Edit',
+            // Blog Information from the DB
+            'blog' => $blog,
+            'translation' => $translation,
+            'user' => $user,
+            'categories' => $categories,
+            'tags' => $tags,
+            'selectedTags' => $selectedTags
+        ]);
+    }
+
+    public function editBlogTrans(array $params)
+    {
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/admin/blog");
+
+        $this->validatorService->validateBlogTranslation($_POST, 'es');
+
+        $result = $this->blogService->updateBlogTranslation($blog->id, (int) $params['transId'], $_POST, (int) $_POST['category'], $_POST['tag']);
+
+        //TODO: use an exception instead?
+        ($result['error']) ? $_SESSION['CRUDMessage'] = "Error(" . $result['error'] . ") - Blog Translation <b>(" . excerpt($_POST['title'], 30) . ")</b> can not be edited." : $_SESSION['CRUDMessage'] = "Blog Translation for <b>(" . excerpt($_POST['title'], 30) . ")</b> edited.";
+
+        // after create the transaction go to the main page
+        redirectTo("/admin/blog/{$params['id']}");
+    }
+
+    /** */
+
+    public function deleteBlogTrans(array $params)
+    {
+        $translation = $this->blogService->getBlogEntryTranslation($params['transId']);
+        if (!$translation) redirectTo("/admin/blog");
+
+        $result = $this->blogService->deleteBlogTranslation((int) $params['transId']);
+
+        //TODO: use an exception instead?
+        ($result !== 1) ? $_SESSION['CRUDMessage'] = "Error - Blog Translation Entry whit Language <b>(" . $translation->lang . ")</b> Can NOT be deleted." : $_SESSION['CRUDMessage'] = "Blog Translation Entry whit Language <b>(" . $translation->lang . ")</b> has been deleted.";
 
         redirectTo('/admin/blog');
     }

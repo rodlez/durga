@@ -27,7 +27,7 @@
                 <div class="p-2 flex-grow-1"><?php echo $sitemap ?></div>
                 <div class="p-2">
                     <!-- NEW blog -->
-                    <a class="link-primary" href="/admin/blog/<?php echo $blog->id ?>">Back</a>
+                    <a class="link-primary" href="/admin/blog">Back</a>
                 </div>
             </div>
         </div>
@@ -46,57 +46,23 @@
             <?php include $this->resolve('partials/_csrf.php'); ?>
 
             <div class="row bg-light justify-content-center p-4 mb-5">
-                <!-- ORIGINAL BLOG ENTRY -->
-                <div class="col-lg-2 my-2 p-2 rounded">
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-dark text-white my-2 p-2 rounded">
-                    Original Blog Entry
-                </div>
+                <!-- PUBLISHED  -->
                 <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                    User
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <?php echo $user->email; ?>
-                </div>
-                <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                    Created
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <?php echo date("d/m/Y", strtotime($blog->created_at)); ?>
-                </div>
-                <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                    Updated
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <?php echo date("d/m/Y", strtotime($blog->updated_at)); ?>
-                </div>
-                <div class="col-lg-2 <?php echo ($blog->published === 0) ? 'bg-danger' : 'bg-success'; ?> text-light text-uppercase fw-400 my-2 p-2 rounded">
                     Published
                 </div>
                 <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <?php echo ($blog->published === 0) ? 'No' : 'Yes'; ?>
+                    <?php echo $blog->published; ?>
                 </div>
+                <!-- AUTHOR -->
                 <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
                     Author
                 </div>
                 <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
                     <?php echo $blog->author; ?>
                 </div>
-                <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                    Title
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <?php echo $blog->title; ?>
-                </div>
-                <!-- TRANSLATION BLOG ENTRY -->
-                <div class="col-lg-2 my-2 p-2 rounded">
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-dark text-white my-2 p-2 rounded">
-                    Translation Blog Entry
-                </div>
                 <!-- LANGUAGE -->
                 <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                    Language (ISO Code)
+                    Language (Use ISO 639-2 Codes)
                 </div>
                 <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
                     <input type="text" class="form-control border-2" id="lang" name="lang" value="<?php echo ($oldFormData['lang'] ?? ''); ?>" maxlength="6">
@@ -139,50 +105,6 @@
                         <?php echo ($errors['subtitle'][0]); ?>
                     </div>
                 <?php endif; ?>
-                <!-- Category -->
-                <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                    Category
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <select name="category" id="category" class="form-control">
-                        <?php foreach ($categories as $category) : ?>
-                            <option <?php echo (isset($oldFormData['category']) && ((int) $oldFormData['category'] === $category->id)) ? 'selected="selected"' : ''; ?> value="<?php echo $category->id; ?>"><?php echo $category->name . "(" . $category->lang . ")"; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <!-- Tag -->
-                <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                    Tags
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <div class="row">
-                        <?php
-                        $oldTags = [];
-                        if (isset($oldFormData['tag'])) $oldTags = $oldFormData['tag'];
-                        ?>
-                        <?php foreach ($tags as $x => $tag) : ?>
-
-                            <div class="col-lg-3 col-md-4 col-sm-6 px-3">
-                                <input class="form-check-input" type="checkbox" id="<?php echo $tag->name; ?>" name="tag[]" value="<?php echo $tag->id; ?>" <?php
-                                                                                                                                                            foreach ($oldTags as $oldTag) :
-                                                                                                                                                                if ((int)$oldTag === (int)$tag->id) :
-                                                                                                                                                                    echo "checked";
-                                                                                                                                                                endif;
-                                                                                                                                                            endforeach;
-                                                                                                                                                            ?>>
-                                <label class="form-check-label" for="<?php echo $tag->name; ?>"><?php echo $tag->name . "(" . $tag->lang . ")"; ?></label>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                <!-- Error Message -->
-                <?php if (array_key_exists('tag', $errors)) : ?>
-                    <div class="col-lg-2">
-                    </div>
-                    <div class="col-lg-8 offset-lg-1 text-danger fst-italic my-0 px-2 rounded">
-                        <?php echo ($errors['tag'][0]); ?>
-                    </div>
-                <?php endif; ?>
                 <!-- CONTENT -->
                 <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
                     Content
@@ -203,12 +125,6 @@
                 </div>
                 <div class="col-lg-8 offset-lg-1 my-2 p-2 rounded">
                     <button class="btn btn-secondary w-100" type="submit">Submit</button>
-                </div>
-                <!-- Back -->
-                <div class="col-lg-2">
-                </div>
-                <div class="col-lg-8 offset-lg-1 my-2 p-2 rounded">
-                    <a href="/admin/blog/<?php echo $blog->id; ?>" class="btn btn-primary w-100" role="button">Back</a>
                 </div>
 
             </div>

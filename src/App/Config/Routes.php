@@ -94,11 +94,12 @@ function registerRoutes(App $app)
     // BLOG
     // Main
     $app->get('/admin/blog', [BlogController::class, 'adminBlogView'])->add(AdminRequiredMiddleware::class);
-    $app->get('/admin/blog/create', [BlogController::class, 'createBlogView'])->add(AdminRequiredMiddleware::class);
-    $app->post('/admin/blog/create', [BlogController::class, 'createBlog'])->add(AdminRequiredMiddleware::class);
+    $app->get('/admin/blog/create', [BlogController::class, 'createBlogEntryView'])->add(AdminRequiredMiddleware::class);
+    $app->post('/admin/blog/create', [BlogController::class, 'createBlogEntry'])->add(AdminRequiredMiddleware::class);
     // Blog Show    
-    $app->get('/admin/blog/{id}', [BlogController::class, 'infoBlogView'])->add(AuthRequiredMiddleware::class);
-    $app->get('/admin/blog/{id}/published/{pub}', [BlogController::class, 'adminBlogPublish'])->add(AuthRequiredMiddleware::class);
+    $app->get('/admin/blog/{id}', [BlogController::class, 'infoBlogEntryView'])->add(AuthRequiredMiddleware::class);
+    // Blog Publish / UnPublish
+    $app->get('/admin/blog/{id}/published/{pub}', [BlogController::class, 'publishBlog'])->add(AuthRequiredMiddleware::class);
     // Blog Image    
     $app->get('/admin/blog/{id}/image', [ImageController::class, 'uploadView'])->add(AuthRequiredMiddleware::class);
     $app->post('/admin/blog/{id}/image', [ImageController::class, 'upload'])->add(AuthRequiredMiddleware::class);
@@ -106,9 +107,16 @@ function registerRoutes(App $app)
     // Blog Edit    
     $app->get('/admin/blog/{id}/edit', [BlogController::class, 'editBlogView'])->add(AuthRequiredMiddleware::class);
     $app->post('/admin/blog/{id}/edit', [BlogController::class, 'editBlog'])->add(AuthRequiredMiddleware::class);
-    // Blog Translate Test    
+    // Blog Translate Create    
     $app->get('/admin/blog/{id}/trans', [BlogController::class, 'createBlogTransView'])->add(AuthRequiredMiddleware::class);
     $app->post('/admin/blog/{id}/trans', [BlogController::class, 'createBlogTrans'])->add(AuthRequiredMiddleware::class);
+    // Blog Translate Show    
+    $app->get('/admin/blog/{id}/trans/{transId}', [BlogController::class, 'infoBlogTransView'])->add(AuthRequiredMiddleware::class);
+    // Blog Translate Edit    
+    $app->get('/admin/blog/{id}/trans/{transId}/edit', [BlogController::class, 'editBlogTransView'])->add(AuthRequiredMiddleware::class);
+    $app->post('/admin/blog/{id}/trans/{transId}/edit', [BlogController::class, 'editBlogTrans'])->add(AuthRequiredMiddleware::class);
+    // Blog Translate Delete    
+    $app->delete('/admin/blog/{id}/trans/{transId}', [BlogController::class, 'deleteBlogTrans'])->add(AuthRequiredMiddleware::class);
     // Blog Delete
     $app->delete('/admin/blog/{id}', [BlogController::class, 'deleteBlog'])->add(AdminRequiredMiddleware::class);
 

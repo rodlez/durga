@@ -27,7 +27,7 @@
                 <div class="p-2 flex-grow-1"><?php echo $sitemap ?></div>
                 <div class="p-2">
                     <!-- NEW blog -->
-                    <a class="link-primary" href="/admin/blog/<?php echo $blog->id ?>">Back</a>
+                    <a class="link-primary" href="/admin/blog">Back</a>
                 </div>
             </div>
         </div>
@@ -46,67 +46,37 @@
             <?php include $this->resolve('partials/_csrf.php'); ?>
 
             <div class="row bg-light justify-content-center p-4 mb-5">
-                <!-- ORIGINAL BLOG ENTRY -->
-                <div class="col-lg-2 my-2 p-2 rounded">
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-dark text-white my-2 p-2 rounded">
-                    Original Blog Entry
-                </div>
+                <!-- ANSWER  -->
                 <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                    User
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <?php echo $user->email; ?>
-                </div>
-                <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                    Created
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <?php echo date("d/m/Y", strtotime($blog->created_at)); ?>
-                </div>
-                <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                    Updated
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <?php echo date("d/m/Y", strtotime($blog->updated_at)); ?>
-                </div>
-                <div class="col-lg-2 <?php echo ($blog->published === 0) ? 'bg-danger' : 'bg-success'; ?> text-light text-uppercase fw-400 my-2 p-2 rounded">
                     Published
                 </div>
                 <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <?php echo ($blog->published === 0) ? 'No' : 'Yes'; ?>
+                    <select name="published" id="published" class="form-control">
+                        <option value="0" <?php echo (isset($oldFormData['published']) && ($oldFormData['published'] === '0')) ? 'selected' : ''; ?>>No</option>
+                        <option value="1" <?php echo (isset($oldFormData['published']) && ($oldFormData['published'] === '1')) ? 'selected' : ''; ?>>Yes</option>
+                    </select>
                 </div>
+                <!-- Error Message -->
+                <?php if (array_key_exists('published', $errors)) : ?>
+                    <div class="col-lg-2">
+                    </div>
+                    <div class="col-lg-8 offset-lg-1 text-danger fst-italic my-0 px-2 rounded">
+                        <?php echo ($errors['published'][0]); ?>
+                    </div>
+                <?php endif; ?>
+                <!-- AUTHOR -->
                 <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
                     Author
                 </div>
                 <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <?php echo $blog->author; ?>
-                </div>
-                <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                    Title
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <?php echo $blog->title; ?>
-                </div>
-                <!-- TRANSLATION BLOG ENTRY -->
-                <div class="col-lg-2 my-2 p-2 rounded">
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-dark text-white my-2 p-2 rounded">
-                    Translation Blog Entry
-                </div>
-                <!-- LANGUAGE -->
-                <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
-                    Language (ISO Code)
-                </div>
-                <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <input type="text" class="form-control border-2" id="lang" name="lang" value="<?php echo ($oldFormData['lang'] ?? ''); ?>" maxlength="6">
+                    <input type="text" class="form-control border-2" id="author" name="author" value="<?php echo ($oldFormData['author'] ?? ''); ?>" maxlength="50">
                 </div>
                 <!-- Error Message -->
-                <?php if (array_key_exists('lang', $errors)) : ?>
+                <?php if (array_key_exists('author', $errors)) : ?>
                     <div class="col-lg-2">
                     </div>
                     <div class="col-lg-8 offset-lg-1 text-danger fst-italic my-0 px-2 rounded">
-                        <?php echo ($errors['lang'][0]); ?>
+                        <?php echo ($errors['author'][0]); ?>
                     </div>
                 <?php endif; ?>
                 <!-- TITLE -->
@@ -139,6 +109,8 @@
                         <?php echo ($errors['subtitle'][0]); ?>
                     </div>
                 <?php endif; ?>
+
+
                 <!-- Category -->
                 <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
                     Category
@@ -150,6 +122,7 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
+
                 <!-- Tag -->
                 <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
                     Tags
@@ -203,12 +176,6 @@
                 </div>
                 <div class="col-lg-8 offset-lg-1 my-2 p-2 rounded">
                     <button class="btn btn-secondary w-100" type="submit">Submit</button>
-                </div>
-                <!-- Back -->
-                <div class="col-lg-2">
-                </div>
-                <div class="col-lg-8 offset-lg-1 my-2 p-2 rounded">
-                    <a href="/admin/blog/<?php echo $blog->id; ?>" class="btn btn-primary w-100" role="button">Back</a>
                 </div>
 
             </div>

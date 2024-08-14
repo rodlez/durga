@@ -2,9 +2,13 @@
 
 <?php
 // Intelephense Error
+/**  @var object $blog */
+/**  @var object $user */
 /**  @var object $categories */
 /**  @var object $tags */
-//showNice($_SESSION);
+/**  @var object $selectedTags */
+showNice($tags, 'TAGS');
+showNice($selectedTags);
 ?>
 
 <section id="blog-table" class="bg-info py-4">
@@ -99,7 +103,7 @@
                     Language (ISO Code)
                 </div>
                 <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <input type="text" class="form-control border-2" id="lang" name="lang" value="<?php echo ($oldFormData['lang'] ?? ''); ?>" maxlength="6">
+                    <input type="text" class="form-control border-2" id="lang" name="lang" value="<?php echo $translation->lang; ?>" maxlength="6">
                 </div>
                 <!-- Error Message -->
                 <?php if (array_key_exists('lang', $errors)) : ?>
@@ -114,7 +118,7 @@
                     Title
                 </div>
                 <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <input type="text" class="form-control border-2" id="title" name="title" value="<?php echo ($oldFormData['title'] ?? ''); ?>" maxlength="250">
+                    <input type="text" class="form-control border-2" id="title" name="title" value="<?php echo $translation->title; ?>" maxlength="250">
                 </div>
                 <!-- Error Message -->
                 <?php if (array_key_exists('title', $errors)) : ?>
@@ -129,7 +133,7 @@
                     Subtitle
                 </div>
                 <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <input type="text" class="form-control border-2" id="title" name="subtitle" value="<?php echo ($oldFormData['subtitle'] ?? ''); ?>" maxlength="250">
+                    <input type="text" class="form-control border-2" id="title" name="subtitle" value="<?php echo $translation->subtitle; ?>" maxlength="250">
                 </div>
                 <!-- Error Message -->
                 <?php if (array_key_exists('subtitle', $errors)) : ?>
@@ -139,6 +143,7 @@
                         <?php echo ($errors['subtitle'][0]); ?>
                     </div>
                 <?php endif; ?>
+
                 <!-- Category -->
                 <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
                     Category
@@ -146,7 +151,11 @@
                 <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
                     <select name="category" id="category" class="form-control">
                         <?php foreach ($categories as $category) : ?>
-                            <option <?php echo (isset($oldFormData['category']) && ((int) $oldFormData['category'] === $category->id)) ? 'selected="selected"' : ''; ?> value="<?php echo $category->id; ?>"><?php echo $category->name . "(" . $category->lang . ")"; ?></option>
+                            <?php if ($category->id === $translation->blog_category_id) : ?>
+                                <option value="<?php echo $category->id; ?>" selected><?php echo $category->name . "(" . $category->lang . ")"; ?></option>
+                            <?php else :  ?>
+                                <option value="<?php echo $category->id; ?>"><?php echo $category->name . "(" . $category->lang . ")"; ?></option>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -156,16 +165,11 @@
                 </div>
                 <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
                     <div class="row">
-                        <?php
-                        $oldTags = [];
-                        if (isset($oldFormData['tag'])) $oldTags = $oldFormData['tag'];
-                        ?>
                         <?php foreach ($tags as $x => $tag) : ?>
-
-                            <div class="col-lg-3 col-md-4 col-sm-6 px-3">
+                            <div class="col-lg-4 col-md-4 col-sm-6 px-3">
                                 <input class="form-check-input" type="checkbox" id="<?php echo $tag->name; ?>" name="tag[]" value="<?php echo $tag->id; ?>" <?php
-                                                                                                                                                            foreach ($oldTags as $oldTag) :
-                                                                                                                                                                if ((int)$oldTag === (int)$tag->id) :
+                                                                                                                                                            foreach ($selectedTags as $selectedTag) :
+                                                                                                                                                                if ((int)$selectedTag->tag_id === (int)$tag->id) :
                                                                                                                                                                     echo "checked";
                                                                                                                                                                 endif;
                                                                                                                                                             endforeach;
@@ -188,7 +192,7 @@
                     Content
                 </div>
                 <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <textarea name="content" rows="4" cols="50" class="w-100 rounded"><?php echo ($oldFormData['content'] ?? ''); ?></textarea>
+                    <textarea name="content" rows="4" cols="50" class="w-100 rounded"><?php echo $translation->content; ?></textarea>
                 </div>
                 <!-- Error Message -->
                 <?php if (array_key_exists('content', $errors)) : ?>

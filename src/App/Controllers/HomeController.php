@@ -34,6 +34,8 @@ class HomeController
     public function home()
     {
         $blogList = $this->blogService->getAllBlogEntries();
+        //$blogListTranslations = $this->blogService->getAllBlogEntryTranslations();
+
         $images = $this->imageService->getAllImages();
 
         $blogTotal = [];

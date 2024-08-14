@@ -94,46 +94,6 @@ class BlogService
     }
 
     /**
-     *  Given a Transaction id and the user id return all the transactions. transactionId and userId will be cast to int to perform the query
-     * @param mixed $transactionId mixed because if it comes from the params will be a string
-     * @param mixed $userId mixed because if it comes from the params will be a string
-     * @return mixed object or array depending on the PDO::ATTR_DEFAULT_FETCH_MODE => (PDO::FETCH_ASSOC, PDO::FETCH_OBJ)
-     */
-
-    public function getAllBlogEntryTranslations(mixed $blogId)
-    {
-        $query = "SELECT *, DATE_FORMAT(created_at, '%Y-%m-%d') as formatted_date 
-           FROM blog_translate 
-           WHERE blog_id = :blogId";
-        $params =
-            [
-                'blogId' => (int) $blogId
-            ];
-
-        return $this->db->query($query, $params)->findAll();
-    }
-
-    /**
-     *  Given a Transaction id and the user id return all the transactions. transactionId and userId will be cast to int to perform the query
-     * @param mixed $transactionId mixed because if it comes from the params will be a string
-     * @param mixed $userId mixed because if it comes from the params will be a string
-     * @return mixed object or array depending on the PDO::ATTR_DEFAULT_FETCH_MODE => (PDO::FETCH_ASSOC, PDO::FETCH_OBJ)
-     */
-
-    public function getBlogEntryTranslation(mixed $transId)
-    {
-        $query = "SELECT *, DATE_FORMAT(created_at, '%Y-%m-%d') as formatted_date 
-            FROM blog_translate 
-            WHERE id = :transId";
-        $params =
-            [
-                'transId' => (int) $transId
-            ];
-
-        return $this->db->query($query, $params)->find();
-    }
-
-    /**
      * Get all the tag ids for a given blog id
      * @param int $transactionId
      * @return mixed All the tag ids
@@ -178,80 +138,9 @@ class BlogService
     }
 
 
+
+
     //****************************************************************************************************************************************** */
-
-
-    public function newBlogEntry(int $userId, array $formData): Database
-    {
-        $query = "INSERT INTO blog (author, title, user_id) VALUES(:author, :title, :userId)";
-        $params =
-            [
-                'author' => escapeChar($formData['author']),
-                'title' => escapeChar($formData['title']),
-                'userId' => $userId
-            ];
-
-        return $this->db->query($query, $params);
-    }
-
-    /**
-     * Update an Email in the Newsletter Database Table based in the ID and the new Email entry in the edit form
-     * @param array $formData - form in the contact Admin edit menu
-     * @param int $id - Route parameter
-     */
-
-    public function publishBlogEntry(int $id, mixed $published): Database
-    {
-
-        $query = "UPDATE blog SET 
-             published = :published, updated_at =:now
-             WHERE id = :id";
-
-        $params =
-            [
-                'published' => $published,
-                'now' => date('Y-m-d H:i:s'),
-                'id' => $id
-            ];
-
-        return $this->db->query($query, $params);
-    }
-
-    public function updateBlogEntry(int $blogId, int $userId, array $formData)
-    {
-        // to avoid the time(HH:MM:SS) DATETIME type to be created by the DB, we stablish it to the midnight because in this case only care for the date(YYY-MM-DD)
-        $formattedDate = "{$formData['date']} 00:00:00";
-
-        $query = "UPDATE blog SET published = :published, author = :author, title = :title, created_at = :date, updated_at = :now
-        WHERE id = :blogId AND user_id = :userId";
-        $params =
-            [
-                'published' => $formData['published'],
-                'author' => $formData['author'],
-                'title' => $formData['title'],
-                'userId' => $userId,
-                'blogId' => $blogId,
-                'date' => $formattedDate,
-                'now' => date('Y-m-d H:i:s')
-            ];
-        return $this->db->query($query, $params);
-    }
-
-    /**
-     * With the constraints ON DELETE CASCADE for the FK transaction_id and tag_id, if we delete them
-     * the transaction_tag Table and the receipt Table will be automatically updated
-     * include the user_id to prevent users to delete transactions that NOT belong to them
-     * @param int $userId
-     * @param int $transactionId
-     * @return int - if the delete is successful would return 1 (number of rows affected) otherwise return 0.
-     */
-
-    public function deleteBlogEntry(int $userId, int $blogId): int
-    {
-        $query = "DELETE FROM blog WHERE id = $blogId AND user_id = $userId";
-        return $this->db->query($query)->rowCount();
-    }
-
 
     /**
      * Insert a new entry in the transactions Table and the corresponding pair (transaction_id, tag_id) in the relational Table transaction_tag
@@ -261,7 +150,7 @@ class BlogService
      * @return array result->status [0,1] and result->error in case of error
      */
 
-    public function newBlogTransEntry(int $blogId, array $formData, int $categoryId, array $tagsId)
+    public function newBlogEntry(int $userId, array $formData, int $categoryId, array $tagsId)
     {
 
         try {
@@ -269,14 +158,15 @@ class BlogService
             $result = $this->db->beginTransaction();
 
             // 1 - INSERT BLOG
-            $query = "INSERT INTO blog_translate (title, subtitle, content, lang, blog_id, blog_category_id) VALUES(:title, :subtitle, :content, :lang, :blogId, :categoryId)";
+            $query = "INSERT INTO blog (published, author, title, subtitle, content, user_id, blog_category_id) VALUES(:published, :author, :title, :subtitle, :content, :userId, :categoryId)";
             $params =
                 [
+                    'published' => $formData['published'],
+                    'author' => $formData['author'],
                     'title' => $formData['title'],
                     'subtitle' => $formData['subtitle'],
                     'content' => $formData['content'],
-                    'lang' => $formData['lang'],
-                    'blogId' => $blogId,
+                    'userId' => $userId,
                     'categoryId' => $categoryId
                 ];
 
@@ -329,44 +219,47 @@ class BlogService
      * @return mixed object or array depending on the PDO::ATTR_DEFAULT_FETCH_MODE => (PDO::FETCH_ASSOC, PDO::FETCH_OBJ)
      */
 
-    public function updateBlogTranslation(int $blogId, int $blogTransId, array $formData, int $categoryId, array $tagsId)
+    public function updateBlogEntry(int $blogId, int $userId, array $formData, int $categoryId, array $tagsId)
     {
         // to avoid the time(HH:MM:SS) DATETIME type to be created by the DB, we stablish it to the midnight because in this case only care for the date(YYY-MM-DD)
-        //$formattedDate = "{$formData['date']} 00:00:00";
+        $formattedDate = "{$formData['date']} 00:00:00";
+
 
         try {
             // Start the Transaction
             $result = $this->db->beginTransaction();
 
-            // 1 - UPDATE TRANSLATION
-            $query = "UPDATE blog_translate SET 
-               title = :title, subtitle = :subtitle, content = :content, lang = :lang, updated_at = :now, blog_category_id = :categoryId, blog_id = :blogId
-               WHERE id = :blogTransId";
+            // 1 - UPDATE TRANSACTION
+            $query = "UPDATE blog SET 
+               published = :published, author = :author, title = :title, subtitle = :subtitle, content = :content, created_at = :date, updated_at = :now, blog_category_id = :categoryId
+               WHERE id = :blogId AND user_id = :userId";
             $params =
                 [
-                    'title' => escapeChar($formData['title']),
-                    'subtitle' =>  escapeChar($formData['subtitle']),
-                    'content' =>  escapeChar($formData['content']),
-                    'lang' =>  escapeChar($formData['lang']),
+                    'published' => $formData['published'],
+                    'author' => $formData['author'],
+                    'title' => $formData['title'],
+                    'subtitle' => $formData['subtitle'],
+                    'content' => $formData['content'],
+                    'userId' => $userId,
                     'blogId' => $blogId,
-                    'blogTransId' => $blogTransId,
                     'categoryId' => $categoryId,
+                    'date' => $formattedDate,
                     'now' => date('Y-m-d H:i:s')
                 ];
             $this->db->queryForTransactions($query, $params);
 
             // 2 - DELETE the previous values in the blog_tag_rel table for the current blog entry
-            $query = "DELETE FROM blog_tag_rel WHERE blog_id = :blogTransId";
-            $params = ['blogTransId' => $blogTransId];
+            $query = "DELETE FROM blog_tag_rel WHERE blog_id = :blogId";
+            $params = ['blogId' => $blogId];
 
             $this->db->queryForTransactions($query, $params);
 
             // 3 - foreach tag_id insert in the TRANSACTIONS_TAG the transaction_id and the tags_id for each par
             foreach ($tagsId as $tag) {
-                $query = "INSERT INTO blog_tag_rel (blog_id, tag_id) VALUES(:blogTransId, :tagId)";
+                $query = "INSERT INTO blog_tag_rel (blog_id, tag_id) VALUES(:blogId, :tagId)";
                 $params =
                     [
-                        'blogTransId' => $blogTransId,
+                        'blogId' => $blogId,
                         'tagId' => (int) $tag
                     ];
                 $this->db->queryForTransactions($query, $params);
@@ -405,15 +298,34 @@ class BlogService
      * @return int - if the delete is successful would return 1 (number of rows affected) otherwise return 0.
      */
 
-    public function deleteBlogTranslation(int $blogTransId): int
+    public function deleteBlogEntry(int $userId, int $blogId): int
     {
-        $query = "DELETE FROM blog_translate WHERE id = $blogTransId";
+        $query = "DELETE FROM blog WHERE id = $blogId AND user_id = $userId";
         return $this->db->query($query)->rowCount();
     }
 
+    /**
+     * Update an Email in the Newsletter Database Table based in the ID and the new Email entry in the edit form
+     * @param array $formData - form in the contact Admin edit menu
+     * @param int $id - Route parameter
+     */
 
+    public function publishBlogEntry(int $id, mixed $published): Database
+    {
 
+        $query = "UPDATE blog SET 
+            published = :published, updated_at =:now
+            WHERE id = :id";
 
+        $params =
+            [
+                'published' => $published,
+                'now' => date('Y-m-d H:i:s'),
+                'id' => $id
+            ];
+
+        return $this->db->query($query, $params);
+    }
 
     /********************* TRANSLATIONS ***************************************/
 
