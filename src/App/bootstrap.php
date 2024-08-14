@@ -45,7 +45,6 @@ $app = new App(Paths::SOURCE . "App/container-definitions.php");
 // instances created, consuming resources. It's better to call the class and the controller will create the instance if match the path.
 // To run the method of the instance, we pass in an array with the class(App\Controllers\HomeController) and the method(home).
 
-
 registerRoutes($app);
 registerMiddleware($app);
 

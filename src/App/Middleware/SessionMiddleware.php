@@ -44,6 +44,9 @@ class SessionMiddleware implements MiddlewareInterface
 
         session_start();
 
+        // Test Language Set
+        if (!isset($_SESSION['lang'])) $_SESSION['lang'] = 'esp';
+
         $next();
 
         // we close the session after the next Middleware is called and the info is already stored in the session Cookie, this way we improve performance
