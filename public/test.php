@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>Test PHP</h1>
+    <h1>Test PHP - DURGA</h1>
     <?php
     phpinfo();
     ?>

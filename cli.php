@@ -34,5 +34,5 @@ $sqlFile = file_get_contents("./database.sql");
 
 $result = $db->query($sqlFile);
 
-echo "Result of the query --> ";
-var_dump($result);
+//echo "Result of the query --> ";
+//var_dump($result);

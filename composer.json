@@ -1,5 +1,5 @@
 {
-    "name": "rodlez/durgini",
+    "name": "rodlez/durga",
     "description": "Durgga website Dev",
     "type": "project",
     "authors": [
@@ -23,6 +23,6 @@
         ]
     },
     "scripts": {
-        "durgini": "php cli.php"
+        "durga": "php cli.php"
     }
 }
