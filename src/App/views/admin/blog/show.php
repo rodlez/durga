@@ -149,21 +149,26 @@
 
         <div class="row bg-light justify-content-center align-items-center py-4">
             <!-- BUTTONS -->
-            <div class="col-lg-4 my-2">
+            <!-- TRANSLATE -->
+            <div class="col-lg-3 my-2">
+                <a href="/admin/blog/<?php echo $blog->id ?>/trans" class="btn btn-primary w-100" role="button">Translate</a>
+            </div>
+            <!-- EDIT -->
+            <div class="col-lg-3 my-2">
                 <a href="/admin/blog/<?php echo $blog->id ?>/edit" class="btn btn-dark w-100" role="button">Edit</a>
             </div>
             <!-- PUBLISH / UNPUBLISH -->
             <?php if ($blog->published === 0) : ?>
-                <div class="col-lg-4 my-2">
+                <div class="col-lg-3 my-2">
                     <a href="/admin/blog/<?php echo $blog->id; ?>/published/1" class="btn btn-success w-100" role="button">Publish</a>
                 </div>
             <?php else : ?>
-                <div class="col-lg-4 my-2">
+                <div class="col-lg-3 my-2">
                     <a href="/admin/blog/<?php echo $blog->id; ?>/published/0" class="btn btn-danger w-100" role="button">UnPublish</a>
                 </div>
             <?php endif; ?>
             <!-- BACK -->
-            <div class="col-lg-4 my-2">
+            <div class="col-lg-3 my-2">
                 <a href="/admin/blog" class="btn btn-warning w-100" role="button">Back</a>
             </div>
         </div>

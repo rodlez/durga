@@ -326,4 +326,22 @@ class BlogService
 
         return $this->db->query($query, $params);
     }
+
+    /********************* TRANSLATIONS ***************************************/
+
+    public function newBlogEntryTranslation(int $blogId, array $formData): Database
+    {
+        // 1 - INSERT BLOG
+        $query = "INSERT INTO blog_trans (title, subtitle, content, lang, blog_id) VALUES(:title, :subtitle, :content, :lang, :blogId)";
+        $params =
+            [
+                'title' => escapeChar($formData['title']),
+                'subtitle' => $formData['subtitle'],
+                'content' => $formData['content'],
+                'lang' => $formData['lang'],
+                'blogId' => $blogId
+            ];
+
+        return $this->db->query($query, $params);
+    }
 }

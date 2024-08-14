@@ -88,6 +88,21 @@ CREATE TABLE IF NOT EXISTS blog_images(
   FOREIGN KEY(blog_id) REFERENCES blog(id) ON DELETE CASCADE
 );
 
+/* BLOG TRANS TEST */
+
+CREATE TABLE IF NOT EXISTS blog_trans(
+  id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  title varchar(255) NOT NULL,
+  subtitle varchar(255) NOT NULL,
+  content text,
+  lang varchar(6) NOT NULL,
+  created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  blog_id bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY(blog_id) REFERENCES blog(id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS blog_tag_rel (
   blog_id bigint(20) unsigned NOT NULL,
   tag_id bigint(20) unsigned NOT NULL,

@@ -183,6 +183,50 @@ class BlogController
     }
 
     /**
+     * Render the page fot Edit the Contact information given his Id
+     * @param array $params Route Param Id
+     */
+
+    public function createBlogTransView(array $params)
+    {
+        //$categories = $this->categoryService->getAllCategories();
+        //$tags = $this->tagService->getAllTags();
+
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/admin/blog");
+
+        echo $this->view->render("/admin/blog/translate.php", [
+            // Template information
+            'title' => 'Admin Panel',
+            'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/blog">Blog</a> / <b>Translate</b>',
+            'header' => 'Translate Blog Entry',
+            'blog' => $blog
+            //  'categories' => $categories,
+            //  'tags' => $tags
+        ]);
+    }
+
+    /**
+     * Validates the Admin Contact form and if it is OK, save the data in the contact DB Table 
+     * 
+     */
+
+    public function createBlogTrans(array $params)
+    {
+        $blog = $this->blogService->getBlogEntry($params['id'], $_SESSION['user']);
+        if (!$blog) redirectTo("/admin/blog");
+
+        $this->validatorService->validateBlogTranslation($_POST, 'es');
+        //debugator();
+
+        $result = $this->blogService->newBlogEntryTranslation($blog->id, $_POST);
+
+        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error(" . $result->errors['SQLCode'] . ") - Blog Translation for Entry with ID: " . $blog->id . " can not be created." : $_SESSION['CRUDMessage'] = "Blog Translation for Entry with ID: " . $blog->id . " created.";
+
+        redirectTo('/admin/blog');
+    }
+
+    /**
      * Render the page fot Contact information given his Id
      * @param array $params Route Param Id
      */

@@ -59,7 +59,7 @@ class CategoryService
 
     public function getAllCategories()
     {
-        $query = "SELECT id, name FROM blog_categories ORDER BY name ASC";
+        $query = "SELECT * FROM blog_categories ORDER BY lang DESC, name";
         return $this->db->query($query)->findAll();
     }
 

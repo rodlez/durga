@@ -106,8 +106,16 @@ function registerRoutes(App $app)
     // Blog Edit    
     $app->get('/admin/blog/{id}/edit', [BlogController::class, 'editBlogView'])->add(AuthRequiredMiddleware::class);
     $app->post('/admin/blog/{id}/edit', [BlogController::class, 'editBlog'])->add(AuthRequiredMiddleware::class);
+    // Blog Translate Test    
+    $app->get('/admin/blog/{id}/trans', [BlogController::class, 'createBlogTransView'])->add(AuthRequiredMiddleware::class);
+    $app->post('/admin/blog/{id}/trans', [BlogController::class, 'createBlogTrans'])->add(AuthRequiredMiddleware::class);
     // Blog Delete
     $app->delete('/admin/blog/{id}', [BlogController::class, 'deleteBlog'])->add(AdminRequiredMiddleware::class);
+
+
+
+
+
 
     // BLOG CATEGORIES
     $app->get('/admin/category', [CategoryController::class, 'categoryView'])->add(AdminRequiredMiddleware::class);
