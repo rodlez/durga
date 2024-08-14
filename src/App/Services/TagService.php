@@ -43,14 +43,19 @@ class TagService
 
     /**
      * Create a new entry in the DB Table tags
-     * @param array $userData form variables, tag name
+     * @param array $formData form variables, tag name
      * @return 
      */
 
-    public function createNewTag(array $userData): Database
+    public function createNewTag(array $formData): Database
     {
-        $query = "INSERT INTO blog_tags(name) VALUES('{$userData['tag']}')";
-        return $this->db->query($query);
+        $query = "INSERT INTO blog_tags(name, lang) VALUES(:name, :lang)";
+        $params = [
+            'name' => escapeChar($formData['name']),
+            'lang' => escapeChar($formData['lang'])
+        ];
+
+        return $this->db->query($query, $params);
     }
 
     /**
@@ -69,18 +74,20 @@ class TagService
     /**
      * Edit a transaction based on the transaction id and the user_id, get the data from the form(description, amount and date) user_id from the $_SESSION['user'] 
      * @param array $formData - (description, amount and date) from the POST form in the edit.php file
-     * @param int $id - come from the getUserTransaction method in the transactionService
+     * @param int $tagId - come from the getUserTransaction method in the transactionService
      */
 
     public function updateTag(array $formData, int $tagId): Database
     {
+
         $query = "UPDATE blog_tags SET 
-         name = :name, updated_at =:now
+         name = :name, lang = :lang, updated_at =:now
          WHERE id = :tagId";
 
         $params =
             [
-                'name' => $formData['tag'],
+                'name' => escapeChar($formData['name']),
+                'lang' => escapeChar($formData['lang']),
                 'now' => date('Y-m-d H:i:s'),
                 'tagId' => $tagId
             ];
@@ -102,7 +109,7 @@ class TagService
     }
 
 
-    // Methods call in TransactionController
+    // Methods call in BlogController
 
     /**
      *  @return array All the Tags from the Table tags order by name ASC

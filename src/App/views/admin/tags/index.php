@@ -119,7 +119,7 @@
                                 </button>
                             </form>
                         </th>
-                        <!-- NOMBRE -->
+                        <!-- NAME -->
                         <th class="<?php echo ($sort === 'name') ? "bg-dark" : "bg-primary" ?>">
                             <form method="GET">
                                 <input value="name" name="sort" type="hidden" />
@@ -130,6 +130,22 @@
                                 <input value="<?php echo $perPage ?>" name="n" type="hidden" />
                                 <button class="btn btn-link text-white text-decoration-none p-0">Name
                                     <?php if ($sort === 'name') :
+                                        echo $direction === 'ASC' ? "&uarr;" : "&darr;" ?>
+                                    <?php endif; ?>
+                                </button>
+                            </form>
+                        </th>
+                        <!-- LANGUAGE -->
+                        <th class="<?php echo ($sort === 'lang') ? "bg-dark" : "bg-primary" ?>">
+                            <form method="GET">
+                                <input value="lang" name="sort" type="hidden" />
+                                <input value="<?php echo $direction ?>" name="dir" type="hidden" />
+                                <input value="<?php echo $currentPage ?>" name="p" type="hidden" />
+                                <input value="<?php echo $searchTerm ?>" name="s" type="hidden" />
+                                <input value="<?php echo $searchCol ?>" name="scol" type="hidden" />
+                                <input value="<?php echo $perPage ?>" name="n" type="hidden" />
+                                <button class="btn btn-link text-white text-decoration-none p-0">Lang
+                                    <?php if ($sort === 'lang') :
                                         echo $direction === 'ASC' ? "&uarr;" : "&darr;" ?>
                                     <?php endif; ?>
                                 </button>
@@ -177,6 +193,8 @@
                             <td class="p-2"><?php echo $tag->id ?></td>
 
                             <td class="p-2"><?php echo $tag->name ?></td>
+
+                            <td class="p-2"><?php echo $tag->lang ?></td>
 
                             <td class="p-2"><?php echo date("d/m/Y", strtotime($tag->created_at)); ?></td>
 

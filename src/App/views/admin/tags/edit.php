@@ -26,19 +26,33 @@
                 <form method="POST" class="grid grid-cols-1 gap-6">
                     <!-- CSRF TOKEN  -->
                     <?php include $this->resolve('./partials/_csrf.php'); ?>
-                    <!-- tag -->
+                    <!-- Tag -->
                     <div class="mb-4">
-                        <label for="tag" class="form-label">tag</label>
+                        <label for="name" class="form-label">Tag</label>
                         <div class="input-group">
                             <span class="input-group-text bg-primary">
                                 <i class="fa fa-envelope fa-1x text-light"></i>
                             </span>
-                            <input type="text" class="form-control" id="tag" name="tag" value="<?php echo $tag->name; ?>" placeholder="">
+                            <input type="text" class="form-control" id="name" name="name" value="<?php echo $tag->name; ?>" placeholder="">
                         </div>
                     </div>
                     <!-- Error Message -->
-                    <?php if (array_key_exists('tag', $errors)) : ?>
-                        <div class="text-danger fst-italic mb-4 p-2 rounded"><?php echo ($errors['tag'][0]); ?></div>
+                    <?php if (array_key_exists('name', $errors)) : ?>
+                        <div class="text-danger fst-italic mb-4 p-2 rounded"><?php echo ($errors['name'][0]); ?></div>
+                    <?php endif; ?>
+                    <!-- Language -->
+                    <div class="mb-4">
+                        <label for="lang" class="form-label">Language (Use ISO 639-2 Codes)</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-primary">
+                                <i class="fa fa-envelope fa-1x text-light"></i>
+                            </span>
+                            <input type="text" class="form-control" id="lang" name="lang" value="<?php echo $tag->lang; ?>" placeholder="">
+                        </div>
+                    </div>
+                    <!-- Error Message -->
+                    <?php if (array_key_exists('lang', $errors)) : ?>
+                        <div class="text-danger fst-italic mb-4 p-2 rounded"><?php echo ($errors['lang'][0]); ?></div>
                     <?php endif; ?>
                     <!-- Send -->
                     <p>Created: <?php echo date("d/m/Y", strtotime($tag->created_at)); ?> | Updated: <?php echo date("d/m/Y", strtotime($tag->updated_at)); ?></p>

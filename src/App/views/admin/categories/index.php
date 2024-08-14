@@ -119,7 +119,7 @@
                                 </button>
                             </form>
                         </th>
-                        <!-- NOMBRE -->
+                        <!-- NAME -->
                         <th class="<?php echo ($sort === 'name') ? "bg-dark" : "bg-primary" ?>">
                             <form method="GET">
                                 <input value="name" name="sort" type="hidden" />

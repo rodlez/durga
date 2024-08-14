@@ -23,16 +23,27 @@
                 <form method="POST" class="grid grid-cols-1 gap-6">
                     <!-- CSRF TOKEN  -->
                     <?php include $this->resolve('./partials/_csrf.php'); ?>
-                    <!-- tag -->
+                    <!-- Tag -->
                     <div class="mb-4">
-                        <label for="tag" class="form-label">tag</label>
+                        <label for="name" class="form-label">Tag</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="tag" name="tag" value="<?php echo ($oldFormData['tag'] ?? ''); ?>" placeholder="">
+                            <input type="text" class="form-control" id="name" name="name" value="<?php echo ($oldFormData['name'] ?? ''); ?>" placeholder="">
                         </div>
                     </div>
                     <!-- Error Message -->
-                    <?php if (array_key_exists('tag', $errors)) : ?>
-                        <div class="text-danger fst-italic mb-4 p-2 rounded"><?php echo ($errors['tag'][0]); ?></div>
+                    <?php if (array_key_exists('name', $errors)) : ?>
+                        <div class="text-danger fst-italic mb-4 p-2 rounded"><?php echo ($errors['name'][0]); ?></div>
+                    <?php endif; ?>
+                    <!-- Language -->
+                    <div class="mb-4">
+                        <label for="lang" class="form-label">Language (Use ISO 639-2 Codes)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="lang" name="lang" value="<?php echo ($oldFormData['lang'] ?? ''); ?>" placeholder="">
+                        </div>
+                    </div>
+                    <!-- Error Message -->
+                    <?php if (array_key_exists('lang', $errors)) : ?>
+                        <div class="text-danger fst-italic mb-4 p-2 rounded"><?php echo ($errors['lang'][0]); ?></div>
                     <?php endif; ?>
                     <!-- Send -->
                     <div class="mb-5">

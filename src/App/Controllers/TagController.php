@@ -87,11 +87,11 @@ class TagController
 
     public function createTag()
     {
-        $this->validatorService->validateTag($_POST, 'es');
+        $this->validatorService->validateCategory($_POST, 'es');
 
         $result = $this->tagService->createNewTag($_POST);
 
-        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error(" . $result->errors['SQLCode'] . ") - Tag " . $_POST['tag'] . " can not be created." : $_SESSION['CRUDMessage'] = "Tag " . $_POST['tag'] . " created.";
+        ($result->errors) ? $_SESSION['CRUDMessage'] = "Error(" . $result->errors['SQLCode'] . ") - Tag " . $_POST['name'] . " can not be created." : $_SESSION['CRUDMessage'] = "Tag " . $_POST['name'] . " created.";
 
         redirectTo('/admin/tag');
     }
@@ -123,7 +123,7 @@ class TagController
         $tag = $this->tagService->getTag($params['tag']);
         if (!$tag) redirectTo('/admin/tag');
 
-        $this->validatorService->validateTag($_POST, 'es');
+        $this->validatorService->validateCategory($_POST, 'es');
 
         $result = $this->tagService->updateTag($_POST, (int) $params['tag']);
 

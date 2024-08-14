@@ -54,10 +54,10 @@ CREATE TABLE IF NOT EXISTS blog_categories (
 CREATE TABLE IF NOT EXISTS blog_tags (
   id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
+  lang varchar(6) NOT NULL,
   created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
   updated_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP(),
-  PRIMARY KEY (id),
-  UNIQUE KEY(name)
+  PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS blog (
