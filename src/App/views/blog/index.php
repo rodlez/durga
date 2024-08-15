@@ -11,7 +11,7 @@
 <!-- Blog -->
 <section id="blog" class="blog bg-info py-4">
     <div class="container">
-        <h2 class="fw-bold text-primary"><?php echo $content['title']; ?></h2>
+        <h2 class="fw-bold text-primary"><?php echo $blogWebTexts['title']; ?></h2>
         <hr class="hr-heading-page">
 
 
@@ -19,27 +19,25 @@
         <section id="blog" class="blog bg-light py-5">
             <div class="container">
                 <h5 class="text-center fw-bold text-primary pb-4">
-                    <?php echo $content['subtitle']; ?>
+                    <?php echo $blogWebTexts['subtitle']; ?>
                 </h5>
                 <!-- Blog Row 1 -->
 
                 <div class="row mb-4 justify-content-center">
 
-                    <?php foreach ($blogTotal as $blog) : ?>
-                        <?php if ($blog['data']->published === 1) : ?>
-                            <div class="col-lg-4 col-md-6 my-4">
+                    <?php foreach ($blogList as $blog) : ?>
+                        <?php if ($blog->published === 1) : ?>
+                            <div class="col-lg-4 col-md-4 my-4">
                                 <div class="card">
-                                    <a href="/blog/<?php echo $blog['data']->id; ?>" class="blog-link">
-                                        <img src="<?php echo "/images/blog/" . $blog['images']->storage_filename; ?>" class="card-img" alt="" />
+                                    <a href="/blog/<?php echo $blog->blogId ?>">
+                                        <img src="<?php echo "/images/blog/" . $blog->image; ?>" class="card-img" alt="" />
                                     </a>
                                     <div class="card-body">
-                                        <h5 class="card-title"><?php echo $blog['data']->title; ?></h5>
+                                        <h5 class="card-title"><?php echo $blog->title; ?></h5>
                                         <p class="card-text">
-                                            <?php echo excerpt($blog['data']->content, 100); ?>
+                                            <?php echo excerpt($blog->content, 50); ?>
+                                            <a href="/blog/<?php echo $blog->blogId ?>" class="blog-link">Leer Más</a>
                                         </p>
-                                        <hr class="text-primary hr-heading w-100">
-                                        <a href="/blog/<?php echo $blog['data']->id; ?>" class="blog-link">Leer Más</a>
-
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +47,7 @@
                 </div>
 
                 <div class="col-lg-12 my-4 text-center">
-                    <a href="/" class="btn btn-primary mt-4"><?php echo $content['button']; ?></a>
+                    <a href="/" class="btn btn-primary mt-4"><?php echo $blogWebTexts['button']; ?></a>
                 </div>
 
             </div>

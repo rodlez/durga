@@ -5,7 +5,8 @@
 /**  @var object $blogList */
 /**  @var object $images */
 /**  @var object $blogTotal */
-//showNice($blogTotal);
+/**  @var object $blog */
+//showNice($blogList);
 /*foreach ($blogTotal as $blog) {
     showNice($blog['data']->author);
     showNice($blog['images']->storage_filename);
@@ -506,7 +507,7 @@
     </div>
 </section>
 */ ?>
-
+<?php /*
 <!-- Blog, 1 row 3 col per row with cards -->
 <section id="blog" class="blog bg-light py-5">
     <div class="container">
@@ -535,9 +536,37 @@
 
     </div>
 </section>
+*/ ?>
 
+<section id="blog" class="blog bg-light py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold text-primary pb-4">
+            Blog
+        </h2>
+        <!-- Blog Row , 3 cols per row -->
+        <div class="row mb-4 justify-content-center">
+            <?php foreach ($blogList as $blog) : ?>
+                <?php if ($blog->published === 1) : ?>
+                    <div class="col-lg-4 col-md-4 my-4">
+                        <div class="card">
+                            <a href="/blog/<?php echo $blog->blogId ?>">
+                                <img src="<?php echo "/images/blog/" . $blog->image; ?>" class="card-img" alt="" />
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $blog->title; ?></h5>
+                                <p class="card-text">
+                                    <?php echo excerpt($blog->content, 50); ?>
+                                    <a href="/blog/<?php echo $blog->blogId ?>" class="blog-link">Leer Más</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
 
-
+    </div>
+</section>
 
 
 

@@ -33,6 +33,8 @@ class HomeController
 
     public function home()
     {
+
+        /*
         $blogList = $this->blogService->getAllBlogEntries();
         //$blogListTranslations = $this->blogService->getAllBlogEntryTranslations();
 
@@ -51,7 +53,9 @@ class HomeController
             }
             $count++;
         }
+        */
 
+        // GET TEXTS
         $header = homeHeader($_SESSION['lang']);
         $terapia = homeTerapia($_SESSION['lang']);
         $sintomas = homeSintomas($_SESSION['lang']);
@@ -62,7 +66,7 @@ class HomeController
         $precios = homePrecios($_SESSION['lang']);
         $newsletter = homeNewsletter($_SESSION['lang']);
 
-        //debugator($blogTotal);
+        $blog = $this->blogService->getBlogEntriesWeb($_SESSION['lang']);
 
         // Because of the Singleton Pattern, Now if we do not specify a title, the App will take the title define
         // on the TemplateDataMiddleware
@@ -78,9 +82,10 @@ class HomeController
             'precios' => $precios,
             'newsletter' => $newsletter,
             // BLOG
-            'blogList' => $blogList,
-            'images' => $images,
-            'blogTotal' => $blogTotal
+            //'blogList' => $blogList,            
+            //'images' => $images,
+            //'blogTotal' => $blogTotal
+            'blogList' => $blog
         ]);
     }
 

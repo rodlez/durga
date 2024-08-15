@@ -16,6 +16,23 @@ class BlogService
 {
     public function __construct(private Database $db) {}
 
+    /**
+     * Get all the blog entries to show in the web 
+     * 
+     * @parma $lang - language by his ISO code
+     */
+
+    public function getBlogEntriesWeb(string $lang)
+    {
+        $query = "SELECT blog.id as blogId, blog.published as published, blog_translate.title as title, blog_translate.content as content, blog_images.storage_filename as image
+        FROM blog
+        JOIN blog_translate ON blog_translate.blog_id = blog.id
+        JOIN blog_images ON blog_images.blog_id = blog.id
+        WHERE blog_translate.lang = '$lang'";
+
+        return $this->db->query($query)->findAll();
+    }
+
 
     public function getBlogEntries(array $pagination)
     {
@@ -111,6 +128,20 @@ class BlogService
             ];
 
         return $this->db->query($query, $params)->findAll();
+    }
+
+    public function getBlogEntryTranslationWeb(mixed $blogId, string $lang)
+    {
+        $query = "SELECT *, DATE_FORMAT(created_at, '%Y-%m-%d') as formatted_date 
+           FROM blog_translate 
+           WHERE blog_id = :blogId AND lang = :lang";
+        $params =
+            [
+                'blogId' => (int) $blogId,
+                'lang' => $lang
+            ];
+
+        return $this->db->query($query, $params)->find();
     }
 
     /**

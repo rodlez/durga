@@ -5,7 +5,7 @@
 function aboutContent($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'title' => 'Sobre mí',
             'header' => 'Mamen Carrasco Benítez',
@@ -115,7 +115,7 @@ L&#39;essència de tot el que vaig aprendre, la qual cosa realment va significar
 function contactContent($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'title' => 'Contacto',
             'subtitle' => 'Psicóloga y Terapeuta Gestalt',
@@ -159,7 +159,7 @@ function contactContent($lang): array
 function navLinks($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'link1' => 'Inicio',
             'link2' => 'Sobre mí',
@@ -183,7 +183,7 @@ function navLinks($lang): array
 function footerLinks($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'title' => 'Enlaces',
             'subtitle1' => 'Importante',
@@ -221,7 +221,7 @@ function footerLinks($lang): array
 function blogContent($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'title' => 'Mi Blog',
             'subtitle' => 'Aquí podrás encontrar una selección de artículos',
@@ -239,12 +239,28 @@ function blogContent($lang): array
     return $content;
 }
 
+function blogIndividualContent($lang): array
+{
+    $content = [];
+    if ($lang === 'spa') {
+        $content = [
+            'button' => 'Volver'
+        ];
+    }
+    if ($lang === 'cat') {
+        $content = [
+            'button' => 'Tornar'
+        ];
+    }
+    return $content;
+}
+
 /* HOME PAGE */
 
 function homeHeader($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'title' => 'Mamen Carrasco Benítez',
             'subtitle' => 'Psicóloga General Sanitaria | Terapeuta Gestalt',
@@ -266,7 +282,7 @@ function homeHeader($lang): array
 function homeTerapia($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'title' => 'Terapia',
             'text' => '<p>
@@ -298,7 +314,7 @@ function homeTerapia($lang): array
 function homeSintomas($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'title' => 'Síntomas. ¿Qué me pasa?',
             'card1Title' => 'Dolor en el pecho',
@@ -346,7 +362,7 @@ function homeSintomas($lang): array
 function homeSesionExploracion($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'title' => 'Sesión de Exploración',
             'subtitle' => 'Te propongo hacer una primera sesión a 15 euros donde poder conocernos, explorar tu caso y resolver cualquier duda que tengas en relación al proceso.',
@@ -366,7 +382,7 @@ function homeSesionExploracion($lang): array
 function homeMetodo($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'title' => '¿Cómo te acompaño?',
             'subtitle' => 'Te acompañaré durante todo el proceso de cura a través de tres fases.',
@@ -396,7 +412,7 @@ function homeMetodo($lang): array
 function homeMotivos($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'title' => '¿Porqué Durgga?',
             'subtitle' => 'Aquí tienes algunos motivos por los que confiar en mi sistema.',
@@ -422,7 +438,7 @@ function homeMotivos($lang): array
 function homeBeneficios($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'title' => 'Beneficios',
             'point1Title' => 'Poner freno a lo que te hace daño',
@@ -454,7 +470,7 @@ function homeBeneficios($lang): array
 function homePrecios($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'title' => 'Precios',
             'subtitle' => 'Elige la opción de pago que mejor se adapte a ti.',
@@ -502,7 +518,7 @@ function homePrecios($lang): array
 function homeNewsletter($lang): array
 {
     $content = [];
-    if ($lang === 'esp') {
+    if ($lang === 'spa') {
         $content = [
             'title' => 'Suscríbete al newsletter',
             'subtitle' => 'Mantente informada con las últimas noticias y actualizaciones.',

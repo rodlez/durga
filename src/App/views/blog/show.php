@@ -3,7 +3,7 @@
 // Intelephense Error
 /**  @var object $blog */
 /**  @var object $images */
-/**  @var object $blogTotal */
+/**  @var object $blogTrans */
 /**  @var array $tags */
 // showNice($images);
 ?>
@@ -16,7 +16,7 @@
 
 
         <h4 class="text-start fw-bold text-primary pb-0">
-            <?php echo $blog->title ?>
+            <?php echo $blogTrans->title ?>
         </h4>
         <p><?php echo $blog->author; ?> | <?php echo $blog->created_at ?> | <?php echo $category ?></p>
         <hr>
@@ -26,18 +26,13 @@
                 <img src="<?php echo "/images/blog/" . $images[0]->storage_filename; ?>" class="img-fluid" alt="">
             </div>
             <div class="col-lg-12 mt-4">
-
-
-                <p><?php echo $blog->content ?></p>
-
-
-
+                <p><?php echo $blogTrans->content ?></p>
             </div>
             <hr>
             <div class="row pb-4 pt-1">
-                <div class="col-lg-3 text-ligh">
+                <div class="col-lg-3 text-light">
                     <?php foreach ($tags as $tag) : ?>
-                        <span class="badge bg-primary fst-italic rounded-1 p-3"><?php echo $tag; ?></span>
+                        <span class="badge bg-warning fst-italic rounded-1 p-3"><?php echo $tag; ?></span>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -45,9 +40,8 @@
         </div>
 
         <div class="col-lg-12 mb-4 text-center">
-            <a href="/blog" class="fw-bolder text-decoration-none">Volver</a>
+            <a href="/blog" class="btn btn-primary mt-4"><?php echo $blogContentText['button']; ?></a>
         </div>
-
 
     </div>
 </section>

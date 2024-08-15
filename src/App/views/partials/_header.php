@@ -57,7 +57,7 @@ $footerLinks = footerLinks($_SESSION['lang']);
                     </li>
                     <?php if ((isset($_SESSION['lang']) && ($_SESSION['lang']) === 'cat')) : ?>
                         <li class="nav-item px-2">
-                            <a class="nav-link" href="/lang?lang=esp">ESP</a>
+                            <a class="nav-link" href="/lang?lang=spa">ESP</a>
                         </li>
                     <?php else : ?>
                         <li class="nav-item px-2">

@@ -37,25 +37,10 @@ class BlogController
 
     public function blogView()
     {
-        $blogList = $this->blogService->getAllBlogEntries();
-        $images = $this->imageService->getAllImages();
 
-        $blogTotal = [];
-        $count = 0;
+        $blogWebTexts = blogContent($_SESSION['lang']);
 
-        foreach ($images as $image) {
-            //showNice($blogList[$image->blog_id], "BLOG_ID $image->blog_id");
-            foreach ($blogList as $blog) {
-                if ($image->blog_id === $blog->id) {
-                    $blogTotal[$count]['data'] = $blog;
-                    $blogTotal[$count]['images'] = $image;
-                }
-            }
-            $count++;
-        }
-
-        $content = blogContent($_SESSION['lang']);
-
+        $blog = $this->blogService->getBlogEntriesWeb($_SESSION['lang']);
 
         // Because of the Singleton Pattern, Now if we do not specify a title, the App will take the title define
         // on the TemplateDataMiddleware
@@ -63,13 +48,9 @@ class BlogController
             // Template information
             'title' => 'Blog',
             'sitemap' => '<a href="/admin">Admin</a> / <b>Blog</b>',
-            'header' => 'Aquí podrás encontrar una selección de artículos',
             // Info
-            'blogList' => $blogList,
-            'images' => $images,
-            'blogTotal' => $blogTotal,
-            // Content
-            'content' => $content
+            'blogList' => $blog,
+            'blogWebTexts' => $blogWebTexts
         ]);
     }
 
@@ -84,11 +65,14 @@ class BlogController
         $blog = $this->blogService->getBlogEntrybyId($params['id']);
         if (!$blog) redirectTo("/blog");
 
-        $category = $this->categoryService->getCategoryName($blog->blog_category_id);
-        $tags = $this->blogService->getTagsInBlog($params['id']);
+        $translation = $this->blogService->getBlogEntryTranslationWeb($blog->id, $_SESSION['lang']);
+
+        $category = $this->categoryService->getCategoryName($translation->blog_category_id);
+        $tags = $this->blogService->getTagsInBlog($translation->id);
         $tagNames = $this->blogService->tagsOrderByName($tags);
         $images = $this->imageService->getAllBlogImages((int) $params['id']);
         //$user = $this->userService->getUserInfo($_SESSION['user']);
+        $blogContentText = blogIndividualContent($_SESSION['lang']);
 
         echo $this->view->render("/blog/show.php", [
             // Template information
@@ -97,11 +81,12 @@ class BlogController
             'header' => $blog->title,
             // Blog Information from the DB
             'blog' => $blog,
+            'blogTrans' => $translation,
             'category' => $category,
             'tags' => $tagNames,
-            'images' => $images
-            // User Info
-            //'user' => $user
+            'images' => $images,
+            // Function Translate
+            'blogContentText' => $blogContentText
         ]);
     }
 

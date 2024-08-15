@@ -45,7 +45,7 @@ class SessionMiddleware implements MiddlewareInterface
         session_start();
 
         // Test Language Set
-        if (!isset($_SESSION['lang'])) $_SESSION['lang'] = 'esp';
+        if (!isset($_SESSION['lang'])) $_SESSION['lang'] = 'spa';
 
         $next();
 
