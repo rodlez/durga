@@ -9,6 +9,7 @@ function aboutContent($lang): array
         $content = [
             'title' => 'Sobre mí',
             'header' => 'Mamen Carrasco Benítez',
+            'button' => 'Volver',
             'subtitle' => 'Psicóloga y Terapeuta Gestalt',
             'boxText' => '<p>Crecí siendo una niña risueña, sociable y empática. De carácter sensible, o como se diría en mi tierra “mu sentía”, 
                         siempre he vivido las emociones con bastante intensidad. La mayoría de recuerdos que tengo de mi infancia son felices, lo cual no quiere decir que no viviera malos momentos, pero siempre he preferido quedarme con lo positivo de la vida. La alegría la tenía “grabada a hierro” en mi identidad, 
@@ -61,6 +62,7 @@ function aboutContent($lang): array
             'title' => 'Qui soc',
             'header' => 'Mamen Carrasco Benítez',
             'subtitle' => 'Psicòloga i Terapeuta Gestalt',
+            'button' => 'Tornar',
             'boxText' => '<p>Vaig créixer sent una nena riallera, sociable i empàtica. De caràcter sensible, o com es diria en la meva terra “mu sentia”,
 sempre he viscut les emocions amb bastant intensitat. La majoria de records que tinc de la meva infància són felices, la qual cosa no vol dir que no visqués mals moments, però sempre he preferit quedar-me amb el positiu de la vida. Lalegria la tenia “gravada a ferro” en la meva identitat,
 per la qual cosa cada vegada que la tristesa trucava a la meva porta, com a molt la deixava entrar a l&#39;hall i ràpidament buscava alguna cosa per a treure-la fora.</p>
@@ -130,7 +132,8 @@ function contactContent($lang): array
             'subject4' => 'Otra Consulta',
             'message' => 'Mensaje',
             'tos' => 'He leído y acepto la',
-            'privacy' => 'Política de Privacidad'
+            'privacy' => 'Política de Privacidad',
+            'button' => 'Volver'
         ];
     }
     if ($lang === 'cat') {
@@ -148,7 +151,89 @@ function contactContent($lang): array
             'subject4' => 'Una altra Consulta',
             'message' => 'Missatge',
             'tos' => 'He llegit i accepto la',
-            'privacy' => 'Política de Privacitat'
+            'privacy' => 'Política de Privacitat',
+            'button' => 'Tornar'
+        ];
+    }
+    return $content;
+}
+
+function contactContentOk($lang): array
+{
+    $content = [];
+    if ($lang === 'spa') {
+        $content = [
+            'title' => 'Contacto',
+            'subtitle' => 'Gracias por contactarme',
+            'content' => 'En breve me pondré en contacto contigo para que hablemos sobre tu consulta.',
+            'social' => 'También puedes ponerte en contacto conmigo a través de las redes sociales.',
+            'button' => 'Volver'
+        ];
+    }
+    if ($lang === 'cat') {
+        $content = [
+            'title' => 'Contacte',
+            'subtitle' => 'Gràcies per contactar-me',
+            'content' => 'En breu em posaré en contacte amb tu perquè parlem sobre la teva consulta.',
+            'social' => 'També pots posar-te en contacte amb mi a través de les xarxes socials.',
+            'button' => 'Tornar'
+        ];
+    }
+
+    return $content;
+}
+
+/* NEWSLETTER PAGE */
+
+function newsletterContent($lang): array
+{
+    $content = [];
+    if ($lang === 'spa') {
+        $content = [
+            'title' => 'Newsletter',
+            'subtitle' => 'Gracias por suscribirte',
+            'content' => 'También puedes mantenerte informada sobre las novedades a través de las redes sociales.',
+            'button' => 'Volver'
+        ];
+    }
+    if ($lang === 'cat') {
+        $content = [
+            'title' => 'Newsletter',
+            'subtitle' => 'Gràcies per subscriure&#39;t',
+            'content' => 'També pots mantenir-te informada sobre les novetats a través de les xarxes socials.',
+            'button' => 'Tornar'
+        ];
+    }
+    return $content;
+}
+
+/* PRIVACY PAGE */
+
+function privacyContent($lang): array
+{
+    $content = [];
+    if ($lang === 'spa') {
+        $content = [
+            'title' => 'Política de Privacidad',
+            'content' => '<p>Responsable: Mª Carmen Carrasco Benítez</p>
+            <p>Finalidad: La finalidad de la recogida y tratamiento de los datos personales que te solicito es para mandarte información de tu interés como vídeos, artículos, próximas actividades  e información sobre cursos y terapias.</p>
+
+<p>Legitimación: Tu consentimiento explícito de que quieres recibir esta información.</p>
+<p>Destinatarios: Los datos que me facilitas están en mi servidor de web y email <a href="https://www.ovh.es/soporte/aviso-legal/#data-perso" target="_blank">OVH</a> y en los servidores de <a href="https://policies.google.com/privacy?hl=es" target="_blank">Google Drive</a>, todos ellos que cumplen con la RGPD.</p>
+<p>Derechos: Podrás ejercer tus derechos de acceso, rectificación, limitación y suprimir los datos en info@durgga.com así como el derecho a presentar una reclamación ante una autoridad de control.</p>',
+            'button' => 'Volver'
+        ];
+    }
+    if ($lang === 'cat') {
+        $content = [
+            'title' => 'Política de Privacitat',
+            'content' => '<p>Responsable: Mª Carmen Carrasco Benítez</p>
+<p>Finalitat: La finalitat de la recollida i tractament de les dades personals que et sol·licito és per a manar-te informació del teu interès com a vídeos, articles, pròximes activitats i informació sobre cursos i teràpies.</p>
+
+<p>Legitimació: El teu consentiment explícit que vols rebre aquesta informació.</p>
+<p>Destinataris: Les dades que em facilites estan en el meu servidor de web i email <a href="https://www.ovh.es/soporte/aviso-legal/#data-perso" target="_blank">OVH</a> i en els servidors de <a href="https://policies.google.com/privacy?hl=es" target="_blank">Google Drive</a>, tots ells que compleixen amb la RGPD.</p>
+<p>Drets: Podràs exercir els teus drets d&#39;accés, rectificació, limitació i suprimir les dades en info@durgga.com així com el dret a presentar una reclamació davant una autoritat de control.</p>',
+            'button' => 'Tornar'
         ];
     }
     return $content;
@@ -244,11 +329,13 @@ function blogIndividualContent($lang): array
     $content = [];
     if ($lang === 'spa') {
         $content = [
+            'title' => 'Blog',
             'button' => 'Volver'
         ];
     }
     if ($lang === 'cat') {
         $content = [
+            'title' => 'Blog',
             'button' => 'Tornar'
         ];
     }

@@ -1,29 +1,33 @@
 <?php include $this->resolve("partials/_header.php"); ?>
 
-<!-- Section Start Here -->
-<section id="#" class="py-4">
-    <!-- Container -->
+<section class="sesion mb-5 bg-light sesion-bg">
     <div class="container">
-        <!-- Title -->
-        <h2 class="fw-bold text-primary py-4 title-page"><?php echo escapeChar($title); ?></h2>
-        <hr class="hr-heading-page">
         <div class="row">
+            <div class="col-12 py-6">
+                <div class="text-center py-6 rounded-4 sesion-card">
+                    <div class="w-75 m-auto sesion-text">
+                        <h2 class="display-5 fw-bold text-light"><?php echo $content['subtitle']; ?></h2>
+                        <p class="text-light mt-4">
+                            <?php echo $content['content']; ?>
+                        </p>
+                        <div class="col my-4">
+                            <a href="https://www.instagram.com/durgga_psicologia/" class="text-decoration-none" target="_blank">
+                                <i class="fab fa-instagram fa-2x text-light mx-2"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/mamen-carrasco-ben%C3%ADtez-20496956" class="text-decoration-none" target="_blank">
+                                <i class="fab fa-linkedin fa-2x text-light mx-2"></i>
+                            </a>
+                        </div>
 
-            <div class="col-10 offset-1 bg-light">
+                        <a href="/" class="btn btn-primary mt-4">
+                            <?php echo $content['button']; ?>
+                        </a>
 
-                <h1><?php echo $title; ?></h1>
+                    </div>
+                </div>
             </div>
-
-            <div class="col-10 offset-1">
-                Gracias por suscribirte.
-                <a href="/" class="btn btn-primary">Volver</a>
-            </div>
-
         </div>
-
     </div>
 </section>
-
-
 
 <?php include $this->resolve("partials/_footer.php"); ?>

@@ -46,7 +46,7 @@ class BlogController
         // on the TemplateDataMiddleware
         echo $this->view->render("/blog/index.php", [
             // Template information
-            'title' => 'Blog',
+            'title' => 'Durgga - ' . $blogWebTexts['title'],
             'sitemap' => '<a href="/admin">Admin</a> / <b>Blog</b>',
             // Info
             'blogList' => $blog,
@@ -76,7 +76,7 @@ class BlogController
 
         echo $this->view->render("/blog/show.php", [
             // Template information
-            'title' => 'Blog',
+            'title' => 'Durgga - ' . $blogContentText['title'],
             'sitemap' => '<a href="/admin">Admin</a> / <a href="/admin/blog">Blog</a> / <b>Info</b>',
             'header' => $blog->title,
             // Blog Information from the DB

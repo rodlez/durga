@@ -42,7 +42,7 @@ class ContactController
         $content = contactContent($_SESSION['lang']);
 
         echo $this->view->render("contacto.php", [
-            'title' => 'Contacto',
+            'title' => 'Durgga - ' . $content['title'],
             'sitemap' => '<a href="/">Home</a> / <b>Contacto</b>',
             'header' => "Contacto page",
             // param
@@ -59,7 +59,7 @@ class ContactController
 
     public function contact()
     {
-        $this->validatorService->validateContact($_POST, 'es');
+        $this->validatorService->validateContact($_POST, $_SESSION['lang']);
 
         $result = $this->contactService->newContact($_POST);
 
@@ -77,10 +77,14 @@ class ContactController
 
     public function contactOk()
     {
+        $content = contactContentOK($_SESSION['lang']);
+
         echo $this->view->render("contacto-ok.php", [
-            'title' => 'Contacto',
+            'title' => 'Durgga - ' . $content['title'],
             'sitemap' => '<a href="/">Home</a> / <b>Contacto</b>',
             'header' => "Contacto page",
+            // content
+            'content' => $content
         ]);
     }
 

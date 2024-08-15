@@ -24,7 +24,7 @@ class TemplateDataMiddleware implements MiddlewareInterface
 
     public function process(callable $next)
     {
-        $this->view->addGlobal('title', 'App Title');
+        $this->view->addGlobal('title', 'Durgga - Mamen Carrasco');
         // call the next function, if not the Controller will never handle the request
         $next();
     }

@@ -25,7 +25,7 @@ class AboutController
         $content = aboutContent($_SESSION['lang']);
         //debugator($content);
         echo $this->view->render("about.php", [
-            'title' => 'Sobre mí',
+            'title' => 'Durgga - ' . $content['title'],
             'sitemap' => '<a href="/">Home</a> / <b>About</b>',
             'header' => "Sobre mi page",
             'dangerousData' => '<script>alert(123)</script>',

@@ -13,7 +13,7 @@
                     </li>
                     <li class="text-warning">
                         <a href="#" class="footer-link"><?php echo $footerLinks['link1']; ?></a> |
-                        <a href="#" class="footer-link"><?php echo $footerLinks['link2']; ?></a>
+                        <a href="/privacy" class="footer-link"><?php echo $footerLinks['link2']; ?></a>
                     </li>
                     <li>
                         <a href="#" class="footer-link"><?php echo $footerLinks['link3']; ?></a>
@@ -31,16 +31,10 @@
             </div>
             <div class="col-md-4 my-3 footer-social">
                 <div class="mb-4">
-                    <a href="#" class="text-decoration-none">
-                        <i class="fab fa-facebook fa-2x text-light mx-2"></i>
-                    </a>
-                    <a href="#" class="text-decoration-none">
-                        <i class="fab fa-youtube fa-2x text-light mx-2"></i>
-                    </a>
-                    <a href="#" class="text-decoration-none" target="_blank">
+                    <a href="https://www.instagram.com/durgga_psicologia/" class="text-decoration-none" target="_blank">
                         <i class="fab fa-instagram fa-2x text-light mx-2"></i>
                     </a>
-                    <a href="#" class="text-decoration-none" target="_blank">
+                    <a href="https://www.linkedin.com/in/mamen-carrasco-ben%C3%ADtez-20496956" class="text-decoration-none" target="_blank">
                         <i class="fab fa-linkedin fa-2x text-light mx-2"></i>
                     </a>
                 </div>
@@ -49,17 +43,20 @@
                 </p>
                 <div class="row">
                     <div class="col-12">
-                        <a href="tel:123456789" class="footer-link">+34 123456789</a>
-                        <i class="fa fa-flip-horizontal fa-phone fa-1x text-light mx-2"></i>
+                        <i class="fa fa-phone fa-1x text-light mx-2"></i>
+                        <a href="tel:34651786502" class="footer-link">+34 651786502</a>
+
                     </div>
                     <div class="col-12">
-                        <a href="mailto:contact@site.com" class="footer-link">info@web.com</a>
                         <i class="fa fa-envelope fa-1x text-light mx-2"></i>
+                        <a href="mailto:info@durgga.com" class="footer-link">info@durgga.com</a>
                     </div>
                 </div>
+                <!--
                 <p class="copyright">
-                    web by <a href="xavrod.com" class="copyright-link">xavrod</a>
+                    web by <a href="https://www.xavrod.com" class="copyright-link" target="_blank">xavrod</a>
                 </p>
+                -->
 
             </div>
         </div>

@@ -215,7 +215,6 @@ class UserService
     public function changeLanguage($lang)
     {
         $_SESSION['lang'] = $lang;
-        showNice($_SESSION, 'SESSION');
         //debugator($lang);
     }
 }

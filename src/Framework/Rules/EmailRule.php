@@ -17,7 +17,11 @@ class EmailRule implements RuleInterface
 
     public function getMessage(array $data, string $field, array $params, string $lang): string
     {
-        $lang === 'es' ? $message = "Formato del Email no válido." : $message = "Invalid Email.";
+        $message = "Formato del Email no válido.";
+
+        if ($lang === 'spa') $message = "Formato del Email no válido.";
+        if ($lang === 'cat') $message = "Format de l'Email no vàlid.";
+        if ($lang === 'eng') $message = "Invalid Email.";
 
         return $message;
     }

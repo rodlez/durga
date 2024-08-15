@@ -81,7 +81,7 @@ $footerLinks = footerLinks($_SESSION['lang']);
                     <div class="social-icons">
                         <span class="nav-item">
                             <span class="fa-stack">
-                                <a href="#" target="_blank">
+                                <a href="https://www.linkedin.com/in/mamen-carrasco-ben%C3%ADtez-20496956" target="_blank">
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fab fa-linkedin fa-stack-1x"></i>
                                 </a>
@@ -89,7 +89,7 @@ $footerLinks = footerLinks($_SESSION['lang']);
                         </span>
                         <span class="nav-item">
                             <span class="fa-stack">
-                                <a href="#" target="_blank">
+                                <a href="https://www.instagram.com/durgga_psicologia/" target="_blank">
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fab fa-instagram fa-stack-1x"></i>
                                 </a>

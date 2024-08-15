@@ -16,8 +16,14 @@ class PhoneRule implements RuleInterface
         return (bool) preg_match($pattern, $data[$field]);
     }
 
-    public function getMessage(array $data, string $field, array $params, string $idioma): string
+    public function getMessage(array $data, string $field, array $params, string $lang): string
     {
-        return "Invalid phone (must have 9 digits).";
+        $message = "El teléfono debe tener 9 dígitos.";
+
+        if ($lang === 'spa') $message = "El teléfono debe tener 9 dígitos.";
+        if ($lang === 'cat') $message = "El telèfon ha de tenir 9 dígits.";
+        if ($lang === 'eng') $message = "Invalid phone (must have 9 digits).";
+
+        return $message;
     }
 }

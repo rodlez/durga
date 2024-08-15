@@ -26,11 +26,14 @@ class NewsletterController
 
     public function newsletterOk()
     {
+        $content = newsletterContent($_SESSION['lang']);
+
         echo $this->view->render("newsletter.php", [
-            'title' => 'Newsletter',
+            'title' => 'Durgga - ' . $content['title'],
             'sitemap' => '<a href="/">Home</a> / <b>Newsletter</b>',
             'header' => "Newsletter page",
-            'dangerousData' => '<script>alert(123)</script>'
+            // content
+            'content' => $content
         ]);
     }
 

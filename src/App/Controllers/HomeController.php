@@ -89,6 +89,17 @@ class HomeController
         ]);
     }
 
+    public function privacy()
+    {
+        $content = privacyContent($_SESSION['lang']);
+
+        echo $this->view->render("privacy.php", [
+            'title' => 'Durgga - ' . $content['title'],
+            // content
+            'content' => $content
+        ]);
+    }
+
     /**
      * Receives the register form data using the HTTPD POST method 
      * 
@@ -101,7 +112,7 @@ class HomeController
     public function newsletter()
     {
 
-        $this->validatorService->validateNewsletter($_POST, 'es');
+        $this->validatorService->validateNewsletter($_POST, $_SESSION['lang']);
 
         $this->userService->isEmailTaken($_POST['email'], 'newsletter');
 

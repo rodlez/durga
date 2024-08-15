@@ -26,6 +26,11 @@
 
 
         </div>
+
+        <div class="col-lg-12 my-2 text-center">
+            <a href="/" class="btn btn-primary mt-2"><?php echo $content['button']; ?></a>
+        </div>
+
     </div>
 </section>
 

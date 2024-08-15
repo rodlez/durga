@@ -24,6 +24,12 @@ function registerRoutes(App $app)
     $app->get('/', [HomeController::class, 'home']);
     $app->post('/', [HomeController::class, 'newsletter']);
 
+    // Lang
+    $app->get('/lang', [HomeController::class, 'langChange']);
+
+    // Privacy
+    $app->get('/privacy', [HomeController::class, 'privacy']);
+
     // Newsletter Page
     $app->get('/newsletter', [NewsletterController::class, 'newsletterOk']);
 
@@ -49,9 +55,6 @@ function registerRoutes(App $app)
     $app->post('/login', [AuthController::class, 'login'])->add(GuestOnlyMiddleware::class);
     // Logout
     $app->get('/logout', [AuthController::class, 'logout'])->add(AuthRequiredMiddleware::class);
-
-    // Lang
-    $app->get('/lang', [HomeController::class, 'langChange']);
 
     // ****************************************** ADMIN ********************************************************
 

@@ -21,13 +21,10 @@
                         <p class="info-subtitle"><?php echo $content['subtitle']; ?></p>
                     </div>
                     <div class="col pt-4 px-1">
-                        <a href="#" class="text-decoration-none">
-                            <i class="fab fa-facebook fa-2x text-primary mx-2"></i>
-                        </a>
-                        <a href="#" class="text-decoration-none">
+                        <a href="https://www.instagram.com/durgga_psicologia/" class="text-decoration-none" target="_blank">
                             <i class="fab fa-instagram fa-2x text-primary mx-2"></i>
                         </a>
-                        <a href="#" class="text-decoration-none">
+                        <a href="https://www.linkedin.com/in/mamen-carrasco-ben%C3%ADtez-20496956" class="text-decoration-none" target="_blank">
                             <i class="fab fa-linkedin fa-2x text-primary mx-2"></i>
                         </a>
                     </div>
@@ -128,7 +125,7 @@
                     <div class="mb-2">
                         <input <?php echo $oldFormData['tos'] ?? false ? 'checked' : ''; ?> type="checkbox" id="agree-check" name="tos" />
                         <label for="agree-check" class="form-check-label">
-                            <?php echo $content['tos']; ?> <a href="#" class="text-dark"><?php echo $content['privacy']; ?></a>
+                            <?php echo $content['tos']; ?> <a href="/privacy" class="text-dark"><?php echo $content['privacy']; ?></a>
                         </label>
                     </div>
                     <!-- Error Message -->
@@ -147,6 +144,11 @@
             </div>
 
         </div>
+
+        <div class="col-lg-12 my-4 text-center">
+            <a href="/" class="btn btn-primary mt-4"><?php echo $content['button']; ?></a>
+        </div>
+
     </div>
 </section>
 
