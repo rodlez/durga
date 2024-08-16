@@ -5,7 +5,7 @@
 <section id="about" class="about bg-info py-4">
     <div class="container">
         <h2 class="fw-bold text-primary"><?php echo $content['title']; ?></h2>
-        <hr class="hr-heading-page">
+        <hr class="hr-heading-page w-100">
 
         <div class="row">
             <div class="col-lg-5 about-img">
@@ -14,7 +14,7 @@
             <div class="col-lg-7 bg-warning p-4 about-card">
                 <h3 class="about-title"><?php echo $content['header']; ?></h3>
                 <p class="text-light my-0"><?php echo $content['subtitle']; ?></p>
-                <hr class="hr-heading-pages">
+                <hr>
                 <span class="about-text">
                     <?php echo $content['boxText']; ?>
                 </span>

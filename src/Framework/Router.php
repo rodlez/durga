@@ -119,6 +119,8 @@ class Router
             // adding return statement to prevent another route for become active
             return;
         }
+        // if a route id NOT found
+        $this->dispatchNotFound($container);
     }
 
     // Similar to controllers, middleware is going to be define as classes. We want the middleware to have access to the Container to inject dependencies
@@ -146,5 +148,28 @@ class Router
         $lastRouteKey = array_key_last($this->routes);
 
         $this->routes[$lastRouteKey]['middlewares'][] = $middleware;
+    }
+
+    // Error Handler to redirect to a customize 404 Page
+
+    public function setErrorHandler(array $controller)
+    {
+        $this->errorHandler = $controller;
+    }
+
+    public function dispatchNotFound(?Container $container)
+    {
+        [$class, $function] = $this->errorHandler;
+
+        $controllerInstance = $container ? $container->resolve($class) : new $class;
+
+        $action = fn() => $controllerInstance->$function();
+
+        foreach ($this->middlewares as $middleware) {
+            $middlewareInstance = $container ? $container->resolve($middleware) : new $middleware;
+            $action = fn() => $middlewareInstance->process($action);
+        }
+
+        $action();
     }
 }

@@ -406,7 +406,7 @@
 
         <div class="row justify-content-center pricing">
             <!-- Pricing Col 1 -->
-            <div class="col-lg-3 price">
+            <div class="col-lg-3 mb-4">
                 <div class="card bg-warning text-center rounded-1">
                     <div class="card-body">
                         <div class="title-page fw-bold text-white"><?php echo $precios['individualPrice']; ?></div>
@@ -420,7 +420,7 @@
             </div>
 
             <!-- Pricing Col 2 -->
-            <div class="col-lg-3 price">
+            <div class="col-lg-3 mb-4">
                 <div class="card bg-warning text-center rounded-1">
                     <div class="card-body">
                         <div class="title-page fw-bold text-white"><?php echo $precios['pack5Price']; ?></div>
@@ -435,7 +435,7 @@
             </div>
 
             <!-- Pricing Col 3 -->
-            <div class="col-lg-3 price">
+            <div class="col-lg-3 mb-4">
                 <div class="card bg-warning text-center rounded-1">
                     <div class="card-body">
                         <div class="title-page fw-bold text-white"><?php echo $precios['pack10Price']; ?></div>

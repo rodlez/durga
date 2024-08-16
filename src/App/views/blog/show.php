@@ -11,13 +11,9 @@
 <!-- Blog -->
 <section id="blog" class="blog bg-info py-4">
     <div class="container">
-        <h2 class="fw-bold text-primary text-center"><?php echo escapeChar($title); ?></h2>
+        <h2 class="fw-bold text-primary"><?php echo $blogTrans->title ?></h2>
         <hr class="hr-heading-page w-100">
 
-
-        <h4 class="text-start fw-bold text-primary pb-0">
-            <?php echo $blogTrans->title ?>
-        </h4>
         <p><?php echo $blog->author; ?> | <?php echo $blog->created_at ?> | <?php echo $category ?></p>
         <hr>
 

@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="footer bg-primary py-4">
+<footer class="footer bg-primary py-4 text-center">
     <div class="container">
         <div class="row">
             <div class="col-md-4 my-3">
@@ -8,24 +8,24 @@
             <div class="col-md-4 my-3">
                 <h6 class="text-light"><?php echo $footerLinks['title']; ?></h6>
                 <ul class="list-unstyled">
-                    <li class="text-dark fw-bold text-uppercase">
+                    <li class="text-light text-uppercase border-bottom border-bottom-dark mt-2">
+                        <?php echo $footerLinks['subtitle2']; ?>
+                    </li>
+                    <li class="text-warning mt-2">
+                        <a href="/" class="footer-link"><?php echo $footerLinks['link4']; ?></a> |
+                        <a href="/about" class="footer-link"><?php echo $footerLinks['link5']; ?></a> |
+                        <a href="/contacto" class="footer-link"><?php echo $footerLinks['link6']; ?></a> |
+                        <a href="/blog" class="footer-link"><?php echo $footerLinks['link7']; ?></a>
+                    </li>
+                    <li class="text-light text-uppercase border-bottom border-bottom-info mt-2">
                         <?php echo $footerLinks['subtitle1']; ?>
                     </li>
-                    <li class="text-warning">
+                    <li class="text-warning mt-2">
                         <a href="#" class="footer-link"><?php echo $footerLinks['link1']; ?></a> |
                         <a href="/privacy" class="footer-link"><?php echo $footerLinks['link2']; ?></a>
                     </li>
                     <li>
                         <a href="#" class="footer-link"><?php echo $footerLinks['link3']; ?></a>
-                    </li>
-                    <li class="text-dark fw-bold text-uppercase">
-                        <?php echo $footerLinks['subtitle2']; ?>
-                    </li>
-                    <li class="text-warning">
-                        <a href="/" class="footer-link"><?php echo $footerLinks['link4']; ?></a> |
-                        <a href="/about" class="footer-link"><?php echo $footerLinks['link5']; ?></a> |
-                        <a href="/contacto" class="footer-link"><?php echo $footerLinks['link6']; ?></a> |
-                        <a href="/blog" class="footer-link"><?php echo $footerLinks['link7']; ?></a>
                     </li>
                 </ul>
             </div>

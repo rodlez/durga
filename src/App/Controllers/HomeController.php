@@ -30,32 +30,11 @@ class HomeController
         // echo "<br />";
     }
 
+    // HOME PAGE - index.php
 
     public function home()
     {
-
-        /*
-        $blogList = $this->blogService->getAllBlogEntries();
-        //$blogListTranslations = $this->blogService->getAllBlogEntryTranslations();
-
-        $images = $this->imageService->getAllImages();
-
-        $blogTotal = [];
-        $count = 0;
-
-        foreach ($images as $image) {
-            //showNice($blogList[$image->blog_id], "BLOG_ID $image->blog_id");
-            foreach ($blogList as $blog) {
-                if ($image->blog_id === $blog->id) {
-                    $blogTotal[$count]['data'] = $blog;
-                    $blogTotal[$count]['images'] = $image;
-                }
-            }
-            $count++;
-        }
-        */
-
-        // GET TEXTS
+        // HOME PAGE TEXTS
         $header = homeHeader($_SESSION['lang']);
         $terapia = homeTerapia($_SESSION['lang']);
         $sintomas = homeSintomas($_SESSION['lang']);
@@ -65,11 +44,9 @@ class HomeController
         $beneficios = homeBeneficios($_SESSION['lang']);
         $precios = homePrecios($_SESSION['lang']);
         $newsletter = homeNewsletter($_SESSION['lang']);
-
+        // BLOG ENTRIES
         $blog = $this->blogService->getBlogEntriesWeb($_SESSION['lang']);
 
-        // Because of the Singleton Pattern, Now if we do not specify a title, the App will take the title define
-        // on the TemplateDataMiddleware
         echo $this->view->render("index.php", [
             // SECTION TEXTS            
             'header' => $header,
@@ -82,12 +59,11 @@ class HomeController
             'precios' => $precios,
             'newsletter' => $newsletter,
             // BLOG
-            //'blogList' => $blogList,            
-            //'images' => $images,
-            //'blogTotal' => $blogTotal
             'blogList' => $blog
         ]);
     }
+
+    // PRIVACY PAGE - privacy.php
 
     public function privacy()
     {
@@ -122,12 +98,12 @@ class HomeController
     }
 
     /**
-     * Destroy the user SESSION and delete the cookie
+     * Change the language using a $_SESSION['lang']
+     * @param $_GET['lang'] ISO code of the language to switch the language
      */
 
     public function langChange()
     {
-        //debugator($_GET);
         isset($_GET['lang']) ? $param = $_GET['lang'] : $param = null;
         $this->userService->changeLanguage($param);
 

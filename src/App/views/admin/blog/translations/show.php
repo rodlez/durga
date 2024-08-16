@@ -132,7 +132,7 @@
                 Content
             </div>
             <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                <?php echo $translation->subtitle; ?>
+                <?php echo $translation->content; ?>
             </div>
             <!-- Edit -->
             <div class="col-lg-2">

@@ -6,7 +6,7 @@ namespace App\Config;
 
 use Framework\App;
 
-use App\Controllers\{HomeController, NewsletterController, AboutController, ContactController, BlogController, ImageController, CategoryController, TagController, AuthController, AdminController};
+use App\Controllers\{HomeController, NewsletterController, AboutController, ContactController, BlogController, ImageController, CategoryController, TagController, AuthController, AdminController, ErrorController};
 
 use App\Middleware\{AuthRequiredMiddleware, GuestOnlyMiddleware, AdminRequiredMiddleware};
 
@@ -56,11 +56,14 @@ function registerRoutes(App $app)
     // Logout
     $app->get('/logout', [AuthController::class, 'logout'])->add(AuthRequiredMiddleware::class);
 
+    // ***** 404 Error Page *****
+    $app->setErrorHandler([ErrorController::class, 'notFound']);
+
     // ****************************************** ADMIN ********************************************************
 
     $app->get('/admin', [AdminController::class, 'adminView'])->add(AdminRequiredMiddleware::class);
 
-    // Newsletter
+    // ***** NEWSLETTER *****
     $app->get('/admin/newsletter', [NewsletterController::class, 'newsletterView'])->add(AdminRequiredMiddleware::class);
     // Create
     $app->get('/admin/newsletter/create', [NewsletterController::class, 'createNewsletterView'])->add(AdminRequiredMiddleware::class);
@@ -74,10 +77,7 @@ function registerRoutes(App $app)
     // Delete
     $app->delete('/admin/newsletter/{newsletter}', [NewsletterController::class, 'deleteNewsletterEntry'])->add(AdminRequiredMiddleware::class);
 
-
-
-
-    // CONTACT
+    // ***** CONTACT *****
     // Main
     $app->get('/admin/contact', [ContactController::class, 'adminContactView'])->add(AdminRequiredMiddleware::class);
     // Create
@@ -94,7 +94,7 @@ function registerRoutes(App $app)
     $app->get('/admin/contact/{id}/answer', [ContactController::class, 'adminContactAnswerView'])->add(AdminRequiredMiddleware::class);
     $app->post('/admin/contact/{id}/answer', [ContactController::class, 'adminContactAnswer'])->add(AdminRequiredMiddleware::class);
 
-    // BLOG
+    // ***** BLOG *****
     // Main
     $app->get('/admin/blog', [BlogController::class, 'adminBlogView'])->add(AdminRequiredMiddleware::class);
     $app->get('/admin/blog/create', [BlogController::class, 'createBlogEntryView'])->add(AdminRequiredMiddleware::class);
@@ -123,12 +123,7 @@ function registerRoutes(App $app)
     // Blog Delete
     $app->delete('/admin/blog/{id}', [BlogController::class, 'deleteBlog'])->add(AdminRequiredMiddleware::class);
 
-
-
-
-
-
-    // BLOG CATEGORIES
+    // ***** BLOG CATEGORIES *****
     $app->get('/admin/category', [CategoryController::class, 'categoryView'])->add(AdminRequiredMiddleware::class);
     $app->get('/admin/category/create', [CategoryController::class, 'createCategoryView'])->add(AdminRequiredMiddleware::class);
     $app->post('/admin/category/create', [CategoryController::class, 'createCategory'])->add(AdminRequiredMiddleware::class);
@@ -136,7 +131,7 @@ function registerRoutes(App $app)
     $app->post('/admin/category/{category}', [CategoryController::class, 'editCategory'])->add(AdminRequiredMiddleware::class);
     $app->delete('/admin/category/{category}', [CategoryController::class, 'deleteCategory'])->add(AdminRequiredMiddleware::class);
 
-    // BLOG TAGS
+    // ***** BLOG TAGS *****
     $app->get('/admin/tag', [TagController::class, 'tagView'])->add(AdminRequiredMiddleware::class);
     $app->get('/admin/tag/create', [TagController::class, 'createTagView'])->add(AdminRequiredMiddleware::class);
     $app->post('/admin/tag/create', [TagController::class, 'createTag'])->add(AdminRequiredMiddleware::class);

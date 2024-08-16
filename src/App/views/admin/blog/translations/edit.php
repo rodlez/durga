@@ -7,8 +7,8 @@
 /**  @var object $categories */
 /**  @var object $tags */
 /**  @var object $selectedTags */
-showNice($tags, 'TAGS');
-showNice($selectedTags);
+//showNice($tags, 'TAGS');
+//showNice($selectedTags);
 ?>
 
 <section id="blog-table" class="bg-info py-4">

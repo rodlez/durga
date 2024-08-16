@@ -110,4 +110,11 @@ class App
     {
         $this->router->addRouteMiddleware($middleware);
     }
+
+    // Create a 404 Error Page
+
+    public function setErrorHandler(array $controller)
+    {
+        $this->router->setErrorHandler($controller);
+    }
 }

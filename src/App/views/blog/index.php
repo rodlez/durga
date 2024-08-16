@@ -12,7 +12,7 @@
 <section id="blog" class="blog bg-info py-4">
     <div class="container">
         <h2 class="fw-bold text-primary"><?php echo $blogWebTexts['title']; ?></h2>
-        <hr class="hr-heading-page">
+        <hr class="hr-heading-page w-100">
 
 
         <!-- Blog, 1 row 3 col per row with cards -->

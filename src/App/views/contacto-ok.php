@@ -1,9 +1,9 @@
 <?php include $this->resolve("partials/_header.php"); ?>
 
-<section class="sesion mb-5 bg-light sesion-bg">
+<section class="sesion mb-0 bg-light sesion-bg">
     <div class="container">
         <div class="row">
-            <div class="col-12 py-6">
+            <div class="col-12 py-4">
                 <div class="text-center py-6 rounded-4 sesion-card">
                     <div class="w-75 m-auto sesion-text">
                         <h2 class="display-5 fw-bold text-light"><?php echo $content['subtitle']; ?></h2>

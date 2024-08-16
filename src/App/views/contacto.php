@@ -6,7 +6,7 @@
 <section id="contacto" class="contacto bg-info py-4">
     <div class="container">
         <h2 class="fw-bold text-primary"><?php echo $content['title']; ?></h2>
-        <hr class="hr-heading-page" />
+        <hr class="hr-heading-page w-100">
         <p class="text-secondary"><?php echo $content['header']; ?></p>
 
         <div class="row py-2">

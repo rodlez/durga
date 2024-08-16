@@ -239,6 +239,30 @@ function privacyContent($lang): array
     return $content;
 }
 
+/* ERROR PAGE */
+
+function errorContent($lang): array
+{
+    $content = [];
+    if ($lang === 'spa') {
+        $content = [
+            'title' => 'Error',
+            'subtitle' => 'Página no encontrada',
+            'content' => 'La página que has intentado acceder no existe.',
+            'button' => 'Inicio'
+        ];
+    }
+    if ($lang === 'cat') {
+        $content = [
+            'title' => 'Error',
+            'subtitle' => 'Pàgina no trobada',
+            'content' => 'La pàgina que has intentat accedir no existeix.',
+            'button' => 'Inici'
+        ];
+    }
+    return $content;
+}
+
 /* NAVIGATION LINKS */
 
 function navLinks($lang): array

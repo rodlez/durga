@@ -83,10 +83,10 @@
             <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
                 Images (<?php echo count($images) ?>)
             </div>
-            <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
+            <div class="col-lg-8 offset-lg-1 my-2 p-2 rounded border bg-info border-primary">
                 <?php if ($images) : ?>
                     <div class="table-responsive">
-                        <table class="table table-responsive table-bordered table-light">
+                        <table class="table table-responsive table-bordered table-light text-primary text-center align-items-center">
                             <tbody>
                                 <?php foreach ($images as $image) : ?>
                                     <tr>
@@ -99,9 +99,9 @@
                                             <?php endif; ?>
 
                                         </td>
-                                        <td class="align-bottom"><?php echo $image->original_filename ?></td>
-                                        <td class="align-bottom"><?php echo ceil($image->size / 1024); ?>KB</td>
-                                        <td class="align-bottom text-center">
+                                        <td class="align-middle"><?php echo $image->original_filename ?></td>
+                                        <td class="align-middle"><?php echo ceil($image->size / 1024); ?>KB</td>
+                                        <td class="align-middle text-center">
                                             <form action="/admin/blog/<?php echo $blog->id ?>/image/<?php echo $image->id ?>" method="POST">
                                                 <?php include $this->resolve("partials/_csrf.php"); ?>
                                                 <input type="hidden" name="_METHOD" value="DELETE" />
@@ -116,20 +116,28 @@
                         </table>
                     </div>
                 <?php endif; ?>
-                <a href="/admin/blog/<?php echo $blog->id ?>/image" class="fw-bold text-decoration-none text-success">Upload a image</a>
+                <a href="/admin/blog/<?php echo $blog->id ?>/image" class="fw-bold text-decoration-none text-primary">Upload a image</a>
             </div>
             <!-- TRANSLATIONS -->
             <div class="col-lg-2 bg-warning text-light text-uppercase fw-400 my-2 p-2 rounded">
                 Translations (<?php echo count($blogTranslations) ?>)
             </div>
-            <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
+            <div class="col-lg-8 offset-lg-1 my-2 p-2 rounded border bg-info border-primary">
                 <?php if ($blogTranslations) : ?>
                     <div class="table-responsive">
                         <table class="table table-responsive table-bordered table-light">
+                            <thead>
+                                <tr>
+                                    <th class="bg-secondary text-white text-center">Lang</th>
+                                    <th class="bg-secondary text-white text-center">View</th>
+                                    <th class="bg-secondary text-white text-center">Edit</th>
+                                    <th class="bg-secondary text-white text-center">Delete</th>
+                                </tr>
+                            </thead>
                             <tbody>
                                 <?php foreach ($blogTranslations as $translation) : ?>
                                     <tr>
-                                        <td class="align-bottom"><?php echo $translation->lang ?></td>
+                                        <td class="align-bottom text-center"><?php echo $translation->lang ?></td>
                                         <!-- SHOW -->
                                         <td class="align-bottom text-center">
                                             <a href="/admin/blog/<?php echo $blog->id ?>/trans/<?php echo $translation->id ?>" class="text-primary">
@@ -158,7 +166,7 @@
                         </table>
                     </div>
                 <?php endif; ?>
-                <a href="/admin/blog/<?php echo $blog->id ?>/trans" class="fw-bold text-decoration-none text-success">New Translation</a>
+                <a href="/admin/blog/<?php echo $blog->id ?>/trans" class="fw-bold text-decoration-none text-primary">New Translation</a>
             </div>
 
         </div>

@@ -207,14 +207,16 @@ class UserService
     }
 
     /**
-     * Create a new entry in the DB Table newsletter
-     * @param array $userData form variables, category name
-     * @return 
+     * Switch the language of the App
+     * @param string $lang ISO code of the language to switch the language 
      */
 
-    public function changeLanguage($lang)
+    public function changeLanguage(string $lang)
     {
+        // FIRST CHECK IF THE LANG EXISTS IF NOT GO BACK TO MAIN PAGE
+        $listLanguagues = ['spa', 'cat'];
+        if (!in_array($lang, $listLanguagues)) redirectTo('/');
+
         $_SESSION['lang'] = $lang;
-        //debugator($lang);
     }
 }
