@@ -215,6 +215,78 @@ function privacyContent($lang): array
     if ($lang === 'spa') {
         $content = [
             'title' => 'Política de Privacidad',
+            'content' => '<h4 class="text-decoration-underline">Información al usuario</h4> 
+<h5>¿Quién es el responsable del tratamiento de tus datos personales?</h5> 
+
+<p>Mª Carmen Carrasco Benítez es la <b>responsable</b> del tratamiento de los datos personales del <b>usuario</b> y le informa de que estos datos serán tratados de conformidad con lo dispuesto en el Reglamento (UE) 2016/679, de 27 de abril (GDPR), y la Ley Orgánica 3/2018, de 5 de diciembre (LOPDGDD).</p>
+
+<h5>¿Para qué tratamos tus datos personales?</h5> 
+
+<p>Para mantener una relación comercial con el <b>usuario</b>. Las operaciones previstas para realizar el tratamiento son:</p>
+
+<p>Remisión de comunicaciones comerciales publicitarias por e-mail, fax, SMS, MMS, redes sociales o cualquier otro medio electrónico o físico, presente o futuro, que posibilite realizar comunicaciones comerciales. Estas comunicaciones serán realizadas por la <b>responsable</b> y estarán relacionadas con sus productos y servicios, o de sus colaboradores o proveedores, con los que este haya alcanzado algún acuerdo de promoción. En este caso, los terceros nunca tendrán acceso a los datos personales.</p>
+
+<p>- Realizar estudios de mercado y análisis estadísticos.</p>
+
+<p>- Tramitar encargos, solicitudes, dar respuesta a las consultas o cualquier tipo de petición que sea realizada por el <b>usuario</b> a través de cualquiera de las formas de contacto que se ponen a su disposición en la página web de la <b>responsable</b>.</p>
+
+<p>- Remitir el boletín informativo online, sobre novedades, ofertas y promociones en nuestra actividad.</p>
+
+<h5>¿Por qué motivo podemos tratar tus datos personales?</h5>
+
+<p>Porque el tratamiento está legitimado por el artículo 6 del GDPR de la siguiente forma: 
+
+<p>Con el consentimiento del <b>usuario</b>: remisión de comunicaciones comerciales y del boletín informativo. Por interés legítimo de la <b>responsable</b>: realizar estudios de mercado, análisis estadísticos, etc. y tramitar encargos, solicitudes, etc. a petición del <b>usuario</b>. 
+
+<h5>¿Durante cuánto tiempo guardaremos tus datos personales?</h5>
+
+<p>Se conservarán durante no más tiempo del necesario para mantener el fin del tratamiento o existan prescripciones legales que dictaminen su custodia y cuando ya no sea necesario para ello, se suprimirán con medidas de seguridad adecuadas para garantizar la anonimización de los datos o la destrucción total de los mismos. 
+
+<h5>¿A quién facilitamos tus datos personales?</h5> 
+
+<p>No está prevista ninguna comunicación de datos personales a terceros salvo, si fuese necesario para el desarrollo y ejecución de las finalidades del tratamiento, a nuestros proveedores de servicios relacionados con comunicaciones, con los cuales la <b>responsable</b> tiene suscritos los contratos de confidencialidad y de encargado de tratamiento exigidos por la normativa vigente de privacidad.
+
+<h5>¿Cuáles son tus derechos?</h5>
+
+<p>Los derechos que asisten al  <b>usuario</b> son:</p> 
+
+<p> - Derecho a retirar el consentimiento en cualquier momento.</p> 
+
+<p> - Derecho de acceso, rectificación, portabilidad y supresión de sus datos, y de limitación u oposición a su tratamiento.</p> 
+
+<p> - Derecho a presentar una reclamación ante la autoridad de control (www.aepd.es) si considera que el tratamiento no se ajusta a la normativa vigente.</p> 
+
+<p>Datos de contacto para ejercer sus derechos:</p> 
+
+<p>Mª Carmen Carrasco Benítez</p>
+<p>Domicilio social:</p>
+<p>Sant Cugat del Vallès (Barcelona)</p>
+<p>NIF:</p> 
+<p>Teléfono: + 34 651 786 502</p>
+<p>email: info@durgga.com</p> 
+
+<h4 class="text-decoration-underline">Carácter obligatorio o facultativo de la información facilitada por el usuario</h4>
+
+<p>El <b>usuario</b>, mediante la marcación de las casillas correspondientes y la entrada de datos en los campos, marcados con un asterisco (*) en el formulario de contacto o presentados en formularios de descarga, aceptan expresamente y de forma libre e inequívoca, que sus datos son necesarios para atender su petición, por parte del prestador, siendo voluntaria la inclusión de datos en los campos restantes. El <b>usuario</b> garantiza que los datos personales facilitados al RESPONSABLE son veraces y se hace responsable de comunicar cualquier modificación de los mismos.</p>
+
+<p>La <b>responsable</b> informa de que todos los datos solicitados a través del sitio web son obligatorios, ya que son necesarios para la prestación de un servicio óptimo al <b>usuario</b>. En caso de que no se faciliten todos los datos, no se garantiza que la información y servicios facilitados sean completamente ajustados a sus necesidades.</p>
+
+<h4 class="text-decoration-underline">Medidas de seguridad</h4>
+<p>Que de conformidad con lo dispuesto en las normativas vigentes en protección de datos personales, la <b>responsable</b> está cumpliendo con todas las disposiciones de las normativas GDPR y LOPDGDD para el tratamiento de los datos personales de su responsabilidad, y manifiestamente con los principios descritos en el artículo 5 del GDPR, por los cuales son tratados de manera lícita, leal y transparente en relación con el interesado y adecuados, pertinentes y limitados a lo necesario en relación con los fines para los que son tratados.</p>
+
+<p>La <b>responsable</b> garantiza que ha implementado políticas técnicas y organizativas apropiadas para aplicar las medidas de seguridad que establecen el GDPR y la LOPDGDD con el fin de proteger los derechos y libertades de los <b>usuarios</b> y les ha comunicado la información adecuada para que puedan ejercerlos.</p>
+
+<p>Para más información sobre las garantías de privacidad, puedes dirigirte a la <b>responsable</b> a través de:</p>
+<p>Mª Carmen Carrasco Benítez</p>
+<p>Domicilio social:</p>
+<p>Sant Cugat del Vallès (Barcelona)</p>
+<p>NIF:</p> 
+<p>Teléfono: + 34 651 786 502</p>
+<p>email: info@durgga.com</p>',
+            'button' => 'Volver'
+        ];
+        $content_original = [
+            'title' => 'Política de Privacidad',
             'content' => '<p>Responsable: Mª Carmen Carrasco Benítez</p>
             <p>Finalidad: La finalidad de la recogida y tratamiento de los datos personales que te solicito es para mandarte información de tu interés como vídeos, artículos, próximas actividades  e información sobre cursos y terapias.</p>
 
@@ -227,6 +299,78 @@ function privacyContent($lang): array
     if ($lang === 'cat') {
         $content = [
             'title' => 'Política de Privacitat',
+            'content' => '<h4 class="text-decoration-underline">Informació a l&#39;usuari</h4>
+<h5>Qui és el responsable del tractament de les teves dades personals?</h5>
+
+<p>Mª Carmen Carrasco Benítez és la <b>responsable</b> del tractament de les dades personals de <b>l&#39;usuari</b> i l&#39;informa que aquestes dades seran tractades de conformitat amb el que es disposa en el Reglament (UE) 2016/679, de 27 d&#39;abril (GDPR), i la Llei orgànica 3/2018, de 5 de desembre (LOPDGDD).</p>
+
+<h5>Per a què tractem les teves dades personals?</h5>
+
+<p>Per a mantenir una relació comercial amb <b>l&#39;usuari</b>. Les operacions previstes per a realitzar el tractament són:</p>
+
+<p>Remissió de comunicacions comercials publicitàries per e-mail, fax, SMS, MMS, xarxes socials o qualsevol altre mitjà electrònic o físic, present o futur, que possibiliti realitzar comunicacions comercials. Aquestes comunicacions seran realitzades per la <b>responsable</b> i estaran relacionades amb els seus productes i serveis, o dels seus col·laboradors o proveïdors, amb els quals aquest hagi aconseguit algun acord de promoció. En aquest cas, els tercers mai tindran accés a les dades personals.</p>
+
+<p>- Realitzar estudis de mercat i anàlisis estadístiques.</p>
+
+<p>- Tramitar encàrrecs, sol·licituds, donar resposta a les consultes o qualsevol tipus de petició que sigui realitzada per <b>l&#39;usuari</b> a través de qualsevol de les formes de contacte que es posen a la seva disposició en la pàgina web de la <b>responsable</b>.</p>
+
+<p>- Remetre el butlletí informatiu en línia, sobre novetats, ofertes i promocions en la nostra activitat.</p>
+
+<h5>Per quin motiu podem tractar les teves dades personals?</h5>
+
+<p>Perquè el tractament està legitimat per l&#39;article 6 del GDPR de la manera següent:
+
+<p>Amb el consentiment de <b>l&#39;usuari</b>: remissió de comunicacions comercials i del butlletí informatiu. Per interès legítim de la <b>responsable</b>: realitzar estudis de mercat, anàlisis estadístiques, etc. i tramitar encàrrecs, sol·licituds, etc. a petició de <b>l&#39;usuari</b>.
+
+<h5>Durant quant temps guardarem les teves dades personals?</h5>
+
+<p>Es conservaran durant no més temps del necessari per a mantenir la fi del tractament o existeixin prescripcions legals que dictaminin la seva custòdia i quan ja no sigui necessari per a això, se suprimiran amb mesures de seguretat adequades per a garantir l&#39;anonimització de les dades o la destrucció total d&#39;aquests.
+
+<h5>A qui facilitem les teves dades personals?</h5>
+
+<p>No està prevista cap comunicació de dades personals a tercers excepte, si fos necessari per al desenvolupament i execució de les finalitats del tractament, als nostres proveïdors de serveis relacionats amb comunicacions, amb els quals la <b>responsable</b> té subscrits els contractes de confidencialitat i d&#39;encarregat de tractament exigits per la normativa vigent de privacitat.
+
+<h5>Quins són els teus drets?</h5>
+
+<p>Els drets que assisteixen a <b>l&#39;usuari</b> són:</p>
+
+<p> - Dret a retirar el consentiment en qualsevol moment.</p>
+
+<p> - Dret d&#39;accés, rectificació, portabilitat i supressió de les seves dades, i de limitació o oposició al seu tractament.</p>
+
+<p> - Dret a presentar una reclamació davant l&#39;autoritat de control (www.aepd.es) si considera que el tractament no s&#39;ajusta a la normativa vigent.</p>
+
+<p>Dades de contacte per a exercir els seus drets:</p>
+
+<p>Mª Carmen Carrasco Benítez</p>
+<p>Domicili social:</p>
+<p>Sant Cugat del Vallès (Barcelona)</p>
+<p>NIF:</p>
+<p>Telèfon: +34 651 786 502</p>
+<p>email: info@durgga.com</p>
+
+<h4 class="text-decoration-underline">Caràcter obligatori o facultatiu de la informació facilitada per l&#39;usuari</h4>
+
+<p><b>L&#39;usuari</b>, mitjançant la marcació de les caselles corresponents i l&#39;entrada de dades en els camps, marcats amb un asterisc () en el formulari de contacte o presentats en formularis de descàrrega, accepten expressament i de manera lliure i inequívoca, que les seves dades són necessàries per a atendre la seva petició, per part del prestador, sent voluntària la inclusió de dades en els camps restants. <b>L&#39;usuari</b> garanteix que les dades personals facilitades al RESPONSABLE són veraços i es fa responsable de comunicar qualsevol modificació d&#39;aquests.</p>
+
+<p>La <b>responsable</b> informa que totes les dades sol·licitades a través del lloc web són obligatoris, ja que són necessaris per a la prestació d&#39;un servei òptim a <b>l&#39;usuari</b>. En cas que no es facilitin totes les dades, no es garanteix que la informació i serveis facilitats siguin completament ajustats a les seves necessitats.</p>
+
+<h4 class="text-decoration-underline">Mesures de seguretat</h4>
+<p>Que de conformitat amb el que es disposa en les normatives vigents en protecció de dades personals, la <b>responsable</b> està complint amb totes les disposicions de les normatives GDPR i LOPDGDD per al tractament de les dades personals de la seva responsabilitat, i manifestament amb els principis descrits en l&#39;article 5 del GDPR, pels quals són tractats de manera lícita, lleial i transparent en relació amb l&#39;interessat i adequats, pertinents i limitats al necessari en relació amb els fins per als quals són tractats.</p>
+
+<p>La <b>responsable</b> garanteix que ha implementat polítiques tècniques i organitzatives apropiades per a aplicar les mesures de seguretat que estableixen el GDPR i la LOPDGDD amb la finalitat de protegir els drets i llibertats dels <b>usuaris</b> i els ha comunicat la informació adequada perquè puguin exercir-los.</p>
+
+<p>Per a més informació sobre les garanties de privacitat, pots dirigir-te a la <b>responsable</b> a través de:</p>
+<p>Mª Carmen Carrasco Benítez</p>
+<p>Domicili social:</p>
+<p>Sant Cugat del Vallès (Barcelona)</p>
+<p>NIF:</p>
+<p>Telèfon: +34 651 786 502</p>
+<p>email: info@durgga.com</p>',
+            'button' => 'Tornar'
+        ];
+        $content_original = [
+            'title' => 'Política de Privacitat',
             'content' => '<p>Responsable: Mª Carmen Carrasco Benítez</p>
 <p>Finalitat: La finalitat de la recollida i tractament de les dades personals que et sol·licito és per a manar-te informació del teu interès com a vídeos, articles, pròximes activitats i informació sobre cursos i teràpies.</p>
 
@@ -236,6 +380,211 @@ function privacyContent($lang): array
             'button' => 'Tornar'
         ];
     }
+    return $content;
+}
+
+/* LEGAL PAGE */
+
+function legalContent($lang): array
+{
+    $content = [];
+    if ($lang === 'spa') {
+        $content = [
+            'title' => 'Aviso Legal',
+            'content' => '<h5>Ley de los servicios de la sociedad de la información (LSSI)</h5>
+<p>Mª Carmen Carrasco Benítez, en adelante la <b>responsable</b>, pone a disposición de los usuarios el presente documento, con el que pretende dar cumplimiento a las obligaciones dispuestas en la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSICE), BOE N.º 166, así como informar a todos los usuarios del sitio web respecto a cuáles son las condiciones de uso.</p>
+
+<p>Toda persona que acceda a este sitio web asume el papel de usuario, comprometiéndose a la observancia y cumplimiento riguroso de las disposiciones aquí dispuestas, así como a cualquier otra disposición legal que fuera de aplicación.</p>
+
+<p>Mª Carmen Carrasco Benítez se reserva el derecho de modificar cualquier tipo de información que pudiera aparecer en el sitio web, sin que exista obligación de preavisar o poner en conocimiento de los usuarios dichas obligaciones, entendiéndose como suficiente la publicación en el sitio web de Mª Carmen Carrasco Benítez.</p>
+
+<h5>Datos identificativos</h5>
+<p>Nombre de dominio: durgga.com</p>
+<p>Nombre comercial: Mª Carmen Carrasco Benítez, Psicòloga General Sanitària y Terapeuta Gestalt</p>
+<p>Denominación social: Mª Carmen Carrasco Benítez</p>
+<p>NIF:</p>
+<p>Domicilio social:</p> 
+<p>Teléfono: +34 651 786 502</p>
+<p>Email: info@durgga.com</p>
+
+<h5>Derechos de propiedad intelectual e industrial</h5>
+<p>El sitio web, incluyendo a título enunciativo pero no limitativo su programación, edición, compilación y demás elementos necesarios para su funcionamiento, los diseños, logotipos, texto y/o gráficos, son propiedad de la <b>responsable</b> o, si es el caso, dispone de licencia o autorización expresa por parte de los autores. Todos los contenidos del sitio web se encuentran debidamente protegidos por la normativa de propiedad intelectual e industrial, así como inscritos en los registros públicos correspondientes.
+<p>Independientemente de la finalidad para la que fueran destinados, la reproducción total o parcial, uso, explotación, distribución y comercialización, requiere en todo caso la autorización escrita previa por parte de la <b>responsable</b>. Cualquier uso no autorizado previamente se considera un incumplimiento grave de los derechos de propiedad intelectual o industrial del autor.</p>
+<p>Los diseños, logotipos, texto y/o gráficos ajenos a la <b>responsable</b> y que pudieran aparecer en el sitio web, pertenecen a sus respectivos propietarios, siendo ellos mismos responsables de cualquier posible controversia que pudiera suscitarse respecto a los mismos. La <b>responsable</b> autoriza expresamente a que terceros puedan redirigir directamente a los contenidos concretos del sitio web, y en todo caso redirigir al sitio web principal de durgga.com</p>
+<p>La <b>responsable</b> reconoce a favor de sus titulares los correspondientes derechos de propiedad intelectual e industrial, no implicando su sola mención o aparición en el sitio web la existencia de derechos o responsabilidad alguna sobre los mismos, como tampoco respaldo, patrocinio o recomendación por parte del mismo.</p>
+
+<p>Para realizar cualquier tipo de observación respecto a posibles incumplimientos de los derechos de propiedad intelectual o industrial, así como sobre cualquiera de los contenidos del sitio web, puede hacerlo a través del correo electrónico info@durgga.com</p>
+
+<h5>Exención de responsabilidades</h5>
+<p>La <b>responsable</b> se exime de cualquier tipo de responsabilidad derivada de la información publicada en su sitio web siempre que esta información haya sido manipulada o introducida por un tercero ajeno al mismo.</p>
+
+<h5>Uso de Cookies</h5>
+
+<p>Este sitio web puede utilizar cookies técnicas (pequeños archivos de información que el servidor envía al ordenador de quien accede a la página) para llevar a cabo determinadas funciones que son consideradas imprescindibles para el correcto funcionamiento y visualización del sitio. Las cookies utilizadas tienen, en todo caso, carácter temporal, con la única finalidad de hacer más eficaz la navegación, y desaparecen al terminar la sesión del usuario. En ningún caso, estas cookies proporcionan por sí mismas datos de carácter personal y no se utilizarán para la recogida de los mismos.</p>
+
+<p>Mediante el uso de cookies también es posible que el servidor donde se encuentra la web reconozca el navegador utilizado por el usuario con la finalidad de que la navegación sea más sencilla, permitiendo, por ejemplo, el acceso de los usuarios que se hayan registrado previamente a las áreas, servicios, promociones o concursos reservados exclusivamente a ellos sin tener que registrarse en cada visita. También se pueden utilizar para medir la audiencia, parámetros de tráfico, controlar el progreso y número de entradas, etc., siendo en estos casos cookies prescindibles técnicamente, pero beneficiosas para el usuario. Este sitio web no instalará cookies prescindibles sin el consentimiento previo del usuario.</p>
+
+<p>Este sitio web utiliza cookies analíticas para habilitar la función de control de visitas únicas con el fin de facilitarle su navegación. A todo usuario que visita la web se le informa del uso de estas cookies mediante un banner flotante, considerando que si acepta el tratamiento está de acuerdo con su uso. En el caso de aceptar su uso el banner desaparecerá, aunque en todo momento podrá revocar el consentimiento y obtener más información consultando nuestra Política de cookies.</p>
+<p>El usuario tiene la posibilidad de configurar su navegador para ser alertado de la recepción de cookies y para impedir su instalación en su equipo. Por favor, consulte las instrucciones de su navegador para ampliar esta información.</p>
+
+<h5>Política de enlaces</h5>
+
+<p>Desde el sitio web, es posible que se redirija a contenidos de terceros sitios web. Dado que La <b>responsable</b> no puede controlar siempre los contenidos introducidos por terceros en sus respectivos sitios web, no asume ningún tipo de responsabilidad respecto a dichos contenidos. En todo caso, procederá a la retirada inmediata de cualquier contenido que pudiera contravenir la legislación nacional o internacional, la moral o el orden público, procediendo a la retirada inmediata de la redirección a dicho sitio web, poniendo en conocimiento de las autoridades competentes el contenido en cuestión.</p>
+
+<p>La <b>responsable</b> no se hace responsable de la información y contenidos almacenados, a título enunciativo pero no limitativo, en foros, chats, generadores de blogs, comentarios, redes sociales o cualquier otro medio que permita a terceros publicar contenidos de forma independiente en la página web de La <b>responsable</b>. Sin embargo, y en cumplimiento de lo dispuesto en los artículos 11 y 16 de la LSSICE, se pone a disposición de todos los usuarios, autoridades y fuerzas de seguridad, colaborando de forma activa en la retirada o, en su caso, bloqueo de todos aquellos contenidos que puedan afectar o contravenir la legislación nacional o internacional, los derechos de terceros o la moral y el orden público. En caso de que el usuario considere que existe en el sitio web algún contenido que pudiera ser susceptible de esta clasificación, se ruega lo notifique de forma inmediata al administrador del sitio web.</p>
+
+<p>Este sitio web se ha revisado y probado para que funcione correctamente. En principio, puede garantizarse el correcto funcionamiento los 365 días del año, 24 horas al día. Sin embargo, La <b>responsable</b> no descarta la posibilidad de que existan ciertos errores de programación, o que acontezcan causas de fuerza mayor, catástrofes naturales, huelgas o circunstancias semejantes que hagan imposible el acceso a la página web.</p>
+
+<h5>Direcciones IP</h5>
+
+<p>Los servidores del sitio web podrán detectar de manera automática la dirección IP y el nombre de dominio utilizados por el usuario. Una dirección IP es un número asignado automáticamente a un ordenador cuando este se conecta a Internet. Toda esta información se registra en un fichero de actividad del servidor debidamente inscrito que permite el posterior procesamiento de los datos con el fin de obtener mediciones únicamente estadísticas que permitan conocer el número de impresiones de páginas, el número de visitas realizadas a los servidores web, el orden de visitas, el punto de acceso, etc.</p>
+
+<h5>Ley aplicable y jurisdicción</h5>
+<p>Para la resolución de todas las controversias o cuestiones relacionadas con el presente sitio web o de las actividades en él desarrolladas, será de aplicación la legislación española, a la que se someten expresamente las partes, siendo competentes para la resolución de todos los conflictos derivados o relacionados con su uso los Juzgados y Tribunales de Barcelona (España).</p>',
+            'button' => 'Volver'
+        ];
+    }
+    if ($lang === 'cat') {
+        $content = [
+            'title' => 'Avís Legal',
+            'content' => '<h5>Llei dels serveis de la societat de la informació (LSSI)</h5>
+<p>Mª Carmen Carrasco Benítez, d&#39;ara endavant la <b>responsable</b>, posa a la disposició dels usuaris el present document, amb el qual pretén donar compliment a les obligacions disposades en la Llei 34/2002, d&#39;11 de juliol, de Serveis de la Societat de la Informació i de Comerç Electrònic (LSSICE), BOE Núm. 166, així com informar a tots els usuaris del lloc web respecte a quins són les condicions d&#39;ús.</p>
+
+<p>Tota persona que accedeixi a aquest lloc web assumeix el paper d&#39;usuari, comprometent-se a l&#39;observança i compliment rigorós de les disposicions aquí disposades, així com a qualsevol altra disposició legal que fos aplicable.</p>
+
+<p>Mª Carmen Carrasco Benítez es reserva el dret de modificar qualsevol tipus d&#39;informació que pogués aparèixer en el lloc web, sense que existeixi obligació de preavisar o posar en coneixement dels usuaris aquestes obligacions, entenent-se com a suficient la publicació en el lloc web de Mª Carmen Carrasco Benítez.</p>
+
+<h5>Dades identificatives</h5>
+<p>Nom de domini: durgga.com</p>
+<p>Nom comercial: Mª Carmen Carrasco Benítez, Psicòloga General Sanitària i Terapeuta Gestalt</p>
+<p>Denominació social: Mª Carmen Carrasco Benítez</p>
+<p>NIF:</p>
+<p>Domicili social:</p>
+<p>Telèfon: +34 651 786 502</p>
+<p>Email: info@durgga.com</p>
+
+<h5>Drets de propietat intel·lectual i industrial</h5>
+<p>El lloc web, incloent-hi títol enunciatiu però no limitatiu la seva programació, edició, compilació i altres elements necessaris per al seu funcionament, els dissenys, logotips, text i/o gràfics, són propietat de la <b>responsable</b> o, si és el cas, disposa de llicència o autorització expressa per part dels autors. Tots els continguts del lloc web es troben degudament protegits per la normativa de propietat intel·lectual i industrial, així com inscrits en els registres públics corresponents.
+<p>Independentment de la finalitat per a la qual fossin destinats, la reproducció total o parcial, ús, explotació, distribució i comercialització, requereix en tot cas l&#39;autorització escrita prèvia per part de la <b>responsable</b>. Qualsevol ús no autoritzat prèviament es considera un incompliment greu dels drets de propietat intel·lectual o industrial de l&#39;autor.</p>
+<p>Els dissenys, logotips, text i/o gràfics aliens a la <b>responsable</b> i que poguessin aparèixer en el lloc web, pertanyen als seus respectius propietaris, sent ells mateixos responsables de qualsevol possible controvèrsia que pogués suscitar-se respecte a aquests. La <b>responsable</b> autoritza expressament al fet que tercers puguin redirigir directament als continguts concrets del lloc web, i en tot cas redirigir al lloc web principal de durgga.com</p>
+<p>La <b>responsable</b> reconeix a favor dels seus titulars els corresponents drets de propietat intel·lectual i industrial, no implicant el seu sol esment o aparició en el lloc web l&#39;existència de drets o cap responsabilitat sobre aquests, com tampoc suport, patrocini o recomanació per part d&#39;aquest.</p>
+
+<p>Per a realitzar qualsevol tipus d&#39;observació respecte a possibles incompliments dels drets de propietat intel·lectual o industrial, així com sobre qualsevol dels continguts del lloc web, pot fer-lo a través del correu electrònic info@durgga.com</p>
+
+<h5>Exempció de responsabilitats</h5>
+<p>La <b>responsable</b> s&#39;eximeix de qualsevol tipus de responsabilitat derivada de la informació publicada en el seu lloc web sempre que aquesta informació hagi estat manipulada o introduïda per un tercer aliè a aquest.</p>
+
+<h5>Ús de Cookies</h5>
+
+<p>Aquest lloc web pot utilitzar cookies tècniques (petits arxius d&#39;informació que el servidor envia a l&#39;ordinador de qui accedeix a la pàgina) per a dur a terme determinades funcions que són considerades imprescindibles per al correcte funcionament i visualització del lloc. Les cookies utilitzades tenen, en tot cas, caràcter temporal, amb l&#39;única finalitat de fer més eficaç la navegació, i desapareixen en acabar la sessió de l&#39;usuari. En cap cas, aquestes cookies proporcionen per si mateixes dades de caràcter personal i no s&#39;utilitzaran per a la recollida d&#39;aquests.</p>
+
+<p>Mitjançant l&#39;ús de cookies també és possible que el servidor on es troba la web reconegui el navegador utilitzat per l&#39;usuari amb la finalitat que la navegació sigui més senzilla, permetent, per exemple, l&#39;accés dels usuaris que s&#39;hagin registrat prèviament a les àrees, serveis, promocions o concursos reservats exclusivament a ells sense haver de registrar-se en cada visita. També es poden utilitzar per a mesurar l&#39;audiència, paràmetres de trànsit, controlar el progrés i nombre d&#39;entrades, etc., sent en aquests casos cookies prescindibles tècnicament, però beneficioses per a l&#39;usuari. Aquest lloc web no instal·larà cookies prescindibles sense el consentiment previ de l&#39;usuari.</p>
+
+<p>Aquest lloc web utilitza cookies analítiques per a habilitar la funció de control de visites úniques amb la finalitat de facilitar-li la seva navegació. A tot usuari que visita la web se l&#39;informa de l&#39;ús d&#39;aquestes cookies mitjançant un bàner flotant, considerant que si accepta el tractament està d&#39;acord amb el seu ús. En el cas d&#39;acceptar el seu ús el bàner desapareixerà, encara que en tot moment podrà revocar el consentiment i obtenir més informació consultant la nostra Política de cookies.</p>
+<p>L&#39;usuari té la possibilitat de configurar el seu navegador per a ser alertat de la recepció de cookies i per a impedir la seva instal·lació en el seu equip. Si us plau, consulti les instruccions del seu navegador per a ampliar aquesta informació.</p>
+
+<h5>Política d&#39;enllaços</h5>
+
+<p>Des del lloc web, és possible que es redirigeixi a continguts de tercers llocs web. Atès que La <b>responsable</b> no pot controlar sempre els continguts introduïts per tercers en els seus respectius llocs web, no assumeix cap mena de responsabilitat respecte a aquests continguts. En tot cas, procedirà a la retirada immediata de qualsevol contingut que pogués contravenir la legislació nacional o internacional, la moral o l&#39;ordre públic, procedint a la retirada immediata de la redirecció a aquest lloc web, posant en coneixement de les autoritats competents el contingut en qüestió.</p>
+
+<p>La <b>responsable</b> no es fa responsable de la informació i continguts emmagatzemats, a títol enunciatiu però no limitatiu, en fòrums, xats, generadors de blogs, comentaris, xarxes socials o qualsevol altre mitjà que permeti a tercers publicar continguts de manera independent en la pàgina web de La <b>responsable</b>. No obstant això, i en compliment del que es disposa en els articles 11 i 16 de la LSSICE, es posa a la disposició de tots els usuaris, autoritats i forces de seguretat, col·laborant de manera activa en la retirada o, si és el cas, bloqueig de tots aquells continguts que puguin afectar o contravenir la legislació nacional o internacional, els drets de tercers o la moral i l&#39;ordre públic. En cas que l&#39;usuari consideri que existeix en el lloc web algun contingut que pogués ser susceptible d&#39;aquesta classificació, es prega el notifiqui de manera immediata a l&#39;administrador del lloc web.</p>
+
+<p>Aquest lloc web s&#39;ha revisat i provat perquè funcioni correctament. En principi, pot garantir-se el correcte funcionament els 365 dies de l&#39;any, 24 hores al dia. No obstant això, La <b>responsable</b> no descarta la possibilitat que existeixin uns certs errors de programació, o que esdevinguin causes de força major, catàstrofes naturals, vagues o circumstàncies semblants que facin impossible l&#39;accés a la pàgina web.</p>
+
+<h5>Adreces IP</h5>
+
+<p>Els servidors del lloc web podran detectar de manera automàtica l&#39;adreça IP i el nom de domini utilitzats per l&#39;usuari. Una adreça IP és un número assignat automàticament a un ordinador quan aquest es connecta a Internet. Tota aquesta informació es registra en un fitxer d&#39;activitat del servidor degudament inscrit que permet el posterior processament de les dades amb la finalitat d&#39;obtenir mesuraments únicament estadístics que permetin conèixer el nombre d&#39;impressions de pàgines, el nombre de visites realitzades als servidors web, l&#39;ordre de visites, el punt d&#39;accés, etc.</p>
+
+<h5>Llei aplicable i jurisdicció</h5>
+<p>Per a la resolució de totes les controvèrsies o qüestions relacionades amb el present lloc web o de les activitats en ell desenvolupades, serà aplicable la legislació espanyola, a la qual se sotmeten expressament les parts, sent competents per a la resolució de tots els conflictes derivats o relacionats amb el seu ús els Jutjats i Tribunals de Barcelona (Espanya).</p>',
+            'button' => 'Tornar'
+        ];
+    }
+    return $content;
+}
+
+function cookiesContent($lang): array
+{
+    $content = [];
+    if ($lang === 'spa') {
+        $content = [
+            'title' => 'Política de cookies',
+            'content' => '<h5>Información sobre cookies</h5>
+<p>Debido a la entrada en vigor de la referente modificación de la «Ley de Servicios de la Sociedad de la Información» (LSSICE) establecida por el Real Decreto 13/2012, es de obligación obtener el consentimiento expreso del usuario de todas las páginas web que usan cookies prescindibles, antes de que este navegue por ellas.</p>
+
+<h5>¿Qué son las cookies?</h5>
+<p>Las cookies y otras tecnologías similares tales como local shared objects, flash cookies o píxeles, son herramientas empleadas por los servidores Web para almacenar y recuperar información acerca de sus visitantes, así como para ofrecer
+un correcto funcionamiento del sitio. Mediante el uso de estos dispositivos se permite al servidor Web recordar algunos datos concernientes al usuario, como sus preferencias para la visualización de las páginas de ese servidor, nombre y contraseña, productos que más le interesan, etc.</p>
+
+<h5>Cookies afectadas por las normativas y cookies exceptuadas</h5>
+<p>Según la directiva de la UE, las cookies que requieren el consentimiento informado por parte del usuario son las cookies de analítica y las de publicidad y afiliación, quedando exceptuadas las de carácter técnico y las necesarias para el funcionamiento del sitio web o la prestación de servicios expresamente solicitados por el usuario.</p>
+
+<h5 class="text-decoration-underline">Tipos de cookies</h5>
+
+<h5>Según la finalidad</h5>
+
+<p> - Cookies técnicas y funcionales: son aquellas que permiten al usuario la navegación a través de una página web, plataforma o aplicación y la utilización de las diferentes opciones o servicios que en ella existan.</p>
+<p> - Cookies de personalización: Son aquéllas que permiten al usuario acceder al servicio con algunas características de carácter general predefinidas en función de una serie de criterios en el terminal del usuario.</p>
+<p> - Cookies analíticas: son aquellas que permiten al responsable de las mismas el seguimiento y análisis del comportamiento de los usuarios de los sitios web a los que están vinculadas. La información recogida mediante este tipo de cookies se utiliza en la medición de la actividad de los sitios web, aplicación o plataforma y para la elaboración de perfiles de navegación de los usuarios de dichos sitios, aplicaciones y plataformas, con el fin de introducir mejoras en función del análisis de los datos de uso que hacen los usuarios del servicio.</p>
+<p> - Cookies publicitarias: son aquellas que permiten la gestión, de la forma más eficaz posible, de los espacios publicitarios que, en su caso, el editor haya incluido en una página web, aplicación o plataforma desde la que presta el servicio solicitado en base a criterios como el contenido editado o la frecuencia en la que se muestran los anuncios.</p>
+<p> - Cookies de publicidad comportamental: recogen información sobre las preferencias y elecciones personales del usuario (retargeting) para permitir la gestión, de la forma más eficaz posible, de los espacios publicitarios que, en su caso, el editor haya incluido en una página web, aplicación o plataforma desde la que presta el servicio solicitado.</p>
+<p> - Cookies sociales: son establecidas por las plataformas de redes sociales en los servicios para permitirle compartir contenido con sus amigos y redes. Las plataformas de medios sociales tienen la capacidad de rastrear su actividad en línea fuera de los Servicios. Esto puede afectar al contenido y los mensajes que ve en otros servicios que visita.</p>
+<p> - Cookies de afiliados: permiten hacer un seguimiento de las visitas procedentes de otras webs, con las que el sitio web establece un contrato de afiliación (empresas de afiliación).</p>
+<p> - Cookies de seguridad: almacenan información cifrada para evitar que los datos guardados en ellas sean vulnerables a ataques maliciosos de terceros.</p>
+ 
+
+<h5>Según la propiedad</h5>
+
+<p> - Cookies propias: son aquellas que se envían al equipo terminal del usuario desde un equipo o dominio gestionado por el propio editor y desde el que se presta el servicio solicitado por el usuario.</p>
+<p> - Cookies de terceros: son aquellas que se envían al equipo terminal del usuario desde un equipo o dominio que no es gestionado por el editor, sino por otra entidad que trata los datos obtenidos través de las cookies.</p>
+
+<h5>Según el plazo de conservación</h5>
+
+<p> - Cookies de sesión: son un tipo de cookies diseñadas para recabar y almacenar datos mientras el usuario accede a una página web.</p>
+<p> - Cookies persistentes: son un tipo de cookies en el que los datos siguen almacenados en el terminal y pueden ser accedidos y tratados durante un período definido por el responsable de la cookie , y que puede ir de unos minutos a varios años.</p>',
+            'button' => 'Volver'
+        ];
+    }
+    if ($lang === 'cat') {
+        $content = [
+            'title' => 'Política de cookies',
+            'content' => '<h5>Informació sobre cookies</h5>
+            <p>A causa de l&#39;entrada en vigor de la referent modificació de la «Llei de Serveis de la Societat de la Informació» (LSSICE) establerta pel Reial decret 13/2012, és d&#39;obligació obtenir el consentiment exprés de l&#39;usuari de totes les pàgines web que usen cookies prescindibles, abans que aquest navegui per elles.</p>
+            
+            <h5>Què són les cookies?</h5>
+            <p>Les cookies i altres tecnologies similars com ara local shared objects, flaix cookies o píxels, són eines emprades pels servidors Web per a emmagatzemar i recuperar informació sobre els seus visitants, així com per a oferir
+            un correcte funcionament del lloc. Mitjançant l&#39;ús d&#39;aquests dispositius es permet al servidor Web recordar algunes dades concernents a l&#39;usuari, com les seves preferències per a la visualització de les pàgines d&#39;aquest servidor, nom i contrasenya, productes que més li interessen, etc.</p>
+            
+            <h5>Cookies afectades per les normatives i cookies exceptuades</h5>
+            <p>Segons la directiva de la UE, les cookies que requereixen el consentiment informat per part de l&#39;usuari són les cookies d&#39;analítica i les de publicitat i afiliació, quedant exceptuades les de caràcter tècnic i les necessàries per al funcionament del lloc web o la prestació de serveis expressament sol·licitats per l&#39;usuari.</p>
+            
+            <h5 class="text-decoration-underline">Tipus de cookies</h5>
+            
+            <h5>Segons la finalitat</h5>
+            
+            <p> - Cookies tècniques i funcionals: són aquelles que permeten a l&#39;usuari la navegació a través d&#39;una pàgina web, plataforma o aplicació i la utilització de les diferents opcions o serveis que en ella existeixin.</p>
+            <p> - Cookies de personalització: Són aquelles que permeten a l&#39;usuari accedir al servei amb algunes característiques de caràcter general predefinides en funció d&#39;una sèrie de criteris en el terminal de l&#39;usuari.</p>
+            <p> - Cookies analítiques: són aquelles que permeten al responsable de les mateixes el seguiment i anàlisi del comportament dels usuaris dels llocs web als quals estan vinculades. La informació recollida mitjançant aquesta mena de cookies s&#39;utilitza en el mesurament de l&#39;activitat dels llocs web, aplicació o plataforma i per a l&#39;elaboració de perfils de navegació dels usuaris d&#39;aquests llocs, aplicacions i plataformes, amb la finalitat d&#39;introduir millores en funció de l&#39;anàlisi de les dades d&#39;ús que fan els usuaris del servei.</p>
+            <p> - Cookies publicitàries: són aquelles que permeten la gestió, de la forma més eficaç possible, dels espais publicitaris que, si és el cas, l&#39;editor hagi inclòs en una pàgina web, aplicació o plataforma des de la qual presta el servei sol·licitat sobre la base de criteris com el contingut editat o la freqüència en la qual es mostren els anuncis.</p>
+            <p> - Cookies de publicitat comportamental: recullen informació sobre les preferències i eleccions personals de l&#39;usuari (retargeting) per a permetre la gestió, de la forma més eficaç possible, dels espais publicitaris que, si és el cas, l&#39;editor hagi inclòs en una pàgina web, aplicació o plataforma des de la qual presta el servei sol·licitat.</p>
+            <p> - Cookies socials: són establertes per les plataformes de xarxes socials en els serveis per a permetre-li compartir contingut amb els seus amics i xarxes. Les plataformes de mitjans socials tenen la capacitat de rastrejar la seva activitat en línia anés dels Serveis. Això pot afectar el contingut i els missatges que veu en altres serveis que visita.</p>
+            <p> - Cookies d&#39;afiliats: permeten fer un seguiment de les visites procedents d&#39;altres webs, amb les quals el lloc web estableix un contracte d&#39;afiliació (empreses d&#39;afiliació).</p>
+            <p> - Cookies de seguretat: emmagatzemen informació xifrada per a evitar que les dades guardades en elles siguin vulnerables a atacs maliciosos de tercers.</p>
+            
+            
+            <h5>Segons la propietat</h5>
+            
+            <p> - Cookies pròpies: són aquelles que s&#39;envien a l&#39;equip terminal de l&#39;usuari des d&#39;un equip o domini gestionat pel propi editor i des del qual es presta el servei sol·licitat per l&#39;usuari.</p>
+            <p> - Cookies de tercers: són aquelles que s&#39;envien a l&#39;equip terminal de l&#39;usuari des d&#39;un equip o domini que no és gestionat per l&#39;editor, sinó per una altra entitat que tracta les dades obtingudes través de les cookies.</p>
+            
+            <h5>Segons el termini de conservació</h5>
+            
+            <p> - Cookies de sessió: són un tipus de cookies dissenyades per a recaptar i emmagatzemar dades mentre l&#39;usuari accedeix a una pàgina web.</p>
+            <p> - Cookies persistents: són un tipus de cookies en el qual les dades segueixen emmagatzemats en el terminal i poden ser accedits i tractats durant un període definit pel responsable de la cookie , i que pot anar d&#39;uns minuts a diversos anys.</p>',
+            'button' => 'Tornar'
+        ];
+    }
+
     return $content;
 }
 

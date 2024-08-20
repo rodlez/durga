@@ -21,11 +21,11 @@
                         <?php echo $footerLinks['subtitle1']; ?>
                     </li>
                     <li class="text-warning mt-2">
-                        <a href="#" class="footer-link"><?php echo $footerLinks['link1']; ?></a> |
+                        <a href="/legal" class="footer-link"><?php echo $footerLinks['link1']; ?></a> |
                         <a href="/privacy" class="footer-link"><?php echo $footerLinks['link2']; ?></a>
                     </li>
                     <li>
-                        <a href="#" class="footer-link"><?php echo $footerLinks['link3']; ?></a>
+                        <a href="/cookies" class="footer-link"><?php echo $footerLinks['link3']; ?></a>
                     </li>
                 </ul>
             </div>

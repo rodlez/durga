@@ -30,6 +30,12 @@ function registerRoutes(App $app)
     // Privacy
     $app->get('/privacy', [HomeController::class, 'privacy']);
 
+    // Legal
+    $app->get('/legal', [HomeController::class, 'legal']);
+
+    // Cookies
+    $app->get('/cookies', [HomeController::class, 'cookies']);
+
     // Newsletter Page
     $app->get('/newsletter', [NewsletterController::class, 'newsletterOk']);
 

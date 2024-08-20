@@ -76,6 +76,32 @@ class HomeController
         ]);
     }
 
+    // LEGAL PAGE - privacy.php
+
+    public function legal()
+    {
+        $content = legalContent($_SESSION['lang']);
+
+        echo $this->view->render("legal.php", [
+            'title' => 'Durgga - ' . $content['title'],
+            // content
+            'content' => $content
+        ]);
+    }
+
+    // COOKIES PAGE - privacy.php
+
+    public function cookies()
+    {
+        $content = cookiesContent($_SESSION['lang']);
+
+        echo $this->view->render("cookies.php", [
+            'title' => 'Durgga - ' . $content['title'],
+            // content
+            'content' => $content
+        ]);
+    }
+
     /**
      * Receives the register form data using the HTTPD POST method 
      * 
