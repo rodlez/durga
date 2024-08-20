@@ -71,6 +71,14 @@
 <!-- JS -->
 <script src="/js/script.js"></script>
 <script src="/js/bootstrap.bundle.min.js"></script>
+<!-- JQUERY -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<!-- Trumbowyg TEXTAREA EDITOR-->
+<script src="/trumbowyg/dist/trumbowyg.min.js"></script>
+<!-- Import Trumbowyg plugins... -->
+<script src="/trumbowyg/dist/plugins/base64/trumbowyg.base64.min.js"></script>
+<!-- Trumbowyg Script -->
+<script src="/js/trumbowyg.js"></script>
 </body>
 
 </html>
