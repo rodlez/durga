@@ -61,12 +61,12 @@
                         <?php echo ($errors['subject'][0]); ?>
                     </div>
                 <?php endif; ?>
-                <!-- ANSWER -->
+                <!-- MESSAGE -->
                 <div class="col-lg-2 bg-secondary text-center text-light text-uppercase fw-400 my-2 p-2 rounded">
                     Message
                 </div>
                 <div class="col-lg-8 offset-lg-1 bg-info text-primary my-2 p-2 rounded">
-                    <textarea name="answer" rows="10" cols="50" class="w-100 rounded"><?php include $this->resolve('partials/_newsletterTemplate.php'); ?></textarea>
+                    <textarea name="answer" id="trumbowyg-editor" rows="10" cols="50" class="w-100 rounded"><?php include $this->resolve('partials/_newsletterTemplate.php'); ?></textarea>
                 </div>
                 <!-- Error Message -->
                 <?php if (array_key_exists('answer', $errors)) : ?>
