@@ -267,7 +267,7 @@ function privacyContent($lang): array
 
 <h4 class="text-decoration-underline">Carácter obligatorio o facultativo de la información facilitada por el usuario</h4>
 
-<p>El <b>usuario</b>, mediante la marcación de las casillas correspondientes y la entrada de datos en los campos, marcados con un asterisco (*) en el formulario de contacto o presentados en formularios de descarga, aceptan expresamente y de forma libre e inequívoca, que sus datos son necesarios para atender su petición, por parte del prestador, siendo voluntaria la inclusión de datos en los campos restantes. El <b>usuario</b> garantiza que los datos personales facilitados al RESPONSABLE son veraces y se hace responsable de comunicar cualquier modificación de los mismos.</p>
+<p>El <b>usuario</b>, mediante la marcación de las casillas correspondientes y la entrada de datos en los campos, marcados con un asterisco (*) en el formulario de contacto o presentados en formularios de descarga, aceptan expresamente y de forma libre e inequívoca, que sus datos son necesarios para atender su petición, por parte del prestador, siendo voluntaria la inclusión de datos en los campos restantes. El <b>usuario</b> garantiza que los datos personales facilitados a la <b>responsable</b> son veraces y se hace responsable de comunicar cualquier modificación de los mismos.</p>
 
 <p>La <b>responsable</b> informa de que todos los datos solicitados a través del sitio web son obligatorios, ya que son necesarios para la prestación de un servicio óptimo al <b>usuario</b>. En caso de que no se faciliten todos los datos, no se garantiza que la información y servicios facilitados sean completamente ajustados a sus necesidades.</p>
 
@@ -351,7 +351,7 @@ function privacyContent($lang): array
 
 <h4 class="text-decoration-underline">Caràcter obligatori o facultatiu de la informació facilitada per l&#39;usuari</h4>
 
-<p><b>L&#39;usuari</b>, mitjançant la marcació de les caselles corresponents i l&#39;entrada de dades en els camps, marcats amb un asterisc () en el formulari de contacte o presentats en formularis de descàrrega, accepten expressament i de manera lliure i inequívoca, que les seves dades són necessàries per a atendre la seva petició, per part del prestador, sent voluntària la inclusió de dades en els camps restants. <b>L&#39;usuari</b> garanteix que les dades personals facilitades al RESPONSABLE són veraços i es fa responsable de comunicar qualsevol modificació d&#39;aquests.</p>
+<p><b>L&#39;usuari</b>, mitjançant la marcació de les caselles corresponents i l&#39;entrada de dades en els camps, marcats amb un asterisc () en el formulari de contacte o presentats en formularis de descàrrega, accepten expressament i de manera lliure i inequívoca, que les seves dades són necessàries per a atendre la seva petició, per part del prestador, sent voluntària la inclusió de dades en els camps restants. <b>L&#39;usuari</b> garanteix que les dades personals facilitades a la <b>responsable</b> són veraços i es fa responsable de comunicar qualsevol modificació d&#39;aquests.</p>
 
 <p>La <b>responsable</b> informa que totes les dades sol·licitades a través del lloc web són obligatoris, ja que són necessaris per a la prestació d&#39;un servei òptim a <b>l&#39;usuari</b>. En cas que no es facilitin totes les dades, no es garanteix que la informació i serveis facilitats siguin completament ajustats a les seves necessitats.</p>
 

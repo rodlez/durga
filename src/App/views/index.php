@@ -288,7 +288,7 @@
 
             <div class="col-lg-3 col-md-6">
                 <!-- Card -->
-                <div class="card mb-4 rounded-0 border-0 p-3">
+                <div class="card mb-4 rounded-2 border-2 border-primary p-3">
                     <div class="card-body text-center">
                         <!-- Icon -->
                         <i class="fas fa-book fa-3x text-primary bg-light rounded-circle p-3 my-4"></i>
@@ -300,7 +300,7 @@
 
             <div class="col-lg-3 col-md-6">
                 <!-- Card -->
-                <div class="card mb-4 rounded-0 border-0 p-3">
+                <div class="card mb-4 rounded-2 border-2 border-primary p-3">
                     <div class="card-body text-center">
                         <!-- Icon -->
                         <i class="fas fa-user-group fa-3x text-primary bg-light rounded-circle p-3 my-4"></i>
@@ -312,7 +312,7 @@
 
             <div class="col-lg-3 col-md-6">
                 <!-- Card -->
-                <div class="card mb-4 rounded-0 border-0 p-3">
+                <div class="card mb-4 rounded-2 border-2 border-primary p-3">
                     <div class="card-body text-center">
                         <!-- Icon -->
                         <i class="fas fa-eye fa-3x text-primary bg-light rounded-circle p-3 my-4"></i>
@@ -323,7 +323,7 @@
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <div class="card mb-4 rounded-0 border-0 p-3">
+                <div class="card mb-4 rounded-2 border-2 border-primary p-3">
                     <div class="card-body text-center">
                         <i class="fas fa-ruler fa-3x text-primary bg-light rounded-circle p-3 my-4"></i>
                         <h5 class="card-title text-primary fw-bold"><?php echo $motivos['point4Title']; ?></h5>
@@ -555,7 +555,7 @@
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $blog->title; ?></h5>
                                 <p class="card-text">
-                                    <?php echo excerpt($blog->content, 50); ?>
+                                    <?php echo excerpt($blog->content, 150); ?>
                                     <a href="/blog/<?php echo $blog->blogId ?>" class="blog-link">Leer Más</a>
                                 </p>
                             </div>

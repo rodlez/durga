@@ -35,7 +35,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $blog->title; ?></h5>
                                         <p class="card-text">
-                                            <?php echo excerpt($blog->content, 50); ?>
+                                            <?php echo excerpt($blog->content, 150); ?>
                                             <a href="/blog/<?php echo $blog->blogId ?>" class="blog-link">Leer Más</a>
                                         </p>
                                     </div>
