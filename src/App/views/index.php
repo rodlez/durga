@@ -30,40 +30,149 @@
     </div>
 </header>
 
-<?php /*
-<!-- Blog, 1 row 3 col per row with cards -->
-<section id="blog" class="blog bg-light py-5">
+<?php
+/*
+<!-- Sintomas test 1 3 column TODO: 1 COLUMN IN MOBILE -->
+<section class="pt-5 pb-5">
     <div class="container">
-        <h2 class="text-center fw-bold text-primary pb-4">
-            Blog
-        </h2>
-        <!-- Blog Row 1 -->
+        <div class="row">
+            <div class="col-6">
+                <h3 class="mb-3">Carousel cards title </h3>
+            </div>
 
-        <div class="row mb-4 justify-content-center">
+            <div class="col-6 text-end">
+                <a class="btn btn-primary mb-3 mr-1" data-bs-target="#carouselExampleIndicators2" role="button" data-bs-slide="prev">
+                    <i class="fa fa-arrow-left"></i>
+                </a>
+                <a class="btn btn-primary mb-3 " data-bs-target="#carouselExampleIndicators2" role="button" data-bs-slide="next">
+                    <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
 
-            <?php foreach ($blogList as $blog) : ?>
+            <div class="col-12 bg-primary">
+                <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
 
-                <div class="col-lg-4 col-md-4">
-                    <div class="card">
-                        <img src="<?php echo "/images/blog/" . $images[0]->storage_filename; ?>" class="card-img" alt="" />
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $blog->title; ?></h5>
-                            <p class="card-text">
-                                <?php echo excerpt($blog->content, 50); ?>
-                                <a href="./blog/la-diosa-durga.html" class="blog-link">Leer Más</a>
-                            </p>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Special title treatment</h4>
+                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=42b2d9ae6feb9c4ff98b9133addfb698">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Special title treatment</h4>
+                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3d2e8a2039c06dd26db977fe6ac6186a">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Special title treatment</h4>
+                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532771098148-525cefe10c23?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=3f317c1f7a16116dec454fbc267dd8e4">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Special title treatment</h4>
+                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532715088550-62f09305f765?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ebadb044b374504ef8e81bdec4d0e840">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Special title treatment</h4>
+                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=0754ab085804ae8a3b562548e6b4aa2e">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Special title treatment</h4>
+                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=ee8417f0ea2a50d53a12665820b54e23">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Special title treatment</h4>
+                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532777946373-b6783242f211?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=8ac55cf3a68785643998730839663129">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Special title treatment</h4>
+                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532763303805-529d595877c5?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=5ee4fd5d19b40f93eadb21871757eda6">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Special title treatment</h4>
+                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
-            <?php endforeach; ?>
-
+            </div>
         </div>
-
     </div>
 </section>
-*/ ?>
+*/
+?>
+
+
+
 
 <!-- Terapia, relative to position absolute the vertical decoration -->
 <section id="terapia" class="terapia mt-2 mb-5 position-relative">
@@ -82,6 +191,8 @@
     <img src="./images/web/vertical-decoration-left.svg" alt="" class="vertical-decoration position-absolute d-none d-lg-block">
 </section>
 
+<?php
+/*
 <!-- Sintomas, 2 row 4 col per row with cards -->
 <section id="sintomas" class="sintomas bg-info py-5">
     <div class="container">
@@ -182,6 +293,129 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+    </div>
+</section>
+*/
+?>
+
+<!-- Sintomas Test 2 -->
+<section id="sintomas" class="sintomas bg-info py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold text-primary pb-4">
+            <?php echo $sintomas['title']; ?>
+        </h2>
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="card border-0">
+                        <img src="./images/web/sintomas1.jpg" class="card-img" alt="" />
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $sintomas['card1Title']; ?></h5>
+                            <p class="card-text">
+                                <?php echo $sintomas['card1Text']; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card border-0">
+                        <img src="./images/web/sintomas2.jpg" class="card-img" alt="" />
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $sintomas['card2Title']; ?></h5>
+                            <p class="card-text">
+                                <?php echo $sintomas['card2Text']; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card border-0">
+                        <img src="./images/web/sintomas3.jpg" class="card-img" alt="" />
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $sintomas['card3Title']; ?></h5>
+                            <p class="card-text">
+                                <?php echo $sintomas['card3Text']; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card border-0">
+                        <img src="./images/web/sintomas4.jpg" class="card-img" alt="" />
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $sintomas['card4Title']; ?></h5>
+                            <p class="card-text">
+                                <?php echo $sintomas['card4Text']; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card border-0">
+                        <img src="./images/web/sintomas5.jpg" class="card-img" alt="" />
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $sintomas['card5Title']; ?></h5>
+                            <p class="card-text">
+                                <?php echo $sintomas['card5Text']; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card border-0">
+                        <img src="./images/web/sintomas6.jpg" class="card-img" alt="" />
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $sintomas['card6Title']; ?></h5>
+                            <p class="card-text">
+                                <?php echo $sintomas['card6Text']; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card border-0">
+                        <img src="./images/web/sintomas7.jpg" class="card-img" alt="" />
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $sintomas['card7Title']; ?></h5>
+                            <p class="card-text">
+                                <?php echo $sintomas['card7Text']; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="card border-0">
+                        <img src="./images/web/sintomas8.jpg" class="card-img" alt="" />
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $sintomas['card8Title']; ?></h5>
+                            <p class="card-text">
+                                <?php echo $sintomas['card8Text']; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
+            <?php /*
+            <!-- Carousel bullet points -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+            */ ?>
         </div>
 
     </div>
