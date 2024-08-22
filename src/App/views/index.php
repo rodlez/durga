@@ -306,108 +306,112 @@
         <h2 class="text-center fw-bold text-primary pb-4">
             <?php echo $sintomas['title']; ?>
         </h2>
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
 
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="card border-0">
-                        <img src="./images/web/sintomas1.jpg" class="card-img" alt="" />
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $sintomas['card1Title']; ?></h5>
-                            <p class="card-text">
-                                <?php echo $sintomas['card1Text']; ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card border-0">
-                        <img src="./images/web/sintomas2.jpg" class="card-img" alt="" />
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $sintomas['card2Title']; ?></h5>
-                            <p class="card-text">
-                                <?php echo $sintomas['card2Text']; ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card border-0">
-                        <img src="./images/web/sintomas3.jpg" class="card-img" alt="" />
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $sintomas['card3Title']; ?></h5>
-                            <p class="card-text">
-                                <?php echo $sintomas['card3Text']; ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card border-0">
-                        <img src="./images/web/sintomas4.jpg" class="card-img" alt="" />
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $sintomas['card4Title']; ?></h5>
-                            <p class="card-text">
-                                <?php echo $sintomas['card4Text']; ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card border-0">
-                        <img src="./images/web/sintomas5.jpg" class="card-img" alt="" />
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $sintomas['card5Title']; ?></h5>
-                            <p class="card-text">
-                                <?php echo $sintomas['card5Text']; ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card border-0">
-                        <img src="./images/web/sintomas6.jpg" class="card-img" alt="" />
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $sintomas['card6Title']; ?></h5>
-                            <p class="card-text">
-                                <?php echo $sintomas['card6Text']; ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card border-0">
-                        <img src="./images/web/sintomas7.jpg" class="card-img" alt="" />
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $sintomas['card7Title']; ?></h5>
-                            <p class="card-text">
-                                <?php echo $sintomas['card7Text']; ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card border-0">
-                        <img src="./images/web/sintomas8.jpg" class="card-img" alt="" />
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $sintomas['card8Title']; ?></h5>
-                            <p class="card-text">
-                                <?php echo $sintomas['card8Text']; ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
 
-            <?php /*
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="card border-0">
+                                <img src="./images/web/sintomas1.jpg" class="card-img" alt="" />
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $sintomas['card1Title']; ?></h5>
+                                    <p class="card-text">
+                                        <?php echo $sintomas['card1Text']; ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card border-0">
+                                <img src="./images/web/sintomas2.jpg" class="card-img" alt="" />
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $sintomas['card2Title']; ?></h5>
+                                    <p class="card-text">
+                                        <?php echo $sintomas['card2Text']; ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card border-0">
+                                <img src="./images/web/sintomas3.jpg" class="card-img" alt="" />
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $sintomas['card3Title']; ?></h5>
+                                    <p class="card-text">
+                                        <?php echo $sintomas['card3Text']; ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card border-0">
+                                <img src="./images/web/sintomas4.jpg" class="card-img" alt="" />
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $sintomas['card4Title']; ?></h5>
+                                    <p class="card-text">
+                                        <?php echo $sintomas['card4Text']; ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card border-0">
+                                <img src="./images/web/sintomas5.jpg" class="card-img" alt="" />
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $sintomas['card5Title']; ?></h5>
+                                    <p class="card-text">
+                                        <?php echo $sintomas['card5Text']; ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card border-0">
+                                <img src="./images/web/sintomas6.jpg" class="card-img" alt="" />
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $sintomas['card6Title']; ?></h5>
+                                    <p class="card-text">
+                                        <?php echo $sintomas['card6Text']; ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card border-0">
+                                <img src="./images/web/sintomas7.jpg" class="card-img" alt="" />
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $sintomas['card7Title']; ?></h5>
+                                    <p class="card-text">
+                                        <?php echo $sintomas['card7Text']; ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card border-0">
+                                <img src="./images/web/sintomas8.jpg" class="card-img" alt="" />
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $sintomas['card8Title']; ?></h5>
+                                    <p class="card-text">
+                                        <?php echo $sintomas['card8Text']; ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+
+                    <?php /*
             <!-- Carousel bullet points -->
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -416,6 +420,9 @@
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
             </div>
             */ ?>
+                </div>
+
+            </div>
         </div>
 
     </div>
@@ -452,9 +459,7 @@
             <div class="col-lg-6">
                 <h2 class="fw-bold text-primary"><?php echo $metodo['title']; ?></h2>
                 <hr class="hr-heading" />
-                <p>
-                    <?php echo $metodo['subtitle']; ?>
-                </p>
+
                 <div class="d-flex gap-3">
                     <!-- Number, title and text-->
                     <div class="number">
@@ -463,7 +468,7 @@
                         </span>
                     </div>
                     <div class="mt-2">
-                        <h3 class="fs-4 title"><?php echo $metodo['point1Ttitle']; ?></h3>
+                        <h3 class="fs-4 text-warning"><?php echo $metodo['point1Ttitle']; ?></h3>
                         <p>
                             <?php echo $metodo['point1Text']; ?>
                         </p>
@@ -477,7 +482,7 @@
                         </span>
                     </div>
                     <div class="mt-2">
-                        <h3 class="fs-4 title"><?php echo $metodo['point2Ttitle']; ?></h3>
+                        <h3 class="fs-4 text-warning"><?php echo $metodo['point2Ttitle']; ?></h3>
                         <p>
                             <?php echo $metodo['point2Text']; ?>
                         </p>
@@ -491,7 +496,7 @@
                         </span>
                     </div>
                     <div class="mt-2">
-                        <h3 class="fs-4 title"><?php echo $metodo['point3Ttitle']; ?></h3>
+                        <h3 class="fs-4 text-warning"><?php echo $metodo['point3Ttitle']; ?></h3>
                         <p>
                             <?php echo $metodo['point3Text']; ?>
                         </p>
@@ -501,7 +506,7 @@
             </div>
         </div>
     </div>
-    <img src="./images/web/web/vertical-decoration-right.svg" alt="" class="vertical-decoration position-absolute d-none d-lg-block">
+    <img src="./images/web/vertical-decoration-left.svg" alt="vertical decoration image" class="vertical-decoration position-absolute d-none d-md-block">
 </section>
 
 <!-- Motivos -->
@@ -511,9 +516,7 @@
         <div class="row text-center mb-5">
             <div class="col-md-8 offset-md-2">
                 <h2 class="fw-bold text-primary"><?php echo $motivos['title']; ?></h2>
-                <p class="lead text-warning fw-semibold">
-                    <?php echo $motivos['subtitle']; ?>
-                </p>
+
             </div>
         </div>
 
@@ -668,6 +671,7 @@
                 </div>
             </div>
 
+            <?php /*
             <!-- Pricing Col 3 -->
             <div class="col-lg-3 mb-4">
                 <div class="card bg-warning text-center rounded-1">
@@ -682,6 +686,8 @@
                     </div>
                 </div>
             </div>
+            */
+            ?>
 
         </div>
     </div>

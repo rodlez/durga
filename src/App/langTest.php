@@ -876,7 +876,7 @@ function homeMotivos($lang): array
         $content = [
             'title' => '¿Porqué Durgga?',
             'subtitle' => 'Aquí tienes algunos motivos por los que confiar en mi sistema.',
-            'point1Title' => 'Conocimiento',
+            'point1Title' => 'Conozco el tema de primera mano',
             'point2Title' => 'Acompañamiento individualizado',
             'point3Title' => 'Entregada a tu proceso',
             'point4Title' => 'Método a medida',
@@ -886,7 +886,7 @@ function homeMotivos($lang): array
         $content = [
             'title' => 'Perquè Durgga?',
             'subtitle' => 'Aquí tens alguns motius pels quals confiar en el meu sistema.',
-            'point1Title' => 'Coneixement',
+            'point1Title' => 'Conec el tema de primera mà',
             'point2Title' => 'Acompanyament individualitzat',
             'point3Title' => 'Lliurada al teu procés',
             'point4Title' => 'Mètode a mesura',
